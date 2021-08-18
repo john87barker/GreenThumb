@@ -5,13 +5,13 @@ import { Plant as PlantSchema } from '../models/Plant';
 import { Post as PostSchema } from '../models/Post';
 import { Comment as CommentSchema } from "../models/Comment";
 import { Media as MediaSchema } from "../models/Media";
-import { MyGarden as MyGardenSchema } from "../models/MyGarden";
+import { Garden as GardenSchema } from "../models/Garden";
 import { GardenTip as GardenTipSchema } from "../models/GardenTip";
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Plants = mongoose.model('Plant', PlantSchema);
-  MyGardens = mongoose.model('MyGarden', MyGardenSchema);
+  Gardens = mongoose.model('Garden', GardenSchema);
   Posts = mongoose.model('Post', PostSchema);
   Comments = mongoose.model('Comment', CommentSchema);
   GardenTips = mongoose.model('GardenTip', GardenTipSchema);
