@@ -11,8 +11,8 @@ export const Plant = new Schema(
     type: { type: String, required: true },
     season: { type: String, required: true },
     family: { type: String, required: true },
-    sunReq: { type: String, enum: ['Full Sun', 'Part Sun', 'Part Shade', 'Full Shade'], required: true },
-    accountId: { type: Schema.Types.ObjectId, required: true }
+    sunReq: { type: String, enum: ['Full Sun', 'Part Sun', 'Part Shade', 'Full Shade'], required: true }
+
     // NOTE If you wish to add additional public properties for Accounts do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }
