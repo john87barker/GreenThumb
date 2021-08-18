@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-export const Comments = new Schema(
+export const Comment = new Schema(
   {
     title: { type: String, required: true },
     body: { type: String, required: true },
@@ -13,13 +13,13 @@ export const Comments = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-Comments.virtual('creator', {
+Comment.virtual('creator', {
   foreignField: '_id',
   localField: 'creatorId',
   ref: 'Account',
   justOne: true
 })
-Comments.virtual('post', {
+Comment.virtual('post', {
   foreignField: '_id',
   localField: 'postId',
   ref: 'Post',
