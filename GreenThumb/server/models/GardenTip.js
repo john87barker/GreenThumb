@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-export const gardenTip = new Schema(
+export const GardenTip = new Schema(
   {
     name: { type: String, required: true },
     body: { type: String, required: true },
@@ -12,7 +12,7 @@ export const gardenTip = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-gardenTip.virtual('creator', {
+GardenTip.virtual('creator', {
   foreignField: '_id',
   localField: 'creatorId',
   ref: 'Account',
