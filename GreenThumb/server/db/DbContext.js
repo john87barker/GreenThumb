@@ -4,7 +4,6 @@ import { AccountSchema } from '../models/Account';
 import { Plant as PlantSchema } from '../models/Plant';
 import { Post as PostSchema } from '../models/Post';
 import { Comment as CommentSchema } from "../models/Comment";
-import { Media as MediaSchema } from "../models/Media";
 import { Garden as GardenSchema } from "../models/Garden";
 import { GardenTip as GardenTipSchema } from "../models/GardenTip";
 
