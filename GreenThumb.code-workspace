@@ -8,6 +8,9 @@
     {
       "path": "GreenThumb",
       "name": "server"
+    },
+    {
+      "path": "..\\..\\week7\\buglog_checkpoint\\buglog_checkpoint\\node_modules"
     }
   ],
   "settings": {
