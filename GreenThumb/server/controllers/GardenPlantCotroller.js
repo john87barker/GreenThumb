@@ -1,1 +1,0 @@
-.delete ('/:id', this.destroy)

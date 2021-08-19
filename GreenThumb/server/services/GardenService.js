@@ -5,7 +5,7 @@ class GardenService {
 
   async create(body) {
     const garden = await dbContext.Gardens.create(body)
-    return await dbContext.Gardens.findById(garden._id).populate('creator', 'name')
+    return await dbContext.Gardens.findById(garden._id).populate('creator', 'name picture')
   }
   async edit(body) {
     const garden = await dbContext.Gardens.findById(body.id)
@@ -14,7 +14,7 @@ class GardenService {
     if (body.creatorId.toString() !== body.creatorId) {
       throw new BadRequest('Invalid request')
     }
-    const updategarden = await dbContext.Gardens.findById(body,.id, body { new: true }).populate('creator', 'name picture')
+    const updategarden = await dbContext.Gardens.findById(body.id, body, { new: true }).populate('creator', 'name picture')
     return updategarden
   }
 
