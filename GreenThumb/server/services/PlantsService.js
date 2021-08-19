@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class PlantsService {
   async getAllPlants(query = {}) {
-    const plants = await dbContext.Plants.find(query).populate
+    const plants = await dbContext.Plants.find(query)
     return plants
   }
 
@@ -12,6 +12,11 @@ class PlantsService {
     if (!plant) {
       throw new BadRequest('Invalid Id')
     }
+    return plant
+  }
+
+  async create(body) {
+    const plant = await dbContext.Plants.create(body)
     return plant
   }
 }
