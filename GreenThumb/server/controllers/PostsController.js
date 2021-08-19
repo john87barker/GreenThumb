@@ -58,7 +58,6 @@ export class PostsController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      delete req.body.closed
       const post = await postsService.editPost(req.params.id, req.body)
       res.send(post)
     } catch (error) {

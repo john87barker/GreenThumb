@@ -22,28 +22,35 @@ class PostsService {
   }
 
   async editPost(id, body) {
-    const post = await dbContext.Posts.findByIdAndUpdate(id, body, { new: true, runValidators: true })
-    if (!post) {
-      throw new BadRequest('No Post Found!')
+    const post = await dbContext.Posts.findById(id)
+    // if (post) {
+    if (!post.closed) {
+      delete body.closed
+      const editedPost = await dbContext.Posts.findByIdAndUpdate(id, body, { new: true, runValidators: true })
+      return editedPost
+    } else {
+      throw new BadRequest('Post is Closed and cannot be edited')
     }
-    return post
   }
+  // else {
+  //   throw new BadRequest('No Such Post')
+  // }
 
   async closePost(id, userId) {
     const post = await dbContext.Posts.findById(id).populate('creator')
-    if (!post.closed) {
-      if ( userId === post.creator.id){
-      const closed = await dbContext.Posts.findByIdAndUpdate(id, { closed: true }, { new: true })
-      if (!closed) {
-        throw new BadRequest('No Post Found')
-      }
-      return closed
-    } else {
-      throw new BadRequest('This is not your post')
+    if (!post) {
+      throw new BadRequest('No Post Found')
     }
-  } else {
-    throw new BadRequest('Post is already Closed')
+    if (!post.closed) {
+      if (post.creator.id === userId) {
+        const closedPost = await dbContext.Posts.findByIdAndUpdate(id, { closed: true }, { new: true })
+        return closedPost
+      } else {
+        throw new BadRequest('This is not your post')
+      }
+    } else {
+      throw new BadRequest('Post is already Closed')
+    }
   }
 }
-
 export const postsService = new PostsService()
