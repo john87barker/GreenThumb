@@ -6,9 +6,9 @@ export const Plant = new Schema(
     name: { type: String, required: true },
     body: { type: String, required: true },
     picture: { type: String, required: true },
-    // hZone: { type: Number, required: true, min: 1, max: 13 },
+    hZone: { type: String, min: 1, max: 13 },
     daysToMaturity: { type: Number, required: true },
-    sqFt: { type: Number, required: true },
+    sqFt: { type: String, required: true },
     frost: { type: String },
     matureHeight: { type: Number, required: true },
     // NOTE type is Perennial or Annual
