@@ -17,11 +17,12 @@ class PostsService {
 
   async create(body) {
     const post = await dbContext.Posts.create(body)
-    return await dbContext.Posts.findById(post.id).populate('creator', 'name picture')
+    return await dbContext.Posts.findById(post.id)
+    // .populate('creator', 'name picture')
   }
 
-  async editPost(body) {
-    const post = await dbContext.Posts.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+  async editPost(id, body) {
+    const post = await dbContext.Posts.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!post) {
       throw new BadRequest('No Post Found!')
     }
@@ -29,11 +30,19 @@ class PostsService {
   }
 
   async closePost(id, userId) {
-    const post = await dbContext.Posts.findOneAndUpdate({ id: id, creatorId: userId }, { closed: true })
-    if (!post) {
-      throw new BadRequest('No Post Found')
+    const post = await dbContext.Posts.findById(id).populate('creator')
+    if (!post.closed) {
+      if ( userId === post.creator.id){
+      const closed = await dbContext.Posts.findByIdAndUpdate(id, { closed: true }, { new: true })
+      if (!closed) {
+        throw new BadRequest('No Post Found')
+      }
+      return closed
+    } else {
+      throw new BadRequest('This is not your post')
     }
-    return post
+  } else {
+    throw new BadRequest('Post is already Closed')
   }
 }
 

@@ -14,7 +14,7 @@ class DbContext {
   Posts = mongoose.model('Post', PostSchema);
   Comments = mongoose.model('Comment', CommentSchema);
   GardenTips = mongoose.model('GardenTip', GardenTipSchema);
-    Account = mongoose.model('Account', AccountSchema);
+  Account = mongoose.model('Account', AccountSchema);
 }
 
 export const dbContext = new DbContext()

@@ -5,9 +5,10 @@ export const Post = new Schema(
   {
     title: { type: String, required: true },
     body: { type: String, required: true },
-    media: { type: String, required: true },
-    plantId: { type: Schema.Types.ObjectId, required: true },
-    creatorId: { type: Schema.Types.ObjectId, required: true }
+    media: { type: String },
+    closed: { type: String, default: false, required: true },
+    plantId: { type: Schema.Types.ObjectId },
+    creatorId: { type: Schema.Types.ObjectId }
 
   },
   { timestamps: true, toJSON: { virtuals: true } }
