@@ -7,17 +7,17 @@ export const Post = new Schema(
     body: { type: String, required: true },
     media: { type: String },
     closed: { type: Boolean, default: false, required: true },
-    gardenId: { type: Schema.Types.ObjectId, ref: 'Plant' },
+    gardenId: { type: Schema.Types.ObjectId, ref: 'Garden' },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
 
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-Post.virtual('plant', {
+Post.virtual('garden', {
   foreignField: '_id',
-  localField: 'plantId',
-  ref: 'Plant',
+  localField: 'gardenId',
+  ref: 'Garden',
   justOne: true
 })
 Post.virtual('creator', {
