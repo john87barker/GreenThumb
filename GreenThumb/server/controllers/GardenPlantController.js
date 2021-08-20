@@ -16,8 +16,7 @@ export class GardenPlantController extends BaseController {
 
   async create(req, res, next) {
     try {
-      req.body.creatorId = '611eb4984a9dffdedf49cf44'
-      //    req.body.creatorId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const gardenPlant = await gardenPlantService.create(req.body)
       res.send(gardenPlant)
     } catch (error) {
@@ -41,18 +40,6 @@ export class GardenPlantController extends BaseController {
     // REVIEW
     try {
       const delgardenPlant = await gardenPlantService.delete(req.params.id, req.userInfo.id)
-      res.send(delgardenPlant)
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async destroyByGardenId(req, res, next) {
-    // Soft delete only
-    // REVIEW
-    try {
-      const userid = '611eb4984a9dffdedf49cf44'
-      const delgardenPlant = await gardenPlantService.deleteByGardenId(req.params.id, userid)
       res.send(delgardenPlant)
     } catch (error) {
       next(error)
