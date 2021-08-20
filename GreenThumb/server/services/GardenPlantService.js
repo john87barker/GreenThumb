@@ -20,7 +20,7 @@ class GardenPlantService {
     const updategardenPlant = await dbContext.GardenPlant.findById(body.id, body, { new: true }).populate('creator', 'name picture').populate('garden').populate('plant')
     return updategardenPlant
   }
-
+  // REVIEW The below delete is used to delete a plant
   async delete(id, userId) {
     const gardenPlant = await dbContext.GardenPlant.findById(id)
     if (!gardenPlant) { throw new BadRequest('Invalid GardenPlant') }
@@ -28,6 +28,18 @@ class GardenPlantService {
       throw new BadRequest('Invalid request')
     }
     return await dbContext.GardenPlant.findByIdAndDelete(id)
+  }
+
+  // REVIEW  The below delete is to delete all plants related to the Garden
+
+  async deleteByGardenId(id, userId) {
+    const gardenPlant = await dbContext.GardenPlant.findById(id)
+    if (!gardenPlant) { throw new BadRequest('Invalid GardenPlant') }
+    if (gardenPlant.creatorId.toString() !== userId) {
+      throw new BadRequest('Invalid request')
+    }
+    return await dbContext.GardenPlant.deleteMany({ "gardenId: id"})
+
   }
 }
 

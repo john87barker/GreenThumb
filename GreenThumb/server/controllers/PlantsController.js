@@ -7,6 +7,7 @@ export class PlantsController extends BaseController {
     super('api/plants')
     this.router
       .get('', this.getAllPlants)
+      .get('', this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.create)
       .use(Auth0Provider.getAuthorizedUserInfo)
@@ -14,7 +15,16 @@ export class PlantsController extends BaseController {
 
   async getAllPlants(req, res, next) {
     try {
-      const plants = await plantsService.getAllPlants(req.query)
+      const plants = await plantsService.getAllPlants(req.query).populate('crator', 'name picture')
+      res.send(plants)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getById(req, res, next) {
+    try {
+      const plants = await plantsService.getById(req.query.id).populate('crator', 'name picture')
       res.send(plants)
     } catch (error) {
       next(error)

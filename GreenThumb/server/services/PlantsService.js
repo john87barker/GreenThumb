@@ -7,7 +7,7 @@ class PlantsService {
     return plants
   }
 
-  async findById(id) {
+  async getById(id) {
     const plant = await dbContext.Plants.findById(id)
     if (!plant) {
       throw new BadRequest('Invalid Id')

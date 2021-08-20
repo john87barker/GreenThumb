@@ -11,6 +11,7 @@ export class GardenPlantController extends BaseController {
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.destroy)
+      .delete('/garden/:id', this.destroyByGardenId)
   }
 
   async create(req, res, next) {
@@ -39,6 +40,17 @@ export class GardenPlantController extends BaseController {
     // REVIEW
     try {
       const delgardenPlant = await gardenPlantService.delete(req.params.id, req.userInfo.id)
+      res.send(delgardenPlant)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async destroyByGardenId(req, res, next) {
+    // Soft delete only
+    // REVIEW
+    try {
+      const delgardenPlant = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
       res.send(delgardenPlant)
     } catch (error) {
       next(error)
