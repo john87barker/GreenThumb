@@ -31,7 +31,7 @@ class CommentsService {
 
   async destroy(id, userId) {
     const comment = await this.getCommentById(id)
-    if (!comment) {
+    if (comment) {
       if (userId === comment.creator.id) {
         const commentToDie = await dbContext.Comments.findByIdAndDelete({ _id: id })
         return commentToDie
