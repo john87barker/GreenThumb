@@ -1,9 +1,31 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center my-5">
-    <!-- <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Gardening Logo"> -->
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-primary">Green Thumb</span>
-    </h1>
+  <div class="row home flex-grow-1 d-flex flex-column align-items-end justify-content-center my-5 mt-auto">
+    <!-- <div>
+      <h1 class="col-md-12 my-5 bg-dark text-light p-3 rounded d-flex align-items-start">
+        <span class="mx-2 text-primary">Green Thumb</span>
+      </h1>
+    </div> -->
+    <div class="col-md-12">
+      <div class="row mr-5">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6 card p-3 ">
+          <div class="d-flex justify-content-around">
+            <img src="../assets/img/sprout.png" alt="sprout" class="">
+            <h4>Title</h4>
+            <img src="../assets/img/sprout.png" alt="sprout" class="">
+          </div>
+          <div class="text-justify">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate similique temporibus assumenda ipsa voluptas placeat, fugiat illum alias aperiam doloremque sapiente, nihil illo consequuntur dolores ducimus commodi exercitationem nemo a.
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-primary m-1 ">
+                More Articles...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

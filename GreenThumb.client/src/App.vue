@@ -1,7 +1,7 @@
 <template>
   <aside>
     <SideBar />
-    <main class="img">
+    <main class="bg">
       <router-view />
     </main>
   </aside>
@@ -22,12 +22,13 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-.img{
-  background-image: url("https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
-  opacity: abs($number: .5);
-  background-size: cover;
-  height: 100vh;
-  z-index: -1;
-  // max-width: 100vw;
+.bg{
+
+  // background-color: grey;
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #0f9b0f, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+height: 100vh;
 }
 </style>

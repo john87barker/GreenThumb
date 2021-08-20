@@ -1,22 +1,66 @@
 <template>
-  <aside class="row side-gradient d-flex text-light">
-    <h3 class="col-md-12 p-1">
+  <aside class="row side-gradient d-flex text-light pr-0 border-right">
+    <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
         Green Thumb
       </router-link>
     </h3>
-    <h5 class="col-md-12">
+    <div class="col-md-12 sidecard">
+      <div class="navbar-text">
+        <button
+          class="btn btn-outline-primary text-uppercase"
+          @click="login"
+          v-if="!user.isAuthenticated"
+        >
+          Login
+        </button>
+
+        <div class="dropdown" v-else>
+          <div
+            class="dropdown-toggle"
+            @click="state.dropOpen = !state.dropOpen"
+          >
+            <img
+              :src="user.picture"
+              alt="user photo"
+              width="50"
+              class="rounded-circle"
+            />
+          <!-- <span class="mx-3">{{ user.name }}</span> -->
+          </div>
+          <div
+            class="dropdown-menu p-0 list-group w-100"
+            :class="{ show: state.dropOpen }"
+            @click="state.dropOpen = false"
+          >
+            <router-link :to="{ name: 'Account' }">
+              <div class="list-group-item list-group-item-action hoverable">
+                Account
+              </div>
+            </router-link>
+            <div
+              class="list-group-item list-group-item-action hoverable"
+              @click="logout"
+            >
+              logout
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="col-md-12  border-bottom  border-top sidecard">
       Explore
-    </h5>
-    <h5 class="col-md-12">
+    </p>
+    <p class="col-md-12 border-bottom sidecard">
       My Garden
-    </h5>
-    <h5 class="col-md-12">
+    </p>
+    <p class="col-md-12 border-bottom sidecard">
       Articles
-    </h5>
-    <h5 class="col-md-12">
+    </p>
+    <p class="col-md-12 border-bottom sidecard">
       Our Community
-    </h5>
+    </p>
+
     <div class="row ">
       <p class="col-md-12 mb-0 text-center">
         3 Day Forcast
@@ -46,11 +90,27 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { AuthService } from '../services/AuthService'
 
 export default {
   name: 'Component',
   setup() {
-    return {}
+    const state = reactive({
+      dropOpen: false
+    })
+    return {
+      state,
+      user: computed(() => AppState.user),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
+    }
   },
   components: {}
 }
@@ -59,17 +119,44 @@ export default {
 <style lang="scss" scoped>
 
 .side-gradient{
- background: #000000;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #0f9b0f, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+//  background: #000000;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to top, #0f9b0f, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to top, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-color: #000000;
 float: left;
 box-shadow: inset 5px 0 pgx -5px black;
 display: flex;
 height: 100vh;
 width: 15vw;
 padding-left: 1em;
-z-index: 1;
+// z-index: 1;
 // padding-top: 1em;
+}
+.sidecard:hover{
+  color: #a9f1a9;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.dropdown-menu {
+  user-select: none;
+  display: block;
+  transform: scale(0);
+  transition: all 0.15s linear;
+}
+.dropdown-menu.show {
+  transform: scale(1);
+}
+.hoverable {
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.nav-link{
+  text-transform: uppercase;
+}
+.nav-item .nav-link.router-link-exact-active{
+  color: var(--primary);
 }
 </style>
