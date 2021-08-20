@@ -5,7 +5,50 @@
         Green Thumb
       </router-link>
     </h3>
-    <p class="col-md-12  border-bottom sidecard">
+    <div class="col-md-12 sidecard">
+      <div class="navbar-text">
+        <button
+          class="btn btn-outline-primary text-uppercase"
+          @click="login"
+          v-if="!user.isAuthenticated"
+        >
+          Login
+        </button>
+
+        <div class="dropdown" v-else>
+          <div
+            class="dropdown-toggle"
+            @click="state.dropOpen = !state.dropOpen"
+          >
+            <img
+              :src="user.picture"
+              alt="user photo"
+              width="50"
+              class="rounded-circle"
+            />
+          <!-- <span class="mx-3">{{ user.name }}</span> -->
+          </div>
+          <div
+            class="dropdown-menu p-0 list-group w-100"
+            :class="{ show: state.dropOpen }"
+            @click="state.dropOpen = false"
+          >
+            <router-link :to="{ name: 'Account' }">
+              <div class="list-group-item list-group-item-action hoverable">
+                Account
+              </div>
+            </router-link>
+            <div
+              class="list-group-item list-group-item-action hoverable"
+              @click="logout"
+            >
+              logout
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="col-md-12  border-bottom  border-top sidecard">
       Explore
     </p>
     <p class="col-md-12 border-bottom sidecard">
@@ -17,47 +60,7 @@
     <p class="col-md-12 border-bottom sidecard">
       Our Community
     </p>
-    <div class="navbar-text border-bottom">
-      <button
-        class="btn btn-outline-primary text-uppercase"
-        @click="login"
-        v-if="!user.isAuthenticated"
-      >
-        Login
-      </button>
 
-      <div class="dropdown" v-else>
-        <div
-          class="dropdown-toggle"
-          @click="state.dropOpen = !state.dropOpen"
-        >
-          <img
-            :src="user.picture"
-            alt="user photo"
-            height="40"
-            class="rounded"
-          />
-          <span class="mx-3">{{ user.name }}</span>
-        </div>
-        <div
-          class="dropdown-menu p-0 list-group w-100"
-          :class="{ show: state.dropOpen }"
-          @click="state.dropOpen = false"
-        >
-          <router-link :to="{ name: 'Account' }">
-            <div class="list-group-item list-group-item-action hoverable">
-              Account
-            </div>
-          </router-link>
-          <div
-            class="list-group-item list-group-item-action hoverable"
-            @click="logout"
-          >
-            logout
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row ">
       <p class="col-md-12 mb-0 text-center">
         3 Day Forcast
@@ -148,5 +151,12 @@ padding-left: 1em;
 }
 a:hover {
   text-decoration: none;
+}
+
+.nav-link{
+  text-transform: uppercase;
+}
+.nav-item .nav-link.router-link-exact-active{
+  color: var(--primary);
 }
 </style>
