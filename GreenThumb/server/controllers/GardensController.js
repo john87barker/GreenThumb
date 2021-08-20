@@ -14,6 +14,7 @@ export class GardensController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createGarden)
       .put('/:id', this.editGarden)
+      .delete('/gardenId/:id', this.destroyByGardenId)
     //   .delete('/:id', this.destroyGarden)
 
   // post('api/garden/:is/posts')
@@ -80,4 +81,15 @@ export class GardensController extends BaseController {
   //     next(error)
   //   }
   // }
+
+  async destroyByGardenId(req, res, next) {
+    // Hard delete from Manyto MAny table ( GardenPlant, based on GardenId)
+    // REVIEW
+    try {
+      const delgardenPlant = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
+      res.send(delgardenPlant)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
