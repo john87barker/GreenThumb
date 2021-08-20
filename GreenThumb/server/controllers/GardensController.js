@@ -8,15 +8,26 @@ export class GardensController extends BaseController {
   constructor() {
     super('api/gardens')
     this.router
+      .get('', this.getAll)
       .get('/:id', this.getAllPlantsbyGardenId)
-      .get('/:id/questions', this.getallQuestionsbyGardenId)
+      .get('/:id/posts', this.getallPostsbyGardenId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createGarden)
       .put('/:id', this.editGarden)
-      .delete('/:id', this.destroyGarden)
-  }
+    //   .delete('/:id', this.destroyGarden)
+
   // post('api/garden/:is/posts')
   // deletePantIdfrom Garden .destroy(gardenid)
+  }
+
+  async getAll(req, res, next) {
+    try {
+      const garden = await gardenService.getAll(req.params.id)
+      res.send(garden)
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async getAllPlantsbyGardenId(req, res, next) {
     try {
@@ -27,7 +38,7 @@ export class GardensController extends BaseController {
     }
   }
 
-  async getallQuestionsbyGardenId(req, res, next) {
+  async getallPostsbyGardenId(req, res, next) {
     try {
       // REVIEW Refer the service name & method and update it later
       // const questions = await postsService.getallQuestionsbyGardenId(req.params.id)
@@ -57,15 +68,16 @@ export class GardensController extends BaseController {
       next(error)
     }
   }
+  // REVIEW   Commented as at present we are not allowing to delete
 
-  async destroyGarden(req, res, next) {
-    // Soft delete only
-    // REVIEW
-    try {
-      const delgarden = await gardenPlantService.delete(req.params.id, req.userInfo.id)
-      res.send(delgarden)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async destroyGarden(req, res, next) {
+  //   // Soft delete only
+  //   // REVIEW
+  //   try {
+  //     const delgarden = await gardenPlantService.delete(req.params.id, req.userInfo.id)
+  //     res.send(delgarden)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }

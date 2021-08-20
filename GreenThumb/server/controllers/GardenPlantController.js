@@ -7,16 +7,17 @@ export class GardenPlantController extends BaseController {
   constructor() {
     super('api/gardenPlant')
     this.router
-      .use(Auth0Provider.getAuthorizedUserInfo)
+      //    .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.destroy)
-      .delete('/garden/:id', this.destroyByGardenId)
+      .delete('/gardenId/:id', this.destroyByGardenId)
   }
 
   async create(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.id
+      req.body.creatorId = '611eb4984a9dffdedf49cf44'
+      //    req.body.creatorId = req.userInfo.id
       const gardenPlant = await gardenPlantService.create(req.body)
       res.send(gardenPlant)
     } catch (error) {
@@ -50,7 +51,8 @@ export class GardenPlantController extends BaseController {
     // Soft delete only
     // REVIEW
     try {
-      const delgardenPlant = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
+      const userid = '611eb4984a9dffdedf49cf44'
+      const delgardenPlant = await gardenPlantService.deleteByGardenId(req.params.id, userid)
       res.send(delgardenPlant)
     } catch (error) {
       next(error)

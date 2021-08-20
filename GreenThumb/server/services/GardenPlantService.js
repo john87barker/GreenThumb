@@ -8,7 +8,7 @@ class GardenPlantService {
 
   async create(body) {
     const gardenPlant = await dbContext.GardenPlant.create(body)
-    return await dbContext.GardenPlant.findById(gardenPlant._id).populate('creator', 'name picture').populate('garden').populate('plant')
+    return await dbContext.GardenPlant.findById(gardenPlant.id).populate('creator', 'name picture').populate('garden').populate('plant')
   }
 
   async edit(body) {
@@ -20,6 +20,7 @@ class GardenPlantService {
     const updategardenPlant = await dbContext.GardenPlant.findById(body.id, body, { new: true }).populate('creator', 'name picture').populate('garden').populate('plant')
     return updategardenPlant
   }
+
   // REVIEW The below delete is used to delete a plant
   async delete(id, userId) {
     const gardenPlant = await dbContext.GardenPlant.findById(id)
@@ -38,8 +39,7 @@ class GardenPlantService {
     if (gardenPlant.creatorId.toString() !== userId) {
       throw new BadRequest('Invalid request')
     }
-    return await dbContext.GardenPlant.deleteMany({ "gardenId: id"})
-
+    return await dbContext.GardenPlant.deleteMany({ gardenId: id })
   }
 }
 

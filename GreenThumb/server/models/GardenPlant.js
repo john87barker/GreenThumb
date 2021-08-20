@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId
 // Many to Many
 export const GardenPlant = new Schema(
   {
-    plantsId: { type: ObjectId, ref: 'Plant' },
+    plantId: { type: ObjectId, ref: 'Plant' },
     gardenId: { type: ObjectId, ref: 'Garden' },
     creatorId: { type: ObjectId, required: true },
     coordinates: { type: String }
@@ -22,7 +22,7 @@ GardenPlant.virtual('creator', {
 
 GardenPlant.virtual('plant', {
   foreignField: '_id',
-  localField: 'plantsId',
+  localField: 'plantId',
   ref: 'Plant',
   justOne: true
 })

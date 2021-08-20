@@ -9,13 +9,13 @@ export class PlantsController extends BaseController {
       .get('', this.getAllPlants)
       .get('', this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .post('', this.create)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .post('', this.create)
   }
 
   async getAllPlants(req, res, next) {
     try {
-      const plants = await plantsService.getAllPlants(req.query).populate('crator', 'name picture')
+      const plants = await plantsService.getAllPlants(req.query)
       res.send(plants)
     } catch (error) {
       next(error)
@@ -24,7 +24,7 @@ export class PlantsController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      const plants = await plantsService.getById(req.query.id).populate('crator', 'name picture')
+      const plants = await plantsService.getById(req.query.id)
       res.send(plants)
     } catch (error) {
       next(error)
