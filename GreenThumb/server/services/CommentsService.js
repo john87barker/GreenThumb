@@ -41,13 +41,14 @@ class CommentsService {
     throw new BadRequest('Not Allowed for this user')
   }
 
-  async getCommentsByPostId(id) {
-    const post = await dbContext.Posts.findById(id)
-    if (!post) {
-      throw new BadRequest('No Post Found!')
-    }
-    const comments = await dbContext.Comments.find({}).populate('creator', 'name picture')
-    return comments.filter(c => c.postId === id)
+  async getCommentsByPostId(query = {}) {
+    // const post = await dbContext.Posts.findById(query)
+    // if (!post) {
+    //   throw new BadRequest('No Post Found!')
+    // }
+    const comments = await dbContext.Comments.find(query).populate('creator', 'name picture')
+    return comments
+    // return comments.filter(c => c.postId === id)
   }
 }
 

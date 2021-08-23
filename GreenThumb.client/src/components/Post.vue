@@ -25,14 +25,19 @@
       </div>
     </div>
   </div>
-  <Comment v-for="c in comments" :key="c.id" :comment="c" />
+  <div class="col-md-10 offset-1 mb-5 border-bottom border-primary">
+    <div class="row">
+      <Comment v-for="c in comments" :key="c.id" :comment="c" />
+    </div>
+  </div>
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
 import Pop from '../utils/Notifier'
+
 export default {
   name: 'Post',
   props: {
@@ -42,15 +47,16 @@ export default {
     }
   },
   setup(props) {
-    onMounted(async() => {
+    watchEffect(async() => {
       try {
         await commentsService.getCommentsByPostId(props.post.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
+
     return {
-      comments: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments[props.post.id] || [])
     }
   },
   components: {}
