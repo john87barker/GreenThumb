@@ -5,7 +5,7 @@
         Green Thumb
       </router-link>
     </h3>
-    <div class="col-md-12 sidecard">
+    <div class="col-md-12 sidecard z">
       <div class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -29,7 +29,7 @@
           <!-- <span class="mx-3">{{ user.name }}</span> -->
           </div>
           <div
-            class="dropdown-menu p-0 list-group w-100"
+            class="dropdown-menu p-0 list-group w-100 z"
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
@@ -160,5 +160,8 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.z{
+  z-index: 1;
 }
 </style>

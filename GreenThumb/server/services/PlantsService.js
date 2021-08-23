@@ -15,10 +15,10 @@ class PlantsService {
     return plant
   }
 
-  async create(body) {
-    const plant = await dbContext.Plants.create(body)
-    return plant
-  }
+  // async create(body) {
+  //   const plant = await dbContext.Plants.create(body)
+  //   return plant
+  // }
 }
 
 export const plantsService = new PlantsService()

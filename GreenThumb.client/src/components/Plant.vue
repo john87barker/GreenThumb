@@ -1,7 +1,8 @@
 <template>
-  <div class="col-md-7 card">
+  <div class="col-md-7 card" v-for="p in plants" :key="p.id">
     <div class="row">
       <h1 class="col-md-12 text-center">
+        {{ p.name }}
         Tomato
       </h1>
       <hr>
@@ -63,6 +64,12 @@
 <script>
 export default {
   name: 'Component',
+  props: {
+    plant: {
+      type: Object,
+      required: true
+    }
+  },
   setup() {
     return {}
   },

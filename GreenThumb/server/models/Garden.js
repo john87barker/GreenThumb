@@ -8,7 +8,7 @@ export const Garden = new Schema(
     body: { type: String, required: true },
     gardenPic: { type: String },
     hZone: { type: Number, min: 1, max: 13 },
-    zipCode: { type: Number, required: true, minlength: 5, maxlength: 5},
+    zipCode: { type: Number, required: true, minlength: 5, maxlength: 5 },
     gardenPlots: { type: Array },
     creatorId: { type: ObjectId, required: true }
     // NOTE If you wish to add additional public properties for Accounts do so here
