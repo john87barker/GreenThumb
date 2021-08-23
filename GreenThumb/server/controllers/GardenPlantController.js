@@ -8,10 +8,12 @@ export class GardenPlantController extends BaseController {
     super('api/gardenPlant')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
+      // TODO move this to the garden controller
       .get('/:id', this.getAll)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
+      // TODO move this to the garden controller probably call to the same service that it is.
       .delete('/garden/:id', this.deleteByGardenId)
   }
 

@@ -3,11 +3,12 @@ import { BadRequest, Forbidden } from '../utils/Errors'
 
 class GardenPlantService {
   async getAllPlantsbyGardenId(id) {
-    const gardenPlant = await dbContext.GardenPlant.find({ gardenId: id }).populate('creator', 'name picture')
+    const gardenPlant = await dbContext.GardenPlant.find({ gardenId: id }).populate('creator', 'name picture').populate('plant')
     return gardenPlant
   }
 
   async create(body) {
+    // TODO make it only user working
     const gardenPlant = await dbContext.GardenPlant.create(body)
     return await dbContext.GardenPlant.findById(gardenPlant.id).populate('creator', 'name picture').populate('garden').populate('plant')
   }
@@ -33,9 +34,9 @@ class GardenPlantService {
   }
 
   async deleteByGardenId(id, userId) {
-    const gardenPlant = await dbContext.GardenPlant.findOne({ gardenId: id })
-    if (!gardenPlant) { throw new BadRequest('Invalid Garden Id') }
-    if (gardenPlant.creatorId.toString() !== userId) {
+    const garden = await dbContext.Gardens.findOne({ _id: id })
+    if (!garden) { throw new BadRequest('Invalid Garden Id') }
+    if (garden.creatorId.toString() !== userId) {
       throw new BadRequest('Invalid request')
     }
     return await dbContext.GardenPlant.deleteMany({ gardenId: id })

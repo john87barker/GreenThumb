@@ -1,12 +1,12 @@
 <template>
-  <div class="row home flex-grow-1 d-flex  align-items-center justify-content-center ">
-    <div class="col-md-4 scroll">
+  <div class="row flex-grow-1 d-flex justify-content-center">
+    <div class="col-md-4 scroll ">
       <div v-for="p in plants" :key="p.id">
         <Plant :plant="p" />
       </div>
     </div>
-    <div class="col-md-8">
-      <PlantDetails />
+    <div class="col-md-8" v-for="activePlant in plants" :key="activePlant.id">
+      <PlantDetails :active-plant="activePlant" />
     </div>
   </div>
 </template>
