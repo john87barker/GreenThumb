@@ -4,8 +4,8 @@ const ObjectId = Schema.Types.ObjectId
 // Many to Many
 export const GardenPlant = new Schema(
   {
-    plantId: { type: ObjectId, ref: 'Plant' },
-    gardenId: { type: ObjectId, ref: 'Garden' },
+    plantId: { type: ObjectId, ref: 'Plant', required: true },
+    gardenId: { type: ObjectId, ref: 'Garden', required: true },
     creatorId: { type: ObjectId, required: true },
     coordinates: { type: String }
     // NOTE If you wish to add additional public properties for Accounts do so here
