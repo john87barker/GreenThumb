@@ -1,6 +1,13 @@
 <template>
-  <div class="row home flex-grow-1 d-flex flex-column align-items-center justify-content-center my-5 ">
-    <Plant :plant="p" />
+  <div class="row home flex-grow-1 d-flex  align-items-center justify-content-center ">
+    <div class="col-md-4 scroll">
+      <div v-for="p in plants" :key="p.id">
+        <Plant :plant="p" />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <PlantDetails />
+    </div>
   </div>
 </template>
 
@@ -13,10 +20,10 @@ import { plantsService } from '../services/PlantsService'
 export default {
   name: 'Component',
   props: {
-    plants: {
-      type: Array,
-      required: true
-    }
+    // plants: {
+    //   type: Array,
+    //   required: true
+    // }
   },
   setup() {
     const state = reactive()
@@ -29,7 +36,7 @@ export default {
     })
     return {
       state,
-      plant: computed(() => AppState.plants)
+      plants: computed(() => AppState.plants)
     }
   },
   components: {}
@@ -37,5 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.scroll{
+  overflow-y: auto;
+  height: 100vh;
+}
 </style>
