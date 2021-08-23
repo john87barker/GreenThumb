@@ -1,9 +1,23 @@
 <template>
   <div class="weather">
-    <div class="row">
-      <div class="col-md-3 text-center" v-if="weathers">
-        <p>{{ weathers.forecast.forecastday[0].day.avgtemp_f }}</p>
-        <p><img :src="weathers.forecast.forecastday[0].day.condition.icon"></p>
+    <div class="row m-1">
+      <div class="Col-4 col-md-4 p-1 text-center" v-if="weathers">
+        <p>{{ weathers.forecastday[0].date }}</p>
+        <p>{{ weathers.forecastday[0].day.avgtemp_f }}</p>
+        <p>{{ weathers.forecastday[0].day.condition.text }}</p>
+        <p><img :src="weathers.forecastday[0].day.condition.icon"></p>
+      </div>
+      <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
+        <p>{{ weathers.forecastday[1].date.toLocaleString() }}</p>
+        <p>{{ weathers.forecastday[1].day.avgtemp_f }}</p>
+        <p>{{ weathers.forecastday[1].day.condition.text }}</p>
+        <p><img :src="weathers.forecastday[1].day.condition.icon"></p>
+      </div>
+      <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
+        <p>{{ weathers.forecastday[2].date }}</p>
+        <p>{{ weathers.forecastday[2].day.avgtemp_f }}</p>
+        <p>{{ weathers.forecastday[2].day.condition.text }}</p>
+        <p><img :src="weathers.forecastday[2].day.condition.icon"></p>
       </div>
     </div>
   </div>
@@ -26,11 +40,16 @@ export default {
       }
     })
     return {
-      weathers: computed(() => AppState.weather)
+      weathers: computed(() => AppState.weather.forecast)
     }
   }
 }
+// console.log(res.data.forecast.forecastday[0].day.avgtemp_f)
+// console.log(res.data.forecast.forecastday[0].day.condition.text)
+// console.log(res.data.forecast.forecastday[0].day.condition.icon)
 //    <p>{{ weathers.forecast.forecastday[0].day.condition.text }}</p>
+//    <p><img :src="weathers.forecast.forecastday[0].day.condition.icon"></p>
+
 </script>
 
 <style lang="scss" scoped>
