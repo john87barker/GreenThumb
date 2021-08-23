@@ -1,7 +1,7 @@
 <template>
   <aside>
     <SideBar />
-    <main class="bg">
+    <main class="bg view-scroll">
       <router-view />
     </main>
   </aside>
@@ -30,5 +30,9 @@ background: -webkit-linear-gradient(to left, #0f9b0f, #000000);  /* Chrome 10-25
 background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 height: 100vh;
+}
+.view-scroll {
+  max-height: 100vh;
+  overflow-y: auto;
 }
 </style>
