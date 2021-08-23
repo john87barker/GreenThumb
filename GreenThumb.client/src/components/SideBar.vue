@@ -1,5 +1,5 @@
 <template>
-  <aside class="row side-gradient d-flex text-light pr-0 border-right">
+  <aside class="row side-gradient d-flex text-light pr-0 border-right fixed-side">
     <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
         Green Thumb
@@ -58,7 +58,9 @@
       Articles
     </p>
     <p class="col-md-12 border-bottom sidecard">
-      Our Community
+      <router-link :to="{ name: 'Posts' }" class="nav-link">
+        VeggieTells
+      </router-link>
     </p>
 
     <div class="row ">
