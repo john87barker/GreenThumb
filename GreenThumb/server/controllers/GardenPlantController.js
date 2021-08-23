@@ -8,7 +8,7 @@ export class GardenPlantController extends BaseController {
     super('api/gardenPlant')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getAll)
+      .get('/:id', this.getAll)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -17,7 +17,7 @@ export class GardenPlantController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      const gardenPlant = await gardenPlantService.getAllPlantsbyGardenId(req.body)
+      const gardenPlant = await gardenPlantService.getAllPlantsbyGardenId(req.params.id)
       res.send(gardenPlant)
     } catch (error) {
       next(error)
@@ -46,8 +46,6 @@ export class GardenPlantController extends BaseController {
   }
 
   async delete(req, res, next) {
-    // Soft delete only
-    // REVIEW
     try {
       req.body.creatorId = req.userInfo.id
       const delgardenPlant = await gardenPlantService.delete(req.params.id, req.userInfo.id)

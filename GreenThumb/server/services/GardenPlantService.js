@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from '../utils/Errors'
 
 class GardenPlantService {
   async getAllPlantsbyGardenId(id) {
-    const gardenPlant = await dbContext.GardenPlant.find(id).populate('creator', 'name picture')
+    const gardenPlant = await dbContext.GardenPlant.find({ gardenId: id }).populate('creator', 'name picture')
     return gardenPlant
   }
 
@@ -12,17 +12,17 @@ class GardenPlantService {
     return await dbContext.GardenPlant.findById(gardenPlant.id).populate('creator', 'name picture').populate('garden').populate('plant')
   }
 
+  // REVIEW check edit later
   async edit(body) {
     const gardenPlant = await dbContext.GardenPlant.findById(body.id)
-    if (!body) { throw new BadRequest('Invalid GardenPlant') }
-    if (body.creatorId.toString() !== body.creatorId) {
+    if (!gardenPlant) { throw new BadRequest('Invalid GardenPlant') }
+    if (gardenPlant.creatorId.toString() !== body.creatorId) {
       throw new BadRequest('Invalid request')
     }
-    const updategardenPlant = await dbContext.GardenPlant.findById(body.id, body, { new: true }).populate('creator', 'name picture').populate('garden').populate('plant')
+    const updategardenPlant = await dbContext.GardenPlant.findByIdAndUpdate(body.id, body, { new: true }).populate('creator', 'name picture').populate('garden').populate('plant')
     return updategardenPlant
   }
 
-  // REVIEW The below delete is used to delete a plant
   async delete(id, userId) {
     const gardenPlant = await dbContext.GardenPlant.findById(id)
     if (!gardenPlant) { throw new BadRequest('Invalid GardenPlant') }
