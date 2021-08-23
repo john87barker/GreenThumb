@@ -7,5 +7,5 @@ export const AppState = reactive({
   posts: [],
   comments: [],
   plants: [],
-  weather: []
+  weather: {}
 })

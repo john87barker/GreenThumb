@@ -89,7 +89,7 @@
         </div>
       </div> -->
       <p class="col-md-12 border-bottom sidecard">
-        <!-- <Weather /> -->
+        <Weather />
       </p>
     </div>
   </aside>
