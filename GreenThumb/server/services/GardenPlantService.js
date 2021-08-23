@@ -2,8 +2,9 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 
 class GardenPlantService {
-  getAllPlantsbyGardenId(id) {
-    throw new Error('Method not implemented.')
+  async getAllPlantsbyGardenId(id) {
+    const gardenPlant = await dbContext.GardenPlant.find(id).populate('creator', 'name picture')
+    return gardenPlant
   }
 
   async create(body) {
@@ -31,11 +32,9 @@ class GardenPlantService {
     return await dbContext.GardenPlant.findByIdAndDelete(id)
   }
 
-  // REVIEW  The below delete is to delete all plants related to the Garden
-
   async deleteByGardenId(id, userId) {
-    const gardenPlant = await dbContext.GardenPlant.findById(id)
-    if (!gardenPlant) { throw new BadRequest('Invalid GardenPlant') }
+    const gardenPlant = await dbContext.GardenPlant.findOne({ gardenId: id })
+    if (!gardenPlant) { throw new BadRequest('Invalid Garden Id') }
     if (gardenPlant.creatorId.toString() !== userId) {
       throw new BadRequest('Invalid request')
     }
