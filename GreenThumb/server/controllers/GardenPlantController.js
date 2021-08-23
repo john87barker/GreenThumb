@@ -11,7 +11,7 @@ export class GardenPlantController extends BaseController {
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.destroy)
-      .delete('/gardenId/:id', this.destroyByGardenId)
+      // .delete('/gardenId/:id', this.destroyByGardenId)
   }
 
   async create(req, res, next) {
