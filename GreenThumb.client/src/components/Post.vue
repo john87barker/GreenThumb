@@ -84,8 +84,7 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      }
-
+      },
 
       createdDate: computed(() => {
         const d = new Date(props.post.createdAt)
