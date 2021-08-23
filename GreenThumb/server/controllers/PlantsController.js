@@ -10,7 +10,7 @@ export class PlantsController extends BaseController {
       .get('', this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.create)
+      // .post('', this.create)
   }
 
   async getAllPlants(req, res, next) {
@@ -31,14 +31,14 @@ export class PlantsController extends BaseController {
     }
   }
 
-  async create(req, res, next) {
-    try {
-      // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      // req.body.creatorId = req.userInfo.id
-      const plant = await plantsService.create(req.body)
-      res.send(plant)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async create(req, res, next) {
+  //   try {
+  //     // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
+  //     // req.body.creatorId = req.userInfo.id
+  //     const plant = await plantsService.create(req.body)
+  //     res.send(plant)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }
