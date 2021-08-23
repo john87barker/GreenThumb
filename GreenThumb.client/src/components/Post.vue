@@ -37,7 +37,7 @@ import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
 import Pop from '../utils/Notifier'
-import { logger } from '../utils/Logger'
+
 export default {
   name: 'Post',
   props: {
@@ -49,21 +49,12 @@ export default {
   setup(props) {
     watchEffect(async() => {
       try {
-        logger.log(props.post.id + ' in post.vue')
         await commentsService.getCommentsByPostId(props.post.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
 
-    // onMounted(async() => {
-    //   try {
-    //     logger.log('onmounted comments in post.vue')
-    //     await commentsService.getCommentsByPostId(props.post.id)
-    //   } catch (error) {
-    //     Pop.toast(error, 'error')
-    //   }
-    // })
     return {
       comments: computed(() => AppState.comments[props.post.id] || [])
     }
