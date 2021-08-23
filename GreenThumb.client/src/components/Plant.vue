@@ -1,63 +1,34 @@
 <template>
-  <div class="col-md-7 card" v-for="p in plants" :key="p.id">
-    <div class="row">
-      <h1 class="col-md-12 text-center">
-        {{ p.name }}
-        Tomato
-      </h1>
-      <hr>
-      <div class="d-flex justify-content-between pb-3">
-        <div class="col-md-6 d-flex justify-content-center ">
-          <img src="https://place-puppy.com/300x300" class="pic ">
+  <div class="row">
+    <p class="m-0">
+      <button class="btn btn-primary m-2 d-flex col-md-6 button-to-expand"
+              type="button"
+              data-toggle="collapse"
+              :data-target="'#collapse'
+                +
+                plant.id"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+      >
+        <img :src="plant.picture" alt="" class="pic">
+        <div>
+          {{ plant.name }}
         </div>
-        <div class="col-md-6 text-left d-flex justify-content-center">
-          Body Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt vitae hic illo sapiente aspernatur nam veniam saepe similique dignissimos reprehenderit
-        </div>
-      </div>
-
-      <div class="col-md-6 text-right pr-5">
-        <p class="my-0">
-          Plant Family
-        </p>
-        <p class="my-0">
-          Required Sunlight
-        </p>
-        <p class="my-0">
-          Warm/Cool
-        </p>
-      </div>
-      <div class="col-md-6">
-        <p class="my-0">
-          Hardiness Zones
-        </p>
-        <p class="my-0">
-          days to maturity
-        </p>
-        <p class="my-0">
-          planting horizontal space
-        </p>
-        <p class="my-0">
-          plant height
-        </p>
-      </div>
-      <div class="col-md-12 py-3">
-        <p>  Harvest info: </p>
-        <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque accusantium tempora quia at quibusdam, modi doloribus aliquam, iure velit quidem vitae, voluptatum hic fugit expedita exercitationem doloremque ratione dolor necessitatibus!</p>
         <!-- NOTE add v-if's for whether the user has logged in or not.  -->
         <div class="d-flex justify-content-between">
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-outline-primary ">
+            <button type="button" class="btn btn-outline-secondary ">
               add to my garden
             </button>
           </div>
           <div class="d-flex justify-content-start">
-            <button type="button" class="btn btn-outline-primary ">
+            <button type="button" class="btn btn-outline-secondary ">
               create an account
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </button>
+    </p>
   </div>
 </template>
 
@@ -80,5 +51,12 @@ export default {
 <style lang="scss" scoped>
 .pic{
   max-height: 10rem;
+}
+.height{
+  width: 50vw;
+  height: 30vh;
+}
+.button-to-expand{
+  width: 40vw;
 }
 </style>

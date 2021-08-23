@@ -8,6 +8,7 @@
       <div class="col-md-7">
         <h5>{{ post.title }}</h5>
         <p> {{ post.body }} </p>
+        <p> {{ createdDate }}</p>
       </div>
       <div class="col-md-2">
         <div class="row">
@@ -84,6 +85,12 @@ export default {
           Pop.toast(error, 'error')
         }
       }
+
+
+      createdDate: computed(() => {
+        const d = new Date(props.post.createdAt)
+        return new Intl.DateTimeFormat('en-US').format(d)
+      })
 
     }
   },
