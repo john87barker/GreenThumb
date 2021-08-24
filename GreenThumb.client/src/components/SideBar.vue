@@ -67,7 +67,8 @@
       <p class="col-md-12 mb-0 text-center">
         3 Day Forcast
       </p>
-      <div class="col-md-12 d-flex justify-content-around">
+      <!-- Commented below UI positioned code  - Shanker Karra on 08/23/2021 to include weather.vue-->
+      <!-- <div class="col-md-12 d-flex justify-content-around">
         <div class="px-1">
           <div>
             Fri
@@ -86,22 +87,29 @@
           </div>
           <img src="../assets/img/weather-partly-cloudy.png" alt="sunny">
         </div>
-      </div>
+      </div> -->
+      <p class="col-md-12 border-bottom sidecard">
+        <Weather />
+      </p>
     </div>
   </aside>
 </template>
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { weathersService } from '../services/WeathersService'
 
 export default {
   name: 'Component',
   setup() {
     const state = reactive({
       dropOpen: false
+    })
+    onMounted(async() => {
+      await weathersService.getWeather()
     })
     return {
       state,
