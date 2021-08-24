@@ -1,21 +1,27 @@
 <template>
   <!-- NOTE pl-5 brings it in view but squishes the button... -->
   <div class="row  height mb-2 d-flex justify-content-end  " @click="setActivePlant">
-    <div class="col-md-12">
+    <div class="col-md-12 d-flex justify-content-center">
       <div class=" m-2 card  button-to-expand ">
         <h5 class="text-center text-capitalize">
           {{ plant.name }}
         </h5>
-        <img :src="plant.picture" alt="" class="pic p-1">
+        <img :src="plant.picture" alt="" class="pic p-1 ">
         <div>
         </div>
-        <!-- NOTE add v-if's for whether the user has logged in or not.  -->
 
         <div class="d-flex justify-content-center p-1">
-          <div class="d-flex justify-content-end" v-if="user.isAuthenticated">
-            <button type="button" class="btn btn-outline-secondary ">
-              add to my garden
-            </button>
+          <div class="d-flex justify-content-end" v-if="user.isAuthenticated && garden[0]">
+            <div v-if="garden.length == 1">
+              <button type="button" class="btn btn-outline-secondary " @click="addPlantToGarden( plant.id, garden[0].id)">
+                add to my garden
+              </button>
+            </div>
+            <div v-else>
+              <button>
+                dropdown
+              </button>
+            </div>
           </div>
           <div class="d-flex justify-content-start" v-else>
             <button type="button" class="btn btn-outline-secondary ">
@@ -29,6 +35,7 @@
 </template>
 
 <script>
+// NOTE dropdown menu for selecting which garden, v-for over the dropdown items
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
@@ -44,9 +51,18 @@ export default {
   setup(props) {
     return {
       user: computed(() => AppState.user),
+      garden: computed(() => AppState.gardens),
       async setActivePlant() {
         AppState.activePlant = props.plant
+      },
+      async addPlantToGarden(pId, gId) {
+        try {
+          await plantsService.addPlantToGarden({ plantId: pId, gardenId: gId })
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
       }
+
     }
   },
   components: {}

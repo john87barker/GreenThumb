@@ -10,6 +10,14 @@ class GardenService {
     return garden
   }
 
+  async getGardensByCreatorId(id) {
+    const gardens = await dbContext.Gardens.find({ creatorId: id })
+    if (!gardens) {
+      throw new BadRequest('You do not have any gardens!')
+    }
+    return gardens
+  }
+
   async create(body) {
     const garden = await dbContext.Gardens.create(body)
     return await dbContext.Gardens.findById(garden._id).populate('creator', 'name picture')

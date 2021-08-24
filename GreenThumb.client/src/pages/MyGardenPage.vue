@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid MyGardenPage">
+  <div class="container-fluid MyGardenPage" v-if="account">
     <div class="row justify-content-center mt-5">
       <div class="col-9 shadow rounded bg-secondary">
         <div class="d-flex  justify-content-center p-1">
@@ -10,58 +10,32 @@
           <h5>{{ user.email }}</h5>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-      <div class="col-11 bg-grey">
-        <div class="row">
-          <h1 class="col-12 text-center">
-            My Garden
-          </h1>
-        </div>
-        <div class="row">
-          <div class="d-flex flex-row">
-            <div class="col-md-3">
-              <p>Zip Code</p>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum corrupti aut quod corporis dolor delectus.</p>
-            </div>
-            <div class="col-md-9 d-flex justify-content-between">
-              <p class="rounded">
-                <button type="button" class="btn btn-primary">
-                  +
-                </button>
-              </p>
-              <p class="rounded">
-                <button type="button" class="btn btn-primary">
-                  +
-                </button>
-              </p>
-              <p class="rounded">
-                <button type="button" class="btn btn-primary">
-                  +
-                </button>
-              </p>
-              <p class="rounded">
-                <button type="button" class="btn btn-primary">
-                  +
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-12 " v-for="garden in gardens" :key="garden.id">
+        <GardenComponent :garden="garden" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
 export default {
   name: 'MyGardenPage',
   setup() {
+    onMounted(async() => {
+      try {
+        // REVIEW commented this out - it was pulling gardens before authorizing and giving us an error, so we put this function in AuthService to do after authentication
+        // await gardensService.getGardensByCreatorId()
+      } catch (error) {
+        Pop.toast('Could not get all gardens', 'error')
+      }
+    })
     return {
-      user: computed(() => AppState.user)
-
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
+      gardens: computed(() => AppState.gardens)
     }
   },
   components: {}
