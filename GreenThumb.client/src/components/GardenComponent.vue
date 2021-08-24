@@ -7,11 +7,6 @@
         </h1>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center pb-2">
-          <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
-            Create New Garden
-          </button>
-        </div>
       </div>
       <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
       <div class="row d-flex flex-row">

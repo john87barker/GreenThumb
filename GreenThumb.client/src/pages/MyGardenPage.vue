@@ -9,12 +9,18 @@
           <h5>{{ user.name }}</h5>
           <h5>{{ user.email }}</h5>
         </div>
-      </div>
-      <div class="col-md-12 " v-for="garden in gardens" :key="garden.id">
-        <GardenComponent :garden="garden" />
+        <div class="col d-flex justify-content-center pb-2">
+          <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
+            Create New Garden
+          </button>
+        </div>
       </div>
     </div>
+    <div class="col-md-12 " v-for="garden in gardens" :key="garden.id">
+      <GardenComponent :garden="garden" />
+    </div>
   </div>
+  <CreateGardenModal />
 </template>
 
 <script>
