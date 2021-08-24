@@ -1,13 +1,13 @@
 <template>
-  <div class="create-post-form">
-    <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="edit-post-form">
+    <div class="modal fade" :id="'edit-post-modal-'+ post.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <form @submit.prevent="createPost">
+        <form @submit.prevent="editPost">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Create Post
-              </h5>
+              <h4 class="modal-title" id="exampleModalLabel">
+                Edit Post
+              </h4>
               <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close" title="close">
                 <i class="mdi mdi-close"></i>
               </button>
@@ -18,7 +18,7 @@
                 type="text"
                 v-model="state.rawPost.title"
                 id="title"
-                placeholder="Post Title..."
+                :placeholder="state.rawPost.title"
                 required
                 minlength="4"
                 maxlength="50"
@@ -29,7 +29,7 @@
                 id="body"
                 v-model="state.rawPost.body"
                 rows="5"
-                placeholder="Tell us what is happening in your garden!..."
+                :placeholder="state.rawPost.body"
                 required
                 minlength="4"
                 maxlength="240"
@@ -41,12 +41,12 @@
                 type="text"
                 v-model="state.rawPost.media"
                 id="media"
-                placeholder="Media URL..."
+                :placeholder="state.rawPost.media"
                 minlength="4"
               >
 
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editPost">
                   Submit Post
                 </button>
               </div>
@@ -61,28 +61,52 @@
 import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostsService'
-import { computed } from '@vue/runtime-core'
+import { computed, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 import $ from 'jquery'
 export default {
-  name: 'CreatePostModal',
-  setup() {
+  name: 'EditPostModal',
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const router = useRouter()
     const state = reactive({
-      rawPost: {}
+      rawPost: {
+        id: props.post.id,
+        title: props.post.title,
+        body: props.post.body,
+        media: props.post.media
+      }
     })
+    // watchEffect(() => state.rawPost)
+    // try {
+    //   await postsService.getPostById(props.post.id)
+    // } catch (error) {
+    //   Pop.toast(error, 'error')
+    // }
+    // })
     return {
       state,
       router,
       account: computed(() => AppState.account),
-      posts: computed(() => AppState.posts),
-      async createPost() {
+      rawPost: computed(() => state.props.post),
+
+      async editPost() {
         try {
-          await postsService.createPost(state.rawPost)
-          state.rawPost = {}
-          Pop.toast('Post Created', 'success')
-          $('#create-post-modal').modal('toggle')
+          await postsService.editPost(state.rawPost)
+          state.rawPost = {
+            id: props.post.id,
+            title: props.post.title,
+            body: props.post.body,
+            media: props.post.media
+          }
+          Pop.toast('Post editd', 'success')
+          $('#edit-post-modal').modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')
         }

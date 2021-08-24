@@ -16,5 +16,12 @@ class PostsService {
     const res = await api.delete('api/posts/' + post.id)
     return res.data.postId
   }
+
+  async editPost(post) {
+    const res = await api.put('api/posts/' + post.id, post)
+    // const findId = AppState.posts.findIndex(p => p.id === res.data.id)
+    // AppState.posts.splice(findId, 1, res.data)
+    this.getAllPosts()
+  }
 }
 export const postsService = new PostsService()

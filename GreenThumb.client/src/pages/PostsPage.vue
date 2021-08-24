@@ -38,7 +38,6 @@ export default {
         Pop.toast(error, 'error')
       }
     })
-
     return {
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account)

@@ -4,18 +4,29 @@
       <div class="col-md-3 text-center">
         <p><img :src="post.creator.picture" class="rounded-circle w-25"></p>
         <h5>{{ post.creator.name }}</h5>
+        <div class="border-bottom p-1">
+          <div class="col-12 text-right pr-5 pb-1" title="Edit Post">
+            <button class="btn btn-warning" :data-target="'#edit-post-modal-'+post.id" data-toggle="modal">
+              <i class="mdi mdi-pencil mdi-24px"></i>
+            </button>
+            <EditPostModal :post="post" />
+          </div>
+        </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7 p-1">
         <h5>{{ post.title }}</h5>
         <p> {{ post.body }} </p>
         <p> {{ createdDate }}</p>
       </div>
       <div class="col-md-2">
         <div class="row">
-          // TODO [epic="CJ"] uncomment below - it is part of closing the post.
-          <!-- <div class="col-12 text-right pr-5 pb-1" v-if="post.closed === false && account.id === post.creatorId" title="Close Post" @click="closePost(post)">
-            <i class="mdi mdi-close mdi-24px"></i>
-          </div> -->
+          <p> {{ user.id }}</p>
+          <p> {{ post.creatorId }}</p>
+          <div class="col-12 text-right pr-5 pb-1" v-if="post.closed === false && user.id === post.creatorId" title="Close Post" @click="closePost(post)">
+            <button class="btn btn-danger">
+              <i class="mdi mdi-close mdi-24px"></i>
+            </button>
+          </div>
         </div>
         <div class="row w-100 d-flex align-content-right">
           <div class="col-md-12">
@@ -58,9 +69,12 @@ export default {
         Pop.toast(error, 'error')
       }
     })
-
+    watchEffect(() => props.post)
     return {
       comments: computed(() => AppState.comments[props.post.id] || []),
+      user: computed(() => AppState.account),
+      posts: computed(() => AppState.posts),
+
       async closePost(post) {
         try {
           await Swal.fire({
