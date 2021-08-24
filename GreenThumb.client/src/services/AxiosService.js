@@ -5,6 +5,11 @@ export const api = Axios.create({
   timeout: 8000
 })
 
+export const newsApi = Axios.create({
+  baseURL: 'https://newsapi.org/v2/everything?q=gardening&apiKey=7a9204818fa3450985cfd59c37e017e4',
+  timeout: 10000
+})
+
 export const weatherapi = Axios.create({
   baseURL: 'http://api.weatherapi.com/v1/forecast.json?key=d23232cbf44a436181a183838212308&q=83704&days=3',
   timeout: 10000

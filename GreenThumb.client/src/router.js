@@ -18,6 +18,11 @@ const routes = [
     component: loadPage('PlantPage')
   },
   {
+    path: '/media',
+    name: 'Media',
+    component: loadPage('MediaPage')
+  },
+  {
     path: '/mygarden',
     name: 'MyGarden',
     component: loadPage('MyGardenPage')
