@@ -36,7 +36,9 @@ export default {
     })
     return {
       state,
-      plants: computed(() => AppState.plants)
+      plants: computed(() => AppState.plants),
+      activePlant: computed(() => AppState.activePlant)
+
     }
   },
   components: {}

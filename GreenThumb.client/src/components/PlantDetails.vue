@@ -1,9 +1,9 @@
 <template>
   <div class="col-md-7 card">
-    <h1>
+    <!-- <h1>
       plant details
-    </h1>
-    <!-- <div class="row">
+    </h1> -->
+    <div class="row">
       <h1 class="col-md-12 text-center">
         {{ activePlant.name }}
       </h1>
@@ -47,9 +47,9 @@
       </div>
       <div class="col-md-12 py-3">
         <p>  Harvest info: </p>
-        <p> {{ activePlant.harvest }}</p> -->
-    <!-- NOTE add v-if's for whether the user has logged in or not.  -->
-    <!-- <div class="d-flex justify-content-between">
+        <p> {{ activePlant.harvest }}</p>
+        <!-- NOTE add v-if's for whether the user has logged in or not.  -->
+        <div class="d-flex justify-content-between">
           <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-outline-primary ">
               add to my garden
@@ -62,24 +62,27 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 import { reactive } from '@vue/reactivity'
+import { AppState } from '../AppState'
 export default {
   name: 'Component',
   props: {
-    activePlant: {
-      type: Object,
-      required: true
-    }
+    // activePlant: {
+    //   type: Object,
+    //   required: true
+    // }
   },
   setup() {
-    const state = reactive
+    // const state = reactive()
     return {
-      state
+      // state,
+      activePlant: () => AppState.activePlant
+
     }
   },
   components: {}
