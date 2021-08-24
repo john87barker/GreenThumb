@@ -49,51 +49,27 @@
         </div>
       </div>
     </div>
-    <p class="col-md-12  border-bottom  border-top sidecard  ">
+    <div class="col-md-12  border-bottom  border-top sidecard  ">
       <router-link :to="{name: 'Plants'}" class="nav-link text-light text-left text-capitalize p-0">
         Explore
       </router-link>
-    </p>
-    <p class="col-md-12 border-bottom sidecard">
+    </div>
+    <div class="col-md-12 border-bottom sidecard">
       My Garden
-    </p>
-    <p class="col-md-12 border-bottom sidecard">
+    </div>
+    <div class="col-md-12 border-bottom sidecard">
       Articles
-    </p>
-    <p class="col-md-12 border-bottom sidecard">
+    </div>
+    <div class="col-md-12 border-bottom sidecard">
       <router-link :to="{ name: 'Posts' }" class="nav-link text-light text-left p-0 text-capitalize  ">
         VeggieTells
       </router-link>
-    </p>
-
-    <div class="row ">
-      <p class="col-md-12 mb-0 text-center">
-        3 Day Forcast
-      </p>
-      <!-- Commented below UI positioned code  - Shanker Karra on 08/23/2021 to include weather.vue-->
-      <!-- <div class="col-md-12 d-flex justify-content-around">
-        <div class="px-1">
-          <div>
-            Fri
-          </div>
-          <img src="../assets/img/weather-sunny.png" alt="sunny">
-        </div>
-        <div class="px-1">
-          <div>
-            Sat
-          </div>
-          <img src="../assets/img/weather-sunny.png" alt="sunny">
-        </div>
-        <div class="px-1">
-          <div>
-            Sun
-          </div>
-          <img src="../assets/img/weather-partly-cloudy.png" alt="sunny">
-        </div>
-      </div> -->
-      <p class="col-md-12 border-bottom sidecard">
-        <Weather />
-      </p>
+    </div>
+    <div class="col-md-12 mb-0 text-center">
+      3 Day Forcast
+    </div>
+    <div class="col-12 border-bottom">
+      <Weather />
     </div>
   </aside>
 </template>
@@ -161,6 +137,10 @@ padding-left: 1em;
 }
 .hoverable {
   cursor: pointer;
+}
+a{
+  margin: 0rem;
+  padding: 0rem;
 }
 a:hover {
   text-decoration: none;

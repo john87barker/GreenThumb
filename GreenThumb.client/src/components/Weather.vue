@@ -1,26 +1,32 @@
 <template>
   <div class="weather">
-    <div class="row m-1">
+    <div class="row">
       <div class="Col-4 col-md-4 p-1 text-center" v-if="weathers">
-        <p>Today Temp</p>
-        <!-- <p>{{ weathers.forecastday[0].date.toLocaleString('en-us', { weekday:"short"}) }}</p> -->
-        <p>{{ weathers.forecastday[0].day.avgtemp_f }}</p>
-        <p>{{ weathers.forecastday[0].day.condition.text }}</p>
-        <p><img :src="weathers.forecastday[0].day.condition.icon"></p>
+        <div>{{ getDayName(weathers.forecastday[0].date) }}</div>
+        <!-- <div>{{ weathers.forecastday[0].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
+        <div>{{ weathers.forecastday[0].day.avgtemp_f }}</div>
+        <!-- <div>{{ weathers.forecastday[0].day.condition.text }}</div> -->
+        <div>
+          <img :src="weathers.forecastday[0].day.condition.icon">
+        </div>
       </div>
       <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
-        <p>Tom'w Temp</p>
-        <!-- <p>{{ weathers.forecastday[1].date.toLocaleString('en-us', { weekday:"short"}) }}</p> -->
-        <p>{{ weathers.forecastday[1].day.avgtemp_f }}</p>
-        <p>{{ weathers.forecastday[1].day.condition.text }}</p>
-        <p><img :src="weathers.forecastday[1].day.condition.icon"></p>
+        <div>{{ getDayName(weathers.forecastday[1].date) }}</div>
+        <!-- <div>{{ weathers.forecastday[1].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
+        <div>{{ weathers.forecastday[1].day.avgtemp_f }}</div>
+        <!-- <div>{{ weathers.forecastday[1].day.condition.text }}</div> -->
+        <div>
+          <img :src="weathers.forecastday[1].day.condition.icon">
+        </div>
       </div>
       <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
-        <!-- <p>{{ weathers.forecastday[2].date.toLocaleString('en-us', { weekday:"short"}) }}</p> -->
-        <p>Day after</p>
-        <p>{{ weathers.forecastday[2].day.avgtemp_f }}</p>
-        <p>{{ weathers.forecastday[2].day.condition.text }}</p>
-        <p><img :src="weathers.forecastday[2].day.condition.icon"></p>
+        <!-- <div>{{ weathers.forecastday[2].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
+        <div>{{ getDayName(weathers.forecastday[2].date) }}</div>
+        <div>{{ weathers.forecastday[2].day.avgtemp_f }}</div>
+        <!-- <div>{{ weathers.forecastday[2].day.condition.text }}</div> -->
+        <div>
+          <img :src="weathers.forecastday[2].day.condition.icon">
+        </div>
       </div>
     </div>
   </div>
@@ -43,19 +49,31 @@ export default {
       }
     })
     return {
-      weathers: computed(() => AppState.weather.forecast)
-      // todayWeek: computed(() => AppState.weather.forecast.forecastday[0].date.getDay())
+      weathers: computed(() => AppState.weather.forecast),
+      // date is string year-month-day
+      getDayName(date) {
+        const input = date.split('-')
+        input[1] = (input[1].slice(1) - 1).toString()
+        const d = new Date(input[0], input[1], input[2])
+        const weekday = new Array(7)
+        weekday[0] = 'Sun.'
+        weekday[1] = 'Mon.'
+        weekday[2] = 'Tue.'
+        weekday[3] = 'Wed.'
+        weekday[4] = 'Thu.'
+        weekday[5] = 'Fri.'
+        weekday[6] = 'Sat.'
+        const n = weekday[d.getDay()]
+        return n
+      }
     }
   }
 }
-// .toLocaleDateString('en-us', { weekday:"short"})
-// console.log(res.data.forecast.forecastday[0].day.avgtemp_f)
-// console.log(res.data.forecast.forecastday[0].day.condition.text)
-// console.log(res.data.forecast.forecastday[0].day.condition.icon)
-//    <p>{{ weathers.forecast.forecastday[0].day.condition.text }}</p>
-//    <p><img :src="weathers.forecast.forecastday[0].day.condition.icon"></p>
 
 </script>
 
 <style lang="scss" scoped>
+img{
+  width: 100%;
+}
 </style>
