@@ -2,7 +2,7 @@
   <aside class="row side-gradient d-flex text-light pr-0  border-right fixed-side">
     <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
-        Green Thumb
+        <img src="../assets/img/GTLogo.png" alt="" class="small">
       </router-link>
     </h3>
     <div class="col-md-12 sidecard z">
@@ -20,11 +20,12 @@
             class="dropdown-toggle"
             @click="state.dropOpen = !state.dropOpen"
           >
+            <p>Account Info</p>
             <img
               :src="user.picture"
               alt="user photo"
-              width="50"
-              class="rounded-circle"
+              width="30"
+              class="rounded"
             />
           <!-- <span class="mx-3">{{ user.name }}</span> -->
           </div>
@@ -48,8 +49,10 @@
         </div>
       </div>
     </div>
-    <p class="col-md-12  border-bottom  border-top sidecard">
-      Explore
+    <p class="col-md-12  border-bottom  border-top sidecard  ">
+      <router-link :to="{name: 'Plants'}" class="nav-link text-light text-left text-capitalize p-0">
+        Explore
+      </router-link>
     </p>
     <p class="col-md-12 border-bottom sidecard">
       My Garden
@@ -58,7 +61,7 @@
       Articles
     </p>
     <p class="col-md-12 border-bottom sidecard">
-      <router-link :to="{ name: 'Posts' }" class="nav-link">
+      <router-link :to="{ name: 'Posts' }" class="nav-link text-light text-left p-0 text-capitalize  ">
         VeggieTells
       </router-link>
     </p>
@@ -146,7 +149,7 @@ padding-left: 1em;
   transition: all 0.15s linear;
 }
 .dropdown-menu.show {
-  transform: scale(1);
+  transform: scale(.75);
 }
 .hoverable {
   cursor: pointer;
@@ -163,5 +166,8 @@ a:hover {
 }
 .z{
   z-index: 1;
+}
+.small{
+  height: 100px;
 }
 </style>

@@ -24,7 +24,7 @@
         </div>
         <div class="d-flex justify-content-start" v-else>
           <button type="button" class="btn btn-outline-secondary ">
-            create an account
+            start a garden
           </button>
         </div>
       </div>

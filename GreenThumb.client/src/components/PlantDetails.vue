@@ -57,7 +57,7 @@
           </div>
           <div class="d-flex justify-content-start">
             <button type="button" class="btn btn-outline-primary ">
-              create an account
+              start a garden
             </button>
           </div>
         </div>
