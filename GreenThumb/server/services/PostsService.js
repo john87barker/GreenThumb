@@ -17,8 +17,8 @@ class PostsService {
 
   async create(body) {
     const post = await dbContext.Posts.create(body)
-    return await dbContext.Posts.findById(post.id)
-    // .populate('creator', 'name picture') - Do we need this here?
+    return await dbContext.Posts.findById(post.id).populate('creator', 'name picture')
+    // needed populate on here to display new post with creator name & picture.
   }
 
   async editPost(id, body) {
