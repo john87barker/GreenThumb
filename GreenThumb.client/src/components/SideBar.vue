@@ -54,8 +54,10 @@
         Explore
       </router-link>
     </div>
-    <div class="col-md-12 border-bottom sidecard">
-      My Garden
+    <div class="col-md-12  border-bottom  border-top sidecard  ">
+      <router-link :to="{name: 'MyGarden'}" class="nav-link text-light text-left text-capitalize p-0">
+        My Garden
+      </router-link>
     </div>
     <div class="col-md-12 border-bottom sidecard">
       <router-link :to="{ name: 'Media' }" class="nav-link text-light text-left p-0 text-capitalize  ">

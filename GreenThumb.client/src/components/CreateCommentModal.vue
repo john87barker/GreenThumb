@@ -1,13 +1,13 @@
 <template>
-  <div class="edit-post-form">
-    <div class="modal fade" :id="'edit-post-modal-'+ post.id" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="create-comment-form">
+    <div class="modal fade" :id="'create-comment-modal-'+ post.id" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <form @submit.prevent="editPost">
+        <form @submit.prevent="createComment">
           <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-dark" id="editModalLabel">
-                Edit Post
-              </h4>
+            <div class="modal-header text-dark">
+              <h5 class="modal-title" id="commentModalLabel">
+                Create Comment for {{ state.rawComment.posttitle }}
+              </h5>
               <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close" title="close">
                 <i class="mdi mdi-close"></i>
               </button>
@@ -16,9 +16,9 @@
               <input
                 class="form-control"
                 type="text"
-                v-model="state.rawPost.title"
-                id="edittitle"
-                :placeholder="state.rawPost.title"
+                v-model="state.rawComment.title"
+                id="commenttitle"
+                placeholder="Comment Title..."
                 required
                 minlength="4"
                 maxlength="50"
@@ -26,27 +26,17 @@
               <br>
               <textarea
                 class="form-control"
-                id="editbody"
-                v-model="state.rawPost.body"
+                id="commentbody"
+                v-model="state.rawComment.body"
                 rows="5"
-                :placeholder="state.rawPost.body"
+                placeholder="Tell us your thoughts!..."
                 required
                 minlength="4"
                 maxlength="240"
               >
           </textarea>
-              <br>
-              <input
-                class="form-control"
-                type="text"
-                v-model="state.rawPost.media"
-                id="editmedia"
-                :placeholder="state.rawPost.media"
-                minlength="4"
-              >
-
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editPost">
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
                   Submit Post
                 </button>
               </div>
@@ -60,13 +50,14 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
-import { postsService } from '../services/PostsService'
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 import $ from 'jquery'
+import { commentsService } from '../services/CommentsService'
+
 export default {
-  name: 'EditPostModal',
+  name: 'CreateCommentModal',
   props: {
     post: {
       type: Object,
@@ -76,30 +67,23 @@ export default {
   setup(props) {
     const router = useRouter()
     const state = reactive({
-      rawPost: {
-        id: props.post.id,
-        title: props.post.title,
-        body: props.post.body,
-        media: props.post.media
+      rawComment: {
+        postId: props.post.id,
+        posttitle: props.post.title
       }
     })
     return {
       state,
       router,
       account: computed(() => AppState.account),
-      rawPost: computed(() => state.props.post),
-
-      async editPost() {
+      posts: computed(() => AppState.posts),
+      async createComment() {
         try {
-          await postsService.editPost(state.rawPost)
-          state.rawPost = {
-            id: props.post.id,
-            title: props.post.title,
-            body: props.post.body,
-            media: props.post.media
-          }
-          Pop.toast('Post editd', 'success')
-          $('#edit-post-modal-' + props.post.id).modal('toggle')
+          delete state.rawComment.posttitle
+          await commentsService.createComment(state.rawComment, state.rawComment.postid)
+          state.rawComment = {}
+          Pop.toast('Comment Created', 'success')
+          $('#create-comment-modal').modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')
         }

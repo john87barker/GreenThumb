@@ -11,8 +11,11 @@
       </div>
       <div class="col-md-2">
         <div class="row">
-          <div class="col-12 text-right pr-5 pb-1">
-            <h6>X</h6>
+          <div class="col-3 offset-6 py-2 p-2">
+            <i class="mdi mdi-pencil"></i>
+          </div>
+          <div class="col-3 py-2 p-1">
+            <i class="mdi mdi-close"></i>
           </div>
         </div>
       </div>
