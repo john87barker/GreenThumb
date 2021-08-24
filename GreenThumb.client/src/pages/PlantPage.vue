@@ -1,11 +1,11 @@
 <template>
   <div class="row flex-grow-1 d-flex justify-content-center">
-    <div class="col-md-4 scroll ">
+    <div class="col-md-3 scroll ">
       <div v-for="p in plants" :key="p.id">
         <Plant :plant="p" />
       </div>
     </div>
-    <div class="col-md-8" v-for="activePlant in plants" :key="activePlant.id">
+    <div class="col-md-9">
       <PlantDetails :active-plant="activePlant" />
     </div>
   </div>
