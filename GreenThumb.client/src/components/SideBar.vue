@@ -68,7 +68,7 @@
     <div class="col-md-12 mb-0 text-center">
       3 Day Forcast
     </div>
-    <div class="col-12 border-bottom sidecard">
+    <div class="col-12 border-bottom">
       <Weather />
     </div>
   </aside>
