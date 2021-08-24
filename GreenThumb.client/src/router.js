@@ -13,8 +13,8 @@ const routes = [
   },
   {
     // NOTE plants will need to eventually have plant/id#
-    path: '/plant',
-    name: 'Plant',
+    path: '/plants',
+    name: 'Plants',
     component: loadPage('PlantPage')
   },
   {
