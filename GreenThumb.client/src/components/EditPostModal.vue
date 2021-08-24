@@ -61,7 +61,7 @@
 import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostsService'
-import { computed, watchEffect } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 import $ from 'jquery'
@@ -83,13 +83,6 @@ export default {
         media: props.post.media
       }
     })
-    // watchEffect(() => state.rawPost)
-    // try {
-    //   await postsService.getPostById(props.post.id)
-    // } catch (error) {
-    //   Pop.toast(error, 'error')
-    // }
-    // })
     return {
       state,
       router,
