@@ -1,5 +1,5 @@
 <template>
-  <aside class="row side-gradient d-flex text-light pr-0  border-right fixed-side">
+  <aside class="row side-gradient text-light pr-0">
     <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
         <img src="../assets/img/GTLogo.png" alt="" class="small">
@@ -60,7 +60,9 @@
       </router-link>
     </div>
     <div class="col-md-12 border-bottom sidecard">
-      Articles
+      <router-link :to="{ name: 'Media' }" class="nav-link text-light text-left p-0 text-capitalize  ">
+        Media
+      </router-link>
     </div>
     <div class="col-md-12 border-bottom sidecard">
       <router-link :to="{ name: 'Posts' }" class="nav-link text-light text-left p-0 text-capitalize  ">
@@ -118,7 +120,6 @@ float: left;
 box-shadow: inset 5px 0 pgx -5px black;
 display: flex;
 height: 100vh;
-width: 15vw;
 padding-left: 1em;
 // z-index: 1;
 // padding-top: 1em;

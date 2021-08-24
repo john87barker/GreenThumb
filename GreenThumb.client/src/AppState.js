@@ -9,6 +9,7 @@ export const AppState = reactive({
   comments: {},
   plants: [],
   activePlant: {},
+  articles: [],
   gardens: [],
   gardenPlant: {}
 })
