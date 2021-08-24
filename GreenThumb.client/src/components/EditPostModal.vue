@@ -1,11 +1,11 @@
 <template>
   <div class="edit-post-form">
-    <div class="modal fade" :id="'edit-post-modal-'+ post.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="'edit-post-modal-'+ post.id" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <form @submit.prevent="editPost">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">
+              <h4 class="modal-title text-dark" id="editModalLabel">
                 Edit Post
               </h4>
               <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close" title="close">
@@ -17,7 +17,7 @@
                 class="form-control"
                 type="text"
                 v-model="state.rawPost.title"
-                id="title"
+                id="edittitle"
                 :placeholder="state.rawPost.title"
                 required
                 minlength="4"
@@ -26,7 +26,7 @@
               <br>
               <textarea
                 class="form-control"
-                id="body"
+                id="editbody"
                 v-model="state.rawPost.body"
                 rows="5"
                 :placeholder="state.rawPost.body"
@@ -40,7 +40,7 @@
                 class="form-control"
                 type="text"
                 v-model="state.rawPost.media"
-                id="media"
+                id="editmedia"
                 :placeholder="state.rawPost.media"
                 minlength="4"
               >
@@ -99,7 +99,7 @@ export default {
             media: props.post.media
           }
           Pop.toast('Post editd', 'success')
-          $('#edit-post-modal').modal('toggle')
+          $('#edit-post-modal-' + props.post.id).modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')
         }
