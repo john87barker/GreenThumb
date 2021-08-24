@@ -1,7 +1,7 @@
 <template>
   <aside>
     <SideBar />
-    <main class="bg view-scroll">
+    <main class="bg view-scroll pl-5">
       <router-view />
     </main>
   </aside>

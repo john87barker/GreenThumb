@@ -7,7 +7,7 @@ export class PlantsController extends BaseController {
     super('api/plants')
     this.router
       .get('', this.getAllPlants)
-      .get('', this.getById)
+      .get('/:id', this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
       // .post('', this.create)
