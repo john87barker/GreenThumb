@@ -14,7 +14,8 @@ class PostsService {
 
   async closePost(post) {
     const res = await api.delete('api/posts/' + post.id)
-    return res.data.postId
+    return this.getAllPosts()
+    // res.data.postId
   }
 
   async editPost(post) {
