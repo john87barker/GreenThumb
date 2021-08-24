@@ -1,8 +1,9 @@
 <template>
   <div class="row justify-content-center mt-3 mb-3 ">
-    <h1 class="col-md-12" v-if="!plant.name">
-      plant details
+    <h1 class="col-md-12 text-center text-light" v-if="!plant.name">
+      Click on a plant for it's details!
     </h1>
+
     <div class="col-md-10 card d-flex view-scroll" v-else>
       <div class="row">
         <h1 class="col-md-12 text-center text-capitalize pb-1">
