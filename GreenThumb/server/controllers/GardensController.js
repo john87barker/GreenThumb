@@ -2,7 +2,6 @@ import { gardenPlantService } from '../services/GardenPlantService'
 import { gardenService } from '../services/GardenService'
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { postsService } from '../services/PostsService'
 
 export class GardensController extends BaseController {
   constructor() {
@@ -12,6 +11,7 @@ export class GardensController extends BaseController {
       .get('/:id', this.getAllPlantsbyGardenId)
       .get('/:id/posts', this.getallPostsbyGardenId)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/creator/gardens/john', this.getGardensByCreatorId)
       .post('', this.createGarden)
       .put('/:id', this.editGarden)
       .delete('/gardenId/:id', this.destroyByGardenId)
@@ -25,6 +25,15 @@ export class GardensController extends BaseController {
     try {
       const garden = await gardenService.getAll(req.params.id)
       res.send(garden)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getGardensByCreatorId(req, res, next) {
+    try {
+      const gardens = await gardenService.getGardensByCreatorId(req.userInfo.id)
+      res.send(gardens)
     } catch (error) {
       next(error)
     }
