@@ -1,11 +1,17 @@
 <template>
   <div class="col-md-12 text-light border-left border-top border-light p-3 mb-3 rounded shadow">
     <div class="row">
-      <div class="col-md-3 text-center">
+      <div class="col-md-3 d-none-sm border-right text-center">
         <p><img :src="post.creator.picture" class="rounded-circle w-25"></p>
         <h5>{{ post.creator.name }}</h5>
-        <div class="border-bottom p-1">
-          <div class="col-12 text-right pr-5 pb-1" title="Edit Post">
+        <div class="row p-1">
+          <div class="col-6 text-right" v-if="post.closed === false" title="Create Comment">
+            <button class="btn btn-warning" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
+              <i class="mdi mdi-plus mdi-24px"></i>
+            </button>
+            <CreateCommentModal :post="post" />
+          </div>
+          <div class="col-6 text-right" v-if="post.closed === false && user.id === post.creatorId" title="Edit Post">
             <button class="btn btn-warning" :data-target="'#edit-post-modal-'+post.id" data-toggle="modal">
               <i class="mdi mdi-pencil mdi-24px"></i>
             </button>
@@ -13,15 +19,13 @@
           </div>
         </div>
       </div>
-      <div class="col-md-7 p-1">
+      <div class="col-md-7 px-2 p-1">
         <h5>{{ post.title }}</h5>
         <p> {{ post.body }} </p>
         <p> {{ createdDate }}</p>
       </div>
       <div class="col-md-2">
         <div class="row">
-          <p> {{ user.id }}</p>
-          <p> {{ post.creatorId }}</p>
           <div class="col-12 text-right pr-5 pb-1" v-if="post.closed === false && user.id === post.creatorId" title="Close Post" @click="closePost(post)">
             <button class="btn btn-danger">
               <i class="mdi mdi-close mdi-24px"></i>
@@ -29,7 +33,7 @@
           </div>
         </div>
         <div class="row w-100 d-flex align-content-right">
-          <div class="col-md-12">
+          <div class="col-md-12" v-if="post.media">
             <p>
               <img :src="post.media" :alt="post.creator.name" class="img-fit">
             </p>
