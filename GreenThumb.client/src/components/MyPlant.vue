@@ -1,5 +1,5 @@
 <template>
-  <div class=" my-1 mx-0 card   button-to-expand  pb-1">
+  <div class=" my-1 mx-0 card pb-1" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
@@ -11,6 +11,7 @@
         Remove
       </button>
     </div>
+    <MyPlantDetailsModal />
   </div>
 </template>
 
@@ -27,8 +28,12 @@ export default {
       type: Object,
       required: true
     }
+    // activePlant: {
+    //   type: Object,
+    //   required: true
+    // }
   },
-  setup() {
+  setup(props) {
     onMounted(async() => {
       try {
         // await plantsService.getAllGardenPlantsByGardenId()
@@ -38,7 +43,9 @@ export default {
       }
     })
     return {
-      // gardenPlants: computed(() => AppState.gardenPlants)
+      async setActivePlant() {
+        AppState.activePlant = props.gardenPlants.plant
+      },
       async removePlant(name, gardenPlantId) {
         try {
           await Swal.fire({
