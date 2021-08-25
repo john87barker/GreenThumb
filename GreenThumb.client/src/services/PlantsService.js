@@ -1,6 +1,7 @@
 
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
+import { gardensService } from './GardensService'
 
 class PlantsService {
   async getAllPlants(query = {}) {
@@ -21,13 +22,13 @@ class PlantsService {
   async addPlantToGarden(rawGardenPlant) {
     // Create Many to many/edit the garden
     const res = await api.post('api/gardenplant', rawGardenPlant)
-    console.log(res.data)
     AppState.gardenPlant = res.data
+    gardensService.getAllGardenPlantsByCreator()
   }
 
   async getAllGardenPlantsByGardenId(id) {
+    // REVIEW this function is not actually being used
     const res = await api.get('api/gardenplant' + id)
-    console.log(res.data)
     AppState.gardenPlants = res.data
   }
 }
