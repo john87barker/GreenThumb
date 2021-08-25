@@ -7,6 +7,14 @@ class GardenPlantService {
     return gardenPlant
   }
 
+  async getAllGardenPlantsByCreator(userId) {
+    const gardenPlant = await dbContext.GardenPlant.find({ creatorId: userId }).populate('creator', 'name picture').populate('plant').populate('garden')
+    if (!gardenPlant) {
+      throw new BadRequest('Unable to find plant')
+    }
+    return gardenPlant
+  }
+
   async create(body) {
     // TODO make it only user working
     const gardenPlant = await dbContext.GardenPlant.create(body)

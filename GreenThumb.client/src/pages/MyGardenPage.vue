@@ -27,6 +27,7 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
+import { gardensService } from '../services/GardensService'
 export default {
   name: 'MyGardenPage',
   setup() {
@@ -34,6 +35,7 @@ export default {
       try {
         // REVIEW commented this out - it was pulling gardens before authorizing and giving us an error, so we put this function in AuthService to do after authentication
         // await gardensService.getGardensByCreatorId()
+        // await gardensService.getAllGardenPlantsByCreator()
       } catch (error) {
         Pop.toast('Could not get all gardens', 'error')
       }

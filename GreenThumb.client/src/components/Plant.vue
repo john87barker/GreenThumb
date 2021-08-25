@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-center p-1">
           <div class="d-flex justify-content-end" v-if="user.isAuthenticated && garden[0]">
             <div v-if="garden.length == 1">
-              <button type="button" class="btn btn-outline-secondary " @click="addPlantToGarden( plant.id, garden[0].id)">
+              <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
                 add to my garden
               </button>
             </div>
@@ -55,9 +55,10 @@ export default {
       async setActivePlant() {
         AppState.activePlant = props.plant
       },
-      async addPlantToGarden(pId, gId) {
+      async addPlantToGarden(pName, pId, gId) {
         try {
           await plantsService.addPlantToGarden({ plantId: pId, gardenId: gId })
+          Pop.toast(pName + ' has been added to your garden!', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
         }

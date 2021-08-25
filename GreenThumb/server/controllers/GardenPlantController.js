@@ -11,6 +11,7 @@ export class GardenPlantController extends BaseController {
 
       // TODO move this to the garden controller id is gardenId
       .get('/:id', this.getAll)
+      .get('/creator/plants', this.getAllGardenPlantsByCreator)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -21,6 +22,15 @@ export class GardenPlantController extends BaseController {
   async getAll(req, res, next) {
     try {
       const gardenPlant = await gardenPlantService.getAllPlantsbyGardenId(req.params.id)
+      res.send(gardenPlant)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getAllGardenPlantsByCreator(req, res, next) {
+    try {
+      const gardenPlant = await gardenPlantService.getAllGardenPlantsByCreator(req.userInfo.id)
       res.send(gardenPlant)
     } catch (error) {
       next(error)
