@@ -4,7 +4,7 @@
       <div class="col-2"></div>
       <div class="col-md-8 text-center p-2">
         <h1 class="text-light">
-          VeggieTells
+          <span class="seeds">V</span>eggie &nbsp;&nbsp;&nbsp;&nbsp;<span class="seeds">T</span>ells
         </h1>
       </div>
       <div class="col-2 py-3">
@@ -50,5 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.seeds{
+  font-size: 140px;
+}
 </style>

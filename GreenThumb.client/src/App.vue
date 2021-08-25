@@ -40,4 +40,29 @@ background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Fi
   min-height: 100vh;
   overflow-y: auto;
 }
+@font-face {
+  font-family: gardening;
+  src: url('./assets/fonts/gardening.ttf');
+}
+.garden {
+  font-family: gardening;
+}
+@font-face {
+  font-family: gardening1;
+  src: url('./assets/fonts/feronia.ttf');
+}
+.feronia {
+  font-family: gardening1;
+  font-size: 25px;
+}
+@font-face {
+  font-family: gardening2;
+  src: url('./assets/fonts/kr-seeds.ttf');
+}
+.seeds {
+  font-family: gardening2;
+  }
+.action {
+  cursor: pointer;
+}
 </style>

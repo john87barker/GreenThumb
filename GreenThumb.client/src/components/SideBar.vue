@@ -5,7 +5,7 @@
         <img src="../assets/img/GTLogo.png" alt="" class="w-50">
       </router-link>
     </h3>
-    <div class="col-md-12 sidecard py-3">
+    <div class="col-md-12 sidecard py-1">
       <div class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -20,7 +20,7 @@
             class="dropdown-toggle"
             @click="state.dropOpen = !state.dropOpen"
           >
-            <p>Account Info</p>
+            <p><span class="seeds">A</span>CCOUNT &nbsp;&nbsp; <span class="seeds">I</span>NFO</p>
             <img
               :src="user.picture"
               alt="user photo"
@@ -35,12 +35,12 @@
             @click="state.dropOpen = false"
           >
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
+              <div class="list-group-item list-group-item-action action">
                 Account
               </div>
             </router-link>
             <div
-              class="list-group-item list-group-item-action hoverable"
+              class="list-group-item list-group-item-action action"
               @click="logout"
             >
               logout
@@ -49,24 +49,24 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12  border-bottom  border-top sidecard py-3 ">
+    <div class="col-md-12  border-bottom  border-top sidecard py-1">
       <router-link :to="{name: 'Plants'}" class="nav-link text-light text-left text-capitalize p-0">
-        Explore
+        <span class="seeds">E</span>XPLORE
       </router-link>
     </div>
-    <div class="col-md-12  border-bottom  border-top sidecard py-3 ">
+    <div class="col-md-12  border-bottom  border-top sidecard py-1">
       <router-link :to="{name: 'MyGarden'}" class="nav-link text-light text-left text-capitalize p-0">
-        My Garden
+        <span class="seeds">M</span>y &nbsp;&nbsp;&nbsp; <span class="seeds">G</span>arden
       </router-link>
     </div>
-    <div class="col-md-12 border-bottom sidecard py-3">
+    <div class="col-md-12 border-bottom sidecard py-1">
       <router-link :to="{ name: 'Media' }" class="nav-link text-light text-left p-0 text-capitalize  ">
-        Media
+        <span class="seeds">M</span>EDIA
       </router-link>
     </div>
-    <div class="col-md-12 border-bottom sidecard py-3">
+    <div class="col-md-12 border-bottom sidecard py-1">
       <router-link :to="{ name: 'Posts' }" class="nav-link text-light text-left p-0 text-capitalize  ">
-        VeggieTells
+        <span class="seeds">V</span>EGGIE &nbsp;&nbsp;&nbsp; <span class="seeds">T</span>ELLS
       </router-link>
     </div>
     <div class="col-md-12 mb-0 text-center py-3">
@@ -138,9 +138,7 @@ padding-left: 1em;
 .dropdown-menu.show {
   transform: scale(.75);
 }
-.hoverable {
-  cursor: pointer;
-}
+
 a{
   margin: 0rem;
   padding: 0rem;
@@ -160,5 +158,8 @@ a:hover {
 }
 .small{
   height: 100px;
+}
+.seeds{
+  font-size: 60px;
 }
 </style>

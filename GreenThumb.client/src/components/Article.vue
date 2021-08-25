@@ -1,10 +1,11 @@
 <template>
-  <div class="Article p-2 m-1 col-12 border border-light">
-    <a class="awhite" :href="article.url">
-      <div class="div">
-        <img :src="article.urlToImage" alt="article picture">
+  <a class="awhite" :href="article.url">
+    <div class="Article m-2 row border-top border-left rounded shadow border-light">
+      <div class="col-md-3 p-0">
+        <img :src="article.urlToImage" class="w-100 h-100" alt="article picture">
       </div>
-      <div>
+
+      <div class="col-md-8 p-5">
         <div class="border-bottom border-light">
           {{ article.title }}
         </div>
@@ -16,8 +17,9 @@
           {{ article.source.name }}
         </div>
       </div>
-    </a>
-  </div>
+    </div>
+
+  </a>
 </template>
 
 // source: {id: null, name: "Lifehacker.com"}
