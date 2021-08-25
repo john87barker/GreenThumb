@@ -1,6 +1,6 @@
 <template>
   <div class="Article p-2 m-1 col-12 border border-light">
-    <a :href="article.url">
+    <a class="awhite" :href="article.url">
       <div class="div">
         <img :src="article.urlToImage" alt="article picture">
       </div>
@@ -49,7 +49,7 @@ export default {
 img {
   height: 6vh;
 }
-// a {
-//   color: white;
-// }
+.awhite {
+   color: white !important;
+ }
 </style>
