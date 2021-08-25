@@ -6,9 +6,9 @@
         <h6>{{ comment.creator.name }}</h6>
       </div>
       <div class="col-md-7">
-        <h5>{{ comment.postId }}</h5>
+        <!-- <h5>{{ comment.postId }}</h5>
         <h5>{{ post.id }}</h5>
-        <h5>{{ post.closed }}</h5>
+        <h5>{{ post.closed }}</h5> -->
         <h5>{{ comment.title }}</h5>
         <p> {{ comment.body }} </p>
       </div>
@@ -58,7 +58,6 @@ export default {
   setup(props) {
     return {
       comments: computed(() => AppState.comments[props.comment.postId] || []),
-      // postInfo: computed(() => AppState.posts.find(props.comment.postId)),
       user: computed(() => AppState.account),
       async closeComment(comment, postId) {
         try {
