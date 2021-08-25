@@ -14,7 +14,18 @@ class CommentsService {
 
   async createComment(rawComment, postid) {
     const res = await api.post('api/comments', rawComment)
-    this.getCommentsByPostId(postid)
+    return this.getCommentsByPostId(postid)
+  }
+
+  async editComment(comment) {
+    const res = await api.put('api/comments/' + comment.id, comment)
+    // const findId = AppState.posts.findIndex(p => p.id === res.data.id)
+    // AppState.posts.splice(findId, 1, res.data)
+    this.getCommentsByPostId(comment.postId)
+  }
+
+  async closeComment(comment) {
+    const res = await api.delete('api/comments/' + comment.id)
   }
 }
 export const commentsService = new CommentsService()

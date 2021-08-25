@@ -1,13 +1,13 @@
 <template>
-  <div class="create-comment-form">
-    <div class="modal fade" :id="'create-comment-modal-'+ post.id" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="edit-comment-form">
+    <div class="modal fade" :id="'edit-comment-modal-'+ comment.id" tabindex="-1" aria-labelledby="editocmmentModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <form @submit.prevent="createComment">
+        <form @submit.prevent="editComment">
           <div class="modal-content">
-            <div class="modal-header text-dark">
-              <h5 class="modal-title" id="commentModalLabel">
-                Create Comment for {{ state.rawComment.posttitle }}
-              </h5>
+            <div class="modal-header">
+              <h4 class="modal-title text-dark" id="editCommentModalLabel">
+                Edit Comment
+              </h4>
               <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close" title="close">
                 <i class="mdi mdi-close"></i>
               </button>
@@ -17,8 +17,8 @@
                 class="form-control"
                 type="text"
                 v-model="state.rawComment.title"
-                :id="'commenttitle-'+ post.id"
-                placeholder="Comment Title..."
+                :id="'editcommenttitle-'+ comment.id"
+                :placeholder="state.rawComment.title"
                 required
                 minlength="4"
                 maxlength="50"
@@ -26,18 +26,18 @@
               <br>
               <textarea
                 class="form-control"
-                :id="'commentbody-'+ post.id"
+                :id="'editcommentbody-'+ comment.id"
                 v-model="state.rawComment.body"
                 rows="5"
-                placeholder="Tell us your thoughts!..."
+                :placeholder="state.rawComment.body"
                 required
                 minlength="4"
                 maxlength="240"
               >
           </textarea>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
-                  Submit Post
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editComment">
+                  Submit Comment
                 </button>
               </div>
             </div>
@@ -50,16 +50,15 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
+import { commentsService } from '../services/CommentsService'
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 import $ from 'jquery'
-import { commentsService } from '../services/CommentsService'
-
 export default {
-  name: 'CreateCommentModal',
+  name: 'EditCommentModal',
   props: {
-    post: {
+    comment: {
       type: Object,
       required: true
     }
@@ -68,22 +67,29 @@ export default {
     const router = useRouter()
     const state = reactive({
       rawComment: {
-        postId: props.post.id,
-        posttitle: props.post.title
+        id: props.comment.id,
+        title: props.comment.title,
+        body: props.comment.body,
+        postId: props.comment.postId
       }
     })
     return {
       state,
       router,
       account: computed(() => AppState.account),
-      posts: computed(() => AppState.posts),
-      async createComment() {
+      rawComment: computed(() => state.props.comment),
+      async editComment() {
         try {
-          delete state.rawComment.posttitle
-          await commentsService.createComment(state.rawComment, state.rawComment.postid)
-          state.rawComment = {}
-          Pop.toast('Comment Created', 'success')
-          $('#create-comment-modal').modal('toggle')
+          debugger
+          await commentsService.editComment(state.rawComment)
+          state.rawComment = {
+            id: props.comment.id,
+            title: props.comment.title,
+            body: props.comment.body,
+            postId: props.comment.postId
+          }
+          Pop.toast('Comment edited', 'success')
+          $('#edit-comment-modal-' + props.comment.id).modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')
         }

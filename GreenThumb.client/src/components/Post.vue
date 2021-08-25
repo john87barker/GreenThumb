@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from '@vue/runtime-core'
+import { computed, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
 import Pop from '../utils/Notifier'
