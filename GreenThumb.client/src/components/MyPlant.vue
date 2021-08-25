@@ -1,12 +1,12 @@
 <template>
-  <div class=" m-1 card   button-to-expand  pb-1">
+  <div class=" my-1 mx-0 card   button-to-expand  pb-1">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
     <div class="d-flex justify-content-center pb-1">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
     </div>
-    <div class="col-12 text-right pr-5 pb-1" title="Remove Plant" @click="removePlant(gardenPlants.id)">
+    <div class="col-12 text-center pb-1" title="Remove Plant" @click="removePlant(gardenPlants.plant.name, gardenPlants.id)">
       <button class="btn btn-outline-danger py-0 px-1">
         Remove
       </button>
@@ -16,10 +16,10 @@
 
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
-import { plantsService } from '../services/PlantsService'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
 import { gardensService } from '../services/GardensService'
+import Swal from 'sweetalert2'
 export default {
   name: 'MyPlant',
   props: {
@@ -39,6 +39,30 @@ export default {
     })
     return {
       // gardenPlants: computed(() => AppState.gardenPlants)
+      async removePlant(name, gardenPlantId) {
+        try {
+          await Swal.fire({
+            title: 'Are you sure you want to remove this plant from your garden?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085D6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+              await gardensService.removePlant(gardenPlantId)
+              Swal.fire(
+                'You got it, dude!',
+                name + ' has been removed from your garden.',
+                'success'
+              )
+            }
+          })
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 

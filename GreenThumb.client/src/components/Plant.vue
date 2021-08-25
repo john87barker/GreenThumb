@@ -74,6 +74,7 @@ export default {
 .pic{
   max-height: 10rem;
   max-width: 10rem;
+    object-fit: cover;
 }
 .height{
   width: 15vw;

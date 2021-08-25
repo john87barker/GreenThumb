@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-9 d-flex ">
           <div class="row">
-            <div class="col-md-3" v-for="p in gardenPlants" :key="p.id">
+            <div class="col-md-3 px-2" v-for="p in gardenPlants" :key="p.id">
               <MyPlant :garden-plants="p" />
             </div>
           </div>

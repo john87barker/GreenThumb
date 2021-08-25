@@ -59,13 +59,21 @@
 
           <div class="d-flex justify-content-between pb-3">
             <div class="d-flex justify-content-end " v-if="user.isAuthenticated">
-              <button type="button" class="btn btn-outline-primary ">
-                Add to my Garden
+              <button type="button" class="btn btn-outline-primary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
+                add to my garden
+              </button>
+              <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal" v-if="!garden[0]">
+                Start A Garden
               </button>
             </div>
             <div class="d-flex justify-content-start" v-else>
-              <button type="button" class="btn btn-outline-primary ">
-                Start a Garden
+              <button type="button" class="btn btn-primary" @click="login">
+                Login to Start Your Garden
+              </button>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-primary" @click="goToGarden">
+                My Garden
               </button>
             </div>
           </div>
@@ -73,6 +81,7 @@
       </div>
     </div>
   </div>
+  <CreateGardenModal />
 </template>
 
 <script>
@@ -81,29 +90,33 @@ import { AppState } from '../AppState'
 import { computed, watchEffect } from '@vue/runtime-core'
 import { plantsService } from '../services/PlantsService'
 import Pop from '../utils/Notifier'
+import { AuthService } from '../services/AuthService'
+import { router } from '../router'
 export default {
   name: 'Component',
-  // props: {
-  //   activePlant: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
   setup() {
-    // const state = reactive()
-    // watchEffect(async() => {
-    //   try {
-    //     await plantsService.getPlantById(props.activePlant.id)
-    //   } catch (error) {
-    //     Pop.toast(error, 'error')
-    //   }
-    // })
     return {
-      // state,
-      plant: computed(() => AppState.activePlant),
-      user: computed(() => AppState.user)
-      // activePlant: computed(() => AppState.activePlant)
 
+      plant: computed(() => AppState.activePlant),
+      user: computed(() => AppState.user),
+      garden: computed(() => AppState.gardens),
+
+      async login() {
+        AuthService.loginWithPopup()
+      },
+
+      async addPlantToGarden(pName, pId, gId) {
+        try {
+          await plantsService.addPlantToGarden({ plantId: pId, gardenId: gId })
+          Pop.toast(pName + ' has been added to your garden!', 'success')
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+
+      goToGarden() {
+        router.push({ name: 'MyGarden' })
+      }
     }
   },
   components: {}
