@@ -37,6 +37,7 @@ background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Fi
 }
 .view-scroll {
   max-height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
 }
 </style>
