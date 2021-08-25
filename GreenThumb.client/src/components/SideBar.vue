@@ -5,7 +5,7 @@
         <img src="../assets/img/GTLogo.png" alt="" class="w-50">
       </router-link>
     </h3>
-    <div class="col-md-12 sidecard py-1">
+    <div class="col-md-12 sidecard py-1 z mx-0">
       <div class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -155,6 +155,7 @@ a:hover {
 }
 .z{
   z-index: 1;
+  margin: 0;
 }
 .small{
   height: 100px;

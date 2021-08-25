@@ -1,12 +1,14 @@
 <template>
-  <div class="row flex-grow-1 d-flex justify-content-center">
-    <div class="col-md-3 scroll ">
-      <div v-for="p in plants" :key="p.id">
-        <Plant :plant="p" />
+  <div class="container-fluid row flex-grow-1 d-flex justify-content-center px-5 m-0">
+    <div class="row mx-5">
+      <div class="col-md-3  scroll ">
+        <div v-for="p in plants" :key="p.id">
+          <Plant :plant="p" />
+        </div>
       </div>
-    </div>
-    <div class="col-md-9">
-      <PlantDetails :active-plant="activePlant" />
+      <div class="col-md-9">
+        <PlantDetails :active-plant="activePlant" />
+      </div>
     </div>
   </div>
 </template>
@@ -49,5 +51,6 @@ export default {
 .scroll{
   overflow-y: auto;
   height: 100vh;
+  width: 50vw;
 }
 </style>

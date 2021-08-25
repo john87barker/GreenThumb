@@ -1,8 +1,17 @@
 <template>
-  <div class="row justify-content-center mt-3 mb-3 ">
-    <h1 class="col-md-12 text-center text-light" v-if="!plant.name">
-      Click on a plant for it's details!
-    </h1>
+  <div class="row justify-content-center ">
+    <div class="col-md-12" v-if="!plant.name">
+      <h1 class="col-md-12 text-center text-light">
+        <span class="seeds">P</span>lant &nbsp;&nbsp;&nbsp; <span class="seeds">D</span>etails
+      </h1>
+      <hr class="border border-light" width="700">
+      <h2 class="text-light text-center">
+        Click on a Plant for it's details
+      </h2>
+      <div class="col-md-12 justify-content-center d-flex  mr-0">
+        <img class=" shadow border-top border-left rounded" width="450" src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80">
+      </div>
+    </div>
 
     <div class="col-md-10 card d-flex view-scroll" v-else>
       <div class="row">
@@ -123,5 +132,8 @@ export default {
   // max-width: 95vh;
   overflow-y: auto;
   overflow-x: hidden !important;
+}
+.seeds {
+  font-size: 120px;
 }
 </style>
