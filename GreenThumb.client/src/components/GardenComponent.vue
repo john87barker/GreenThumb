@@ -3,7 +3,7 @@
     <div class="col-11 bg-grey rounded">
       <div class="row">
         <h1 class="col-12 text-center">
-          My Garden
+          {{ garden.name }}
         </h1>
       </div>
       <div class="row">
@@ -11,7 +11,6 @@
       <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
       <div class="row d-flex flex-row">
         <div class="col-md-3 text-break">
-          <p>{{ garden.name }}</p>
           <p>{{ garden.body }}</p>
           <p>zip code: {{ garden.zipCode }}</p>
         </div>
