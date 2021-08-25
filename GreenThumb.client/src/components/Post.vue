@@ -49,7 +49,7 @@
   </div>
   <div class="col-md-10 offset-1 mb-5 border-bottom border-primary">
     <div class="row">
-      <Comment v-for="c in comments" :key="c.id" :comment="c" />
+      <Comment v-for="c in comments" :key="c.id" :comment="c" :post="post" />
     </div>
   </div>
 </template>
