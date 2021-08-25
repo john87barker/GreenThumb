@@ -1,7 +1,7 @@
 <template>
   <div class="weather">
     <div class="row">
-      <div class="Col-4 col-md-4 p-1 text-center" v-if="weathers">
+      <div class="col-md-4 mheight p-1 text-center" v-if="weathers">
         <div>{{ getDayName(weathers.forecastday[0].date) }}</div>
         <!-- <div>{{ weathers.forecastday[0].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
         <div>{{ weathers.forecastday[0].day.avgtemp_f }}</div>
@@ -10,7 +10,7 @@
           <img :src="weathers.forecastday[0].day.condition.icon">
         </div>
       </div>
-      <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
+      <div class="col-md-4 mheight p-1 text-center" v-if="weathers">
         <div>{{ getDayName(weathers.forecastday[1].date) }}</div>
         <!-- <div>{{ weathers.forecastday[1].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
         <div>{{ weathers.forecastday[1].day.avgtemp_f }}</div>
@@ -19,7 +19,7 @@
           <img :src="weathers.forecastday[1].day.condition.icon">
         </div>
       </div>
-      <div class="col-4 col-md-4 p-1 text-center" v-if="weathers">
+      <div class="col-md-4 mheight p-1 text-center" v-if="weathers">
         <!-- <div>{{ weathers.forecastday[2].date.toLocaleString('en-us', { weekday:"short"}) }}</div> -->
         <div>{{ getDayName(weathers.forecastday[2].date) }}</div>
         <div>{{ weathers.forecastday[2].day.avgtemp_f }}</div>
@@ -74,6 +74,9 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  width: 100%;
+  height: 100%;
+}
+.mheight{
+  max-height: 16vh;
 }
 </style>
