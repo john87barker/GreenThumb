@@ -22,6 +22,8 @@ class CommentsService {
   }
 
   async editComment(id, body) {
+    const editcomment = await dbContext.Comments.findById(id)
+    if (!editcomment) { throw new BadRequest('Invalid Comment') }
     const editedComment = await dbContext.Comments.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!editedComment) {
       throw new BadRequest('No Comment Found')

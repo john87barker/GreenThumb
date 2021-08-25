@@ -51,7 +51,7 @@
 import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
 import { commentsService } from '../services/CommentsService'
-import { computed } from '@vue/runtime-core'
+import { computed, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 import $ from 'jquery'
@@ -73,21 +73,27 @@ export default {
         postId: props.comment.postId
       }
     })
+    watchEffect(async() => {
+      try {
+        await commentsService.getCommentsByPostId(state.rawComment.postId)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
+    watchEffect(() => props.comment)
     return {
       state,
       router,
-      account: computed(() => AppState.account),
-      rawComment: computed(() => state.props.comment),
+      comments: computed(() => AppState.comments[state.rawComment.postId] || []),
       async editComment() {
         try {
-          debugger
           await commentsService.editComment(state.rawComment)
-          state.rawComment = {
-            id: props.comment.id,
-            title: props.comment.title,
-            body: props.comment.body,
-            postId: props.comment.postId
-          }
+          // state.rawComment = {
+          //   id: props.comment.id,
+          //   title: props.comment.title,
+          //   body: props.comment.body,
+          //   postId: props.comment.postId
+          // }
           Pop.toast('Comment edited', 'success')
           $('#edit-comment-modal-' + props.comment.id).modal('toggle')
         } catch (error) {

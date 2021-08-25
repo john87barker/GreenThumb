@@ -92,13 +92,13 @@ export default {
       async editPost() {
         try {
           await postsService.editPost(state.rawPost)
-          state.rawPost = {
-            id: props.post.id,
-            title: props.post.title,
-            body: props.post.body,
-            media: props.post.media
-          }
-          Pop.toast('Post editd', 'success')
+          // state.rawPost = {
+          //   id: props.post.id,
+          //   title: props.post.title,
+          //   body: props.post.body,
+          //   media: props.post.media
+          // }
+          Pop.toast('Post edited', 'success')
           $('#edit-post-modal-' + props.post.id).modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')

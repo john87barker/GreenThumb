@@ -2,7 +2,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-11 bg-grey rounded">
       <div class="row">
-        <h1 class="col-12 text-center">
+        <h1 class="col-12 text-center py-3">
           {{ garden.name }}
         </h1>
       </div>
@@ -14,27 +14,12 @@
           <p>{{ garden.body }}</p>
           <p>zip code: {{ garden.zipCode }}</p>
         </div>
-        <div class="col-md-9 d-flex justify-content-between">
-          <p class="rounded">
-            <button type="button" class="btn btn-primary">
-              +
-            </button>
-          </p>
-          <p class="rounded">
-            <button type="button" class="btn btn-primary">
-              +
-            </button>
-          </p>
-          <p class="rounded">
-            <button type="button" class="btn btn-primary">
-              +
-            </button>
-          </p>
-          <p class="rounded">
-            <button type="button" class="btn btn-primary">
-              +
-            </button>
-          </p>
+        <div class="col-md-9 d-flex ">
+          <div class="row">
+            <div class="col-md-3" v-for="p in gardenPlants" :key="p.id">
+              <MyPlant :garden-plants="p" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -43,6 +28,8 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
   name: 'Component',
   props: {
@@ -52,7 +39,9 @@ export default {
     }
   },
   setup() {
-    return {}
+    return {
+      gardenPlants: computed(() => AppState.gardenPlants)
+    }
   },
   components: {}
 }

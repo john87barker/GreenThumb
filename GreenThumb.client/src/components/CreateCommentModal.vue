@@ -80,10 +80,13 @@ export default {
       async createComment() {
         try {
           delete state.rawComment.posttitle
-          await commentsService.createComment(state.rawComment, state.rawComment.postid)
-          state.rawComment = {}
+          await commentsService.createComment(state.rawComment)
+          state.rawComment = {
+            postId: props.post.id,
+            posttitle: props.post.title
+          }
           Pop.toast('Comment Created', 'success')
-          $('#create-comment-modal').modal('toggle')
+          $('#create-comment-modal-' + props.post.id).modal('toggle')
         } catch (error) {
           Pop.toast(error, 'error')
         }

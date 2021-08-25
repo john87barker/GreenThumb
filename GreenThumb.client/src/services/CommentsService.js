@@ -12,20 +12,23 @@ class CommentsService {
     AppState.comments = res.data
   }
 
-  async createComment(rawComment, postid) {
-    const res = await api.post('api/comments', rawComment)
-    return this.getCommentsByPostId(postid)
+  async createComment(rawComment) {
+    const res = rawComment.postId
+    await api.post('api/comments', rawComment)
+    return this.getCommentsByPostId(res)
   }
 
   async editComment(comment) {
-    const res = await api.put('api/comments/' + comment.id, comment)
+    const res = comment.postId
+    await api.put('api/comments/' + comment.id, comment)
     // const findId = AppState.posts.findIndex(p => p.id === res.data.id)
     // AppState.posts.splice(findId, 1, res.data)
-    this.getCommentsByPostId(comment.postId)
+    this.getCommentsByPostId(res)
   }
 
-  async closeComment(comment) {
+  async closeComment(comment, postId) {
     const res = await api.delete('api/comments/' + comment.id)
+    this.getCommentsByPostId(postId)
   }
 }
 export const commentsService = new CommentsService()

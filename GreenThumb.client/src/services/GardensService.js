@@ -17,5 +17,10 @@ class GardensService {
     const res = await api.get('api/gardens/creator/gardens/john')
     AppState.gardens = res.data
   }
+
+  async getAllGardenPlantsByCreator() {
+    const res = await api.get('api/gardenplant/creator/plants')
+    AppState.gardenPlants = res.data
+  }
 }
 export const gardensService = new GardensService()

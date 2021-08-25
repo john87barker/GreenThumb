@@ -5,7 +5,6 @@ import { api } from './AxiosService'
 class PlantsService {
   async getAllPlants(query = {}) {
     const res = await api.get('api/plants')
-    console.log(res.data)
     AppState.plants = res.data
   }
 
@@ -24,6 +23,12 @@ class PlantsService {
     const res = await api.post('api/gardenplant', rawGardenPlant)
     console.log(res.data)
     AppState.gardenPlant = res.data
+  }
+
+  async getAllGardenPlantsByGardenId(id) {
+    const res = await api.get('api/gardenplant' + id)
+    console.log(res.data)
+    AppState.gardenPlants = res.data
   }
 }
 export const plantsService = new PlantsService()
