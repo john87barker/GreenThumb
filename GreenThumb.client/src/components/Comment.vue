@@ -10,7 +10,7 @@
         <p> {{ comment.body }} </p>
       </div>
       <div class="col-md-2">
-        <div class="row">
+        <div class="row" v-if="user.id === comment.creatorId">
           <div class="col-4 offset-3" title="Edit Comment">
             <button class="btn btn-warning" :data-target="'#edit-comment-modal-'+comment.id" data-toggle="modal">
               <i class="mdi mdi-pencil"></i>
