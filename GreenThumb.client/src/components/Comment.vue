@@ -19,7 +19,7 @@
           </div>
           <div class="col-4"
                title="Close Comment"
-               @click="closeComment(comment)"
+               @click="closeComment(comment, comment.postId)"
           >
             <button class="btn btn-danger">
               <i class="mdi mdi-close"></i>
@@ -51,7 +51,7 @@ export default {
     return {
       comments: computed(() => AppState.comments[props.post.id] || []),
       user: computed(() => AppState.account),
-      async closeComment(comment) {
+      async closeComment(comment, postId) {
         try {
           await Swal.fire({
             title: 'Are you sure you want to close out this comment?',
@@ -63,7 +63,7 @@ export default {
             confirmButtonText: 'Yes, close it!'
           }).then(async(result) => {
             if (result.isConfirmed) {
-              await commentsService.closeComment(comment)
+              await commentsService.closeComment(comment, postId)
               Swal.fire(
                 'Closed!',
                 'Your comment has been closed.',
