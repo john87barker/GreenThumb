@@ -161,6 +161,6 @@ a:hover {
   height: 100px;
 }
 .seeds{
-  font-size: 60px;
+  font-size: 40px;
 }
 </style>
