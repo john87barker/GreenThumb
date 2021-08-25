@@ -2,10 +2,10 @@
   <aside class="row side-gradient text-light pr-0">
     <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
-        <img src="../assets/img/GTLogo.png" alt="" class="small">
+        <img src="../assets/img/GTLogo.png" alt="" class="w-50">
       </router-link>
     </h3>
-    <div class="col-md-12 sidecard z">
+    <div class="col-md-12 sidecard py-3">
       <div class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -49,27 +49,27 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12  border-bottom  border-top sidecard  ">
+    <div class="col-md-12  border-bottom  border-top sidecard py-3 ">
       <router-link :to="{name: 'Plants'}" class="nav-link text-light text-left text-capitalize p-0">
         Explore
       </router-link>
     </div>
-    <div class="col-md-12  border-bottom  border-top sidecard  ">
+    <div class="col-md-12  border-bottom  border-top sidecard py-3 ">
       <router-link :to="{name: 'MyGarden'}" class="nav-link text-light text-left text-capitalize p-0">
         My Garden
       </router-link>
     </div>
-    <div class="col-md-12 border-bottom sidecard">
+    <div class="col-md-12 border-bottom sidecard py-3">
       <router-link :to="{ name: 'Media' }" class="nav-link text-light text-left p-0 text-capitalize  ">
         Media
       </router-link>
     </div>
-    <div class="col-md-12 border-bottom sidecard">
+    <div class="col-md-12 border-bottom sidecard py-3">
       <router-link :to="{ name: 'Posts' }" class="nav-link text-light text-left p-0 text-capitalize  ">
         VeggieTells
       </router-link>
     </div>
-    <div class="col-md-12 mb-0 text-center">
+    <div class="col-md-12 mb-0 text-center py-3">
       3 Day Forcast
     </div>
     <div class="col-12 border-bottom">
@@ -128,7 +128,7 @@ padding-left: 1em;
   color: #a9f1a9;
   transform: scale(1.05);
   cursor: pointer;
-}
+  }
 .dropdown-menu {
   user-select: none;
   display: block;
