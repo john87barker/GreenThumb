@@ -6,11 +6,14 @@
         <h6>{{ comment.creator.name }}</h6>
       </div>
       <div class="col-md-7">
+        <h5>{{ comment.postId }}</h5>
+        <h5>{{ post.id }}</h5>
+        <h5>{{ post.closed }}</h5>
         <h5>{{ comment.title }}</h5>
         <p> {{ comment.body }} </p>
       </div>
       <div class="col-md-2">
-        <div class="row" v-if="user.id === comment.creatorId">
+        <div class="row" v-if="post.closed === false && user.id === comment.creatorId">
           <div class="col-4 offset-3" title="Edit Comment">
             <button class="btn btn-warning" :data-target="'#edit-comment-modal-'+comment.id" data-toggle="modal">
               <i class="mdi mdi-pencil"></i>
@@ -41,15 +44,21 @@ import Swal from 'sweetalert2'
 
 export default {
   name: 'Comment',
+  postInfo: {},
   props: {
     comment: {
+      type: Object,
+      required: true
+    },
+    post: {
       type: Object,
       required: true
     }
   },
   setup(props) {
     return {
-      comments: computed(() => AppState.comments[props.post.id] || []),
+      comments: computed(() => AppState.comments[props.comment.postId] || []),
+      // postInfo: computed(() => AppState.posts.find(props.comment.postId)),
       user: computed(() => AppState.account),
       async closeComment(comment, postId) {
         try {
