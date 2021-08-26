@@ -15,19 +15,21 @@
           Login
         </button>
 
-        <div class="dropdown" v-else>
+        <div class="dropdown d-flex flex-column" v-else>
           <div
             class="dropdown-toggle"
             @click="state.dropOpen = !state.dropOpen"
           >
-            <p><span class="seeds">A</span>CCOUNT &nbsp;&nbsp; <span class="seeds">I</span>NFO</p>
-            <img
-              :src="user.picture"
-              alt="user photo"
-              width="30"
-              class="rounded"
-            />
-          <!-- <span class="mx-3">{{ user.name }}</span> -->
+            <p>
+              <span class="seeds">A</span>CCOUNT
+              <img
+                :src="user.picture"
+                alt="user photo"
+                width="30"
+                class="rounded"
+              />
+              <!-- <span class="mx-3">{{ user.name }}</span> -->
+            </p>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100 z"
@@ -51,12 +53,12 @@
     </div>
     <div class="col-md-12  border-bottom  border-top sidecard py-1">
       <router-link :to="{name: 'Plants'}" class="nav-link text-light text-left text-capitalize p-0">
-        <span class="seeds">E</span>XPLORE
+        <span class="seeds">P</span>LANTS
       </router-link>
     </div>
     <div class="col-md-12  border-bottom  border-top sidecard py-1">
       <router-link :to="{name: 'MyGarden'}" class="nav-link text-light text-left text-capitalize p-0">
-        <span class="seeds">M</span>y &nbsp;&nbsp;&nbsp; <span class="seeds">G</span>arden
+        <span class="seeds">M</span>Y &nbsp;&nbsp;&nbsp; <span class="seeds">G</span>ARDEN
       </router-link>
     </div>
     <div class="col-md-12 border-bottom sidecard py-1">

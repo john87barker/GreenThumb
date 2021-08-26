@@ -32,7 +32,7 @@
                 placeholder="Tell us your thoughts!..."
                 required
                 minlength="4"
-                maxlength="240"
+                maxlength="250"
               >
           </textarea>
               <div class="modal-footer">

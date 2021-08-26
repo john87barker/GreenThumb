@@ -62,19 +62,19 @@ export default {
       async closeComment(comment, postId) {
         try {
           await Swal.fire({
-            title: 'Are you sure you want to close out this comment?',
+            title: 'Are you sure you want to delete this comment?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085D6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, close it!'
+            confirmButtonText: 'Yes, delete it!'
           }).then(async(result) => {
             if (result.isConfirmed) {
               await commentsService.closeComment(comment, postId)
               Swal.fire(
-                'Closed!',
-                'Your comment has been closed.',
+                'Deleted!',
+                'Your comment has been deleted.',
                 'success'
               )
             }
