@@ -17,12 +17,7 @@
     </div>
     <div class="row m-0">
       <div class="col-md-8 offset-2">
-        <form class="ml-5 d-flex align-self-center">
-          <input type="text" class="align-self-center form-control" id="search" v-model="state.input" placeholder="Search...">
-          <button @click.prevent="search" class="ml-3 btn btn-info border action">
-            <span>Get those Posts</span>
-          </button>
-        </form>
+        <SearchBar />
       </div>
     </div>
     <div class="row m-0 p-3">
@@ -33,20 +28,15 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostsService'
-import { searchesService } from '../services/SearchesService'
-import { logger } from '../utils/Logger'
+import SearchBar from '../components/SearchBar.vue'
 
 export default {
   name: 'PostsPage',
   setup() {
-    const state = reactive({
-      dropOpen: false,
-      input: ''
-    })
     onMounted(async() => {
       try {
         await postsService.getAllPosts()
@@ -55,22 +45,13 @@ export default {
       }
     })
     return {
-      state,
       posts: computed(() => AppState.posts),
-      account: computed(() => AppState.account),
-      async search() {
-        try {
-          logger.log('in the posts page')
-          logger.log(state.input)
-          await searchesService.search(state.input)
-        } catch (e) {
-          Pop.toast(e, 'error')
-        }
-      }
+      account: computed(() => AppState.account)
+
     }
   },
   components: {
-    // CreatePostModal
+    SearchBar
   }
 }
 </script>

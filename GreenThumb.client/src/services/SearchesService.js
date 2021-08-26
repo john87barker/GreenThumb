@@ -7,11 +7,12 @@ class SearchesService {
   async search(query) {
     try {
       logger.log(query)
-      const res = await api.get(`api/posts?query=${query}`)
+      const res = await api.get('api/posts', query)
       logger.log(res.data)
       AppState.posts = res.data
     } catch (e) {
       Pop.toast(e, 'error')
+      logger.log(e)
     }
   }
 }
