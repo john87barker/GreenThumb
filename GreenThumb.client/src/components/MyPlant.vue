@@ -1,5 +1,5 @@
 <template>
-  <div class=" my-1 mx-0 card pb-1" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
+  <div class=" my-1 mx-0 card pb-1 shadow" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
