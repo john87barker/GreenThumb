@@ -28,5 +28,11 @@ class GardensService {
     console.log(res.data)
     this.getAllGardenPlantsByCreator()
   }
+
+  async removeGarden(id) {
+    const res = await api.delete('api/gardens/gardenId/' + id)
+    console.log(res.data)
+    this.getAllGardenPlantsByCreator()
+  }
 }
 export const gardensService = new GardensService()

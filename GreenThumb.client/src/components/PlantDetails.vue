@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col-md-10 card d-flex view-scroll" v-else>
+    <div class="col-md-10 card d-flex view-scroll my-2" v-else>
       <div class="row">
         <h1 class="col-md-12 text-center text-capitalize pb-1">
           <em>
@@ -65,23 +65,25 @@
         <div class="col-md-12 pl-5 text-justify pr-5">
           <p>  Harvest info: </p>
           <p> {{ plant.harvest }}</p>
-
+          <!-- REVIEW check these buttons show when they are supposed to show -->
           <div class="d-flex justify-content-between pb-3">
-            <div class="d-flex justify-content-end " v-if="user.isAuthenticated">
-              <button type="button" class="btn btn-outline-primary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
+            <div class="d-flex justify-content-end " v-if="user.isAuthenticated && !user.garden">
+              <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
                 add to my garden
               </button>
-              <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal" v-if="!garden[0]">
+            </div>
+            <div v-if="user.garden && user.isAuthenticated">
+              <button type="button" class="btn btn-outline-secondary" data-target="#create-garden-modal" data-toggle="modal">
                 Start A Garden
               </button>
             </div>
-            <div class="d-flex justify-content-start" v-else>
-              <button type="button" class="btn btn-primary" @click="login">
+            <div class="d-flex justify-content-start" v-if="!user.isAuthenticated">
+              <button type="button" class="btn btn-outline-secondary" @click="login">
                 Login to Start Your Garden
               </button>
             </div>
-            <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-primary" @click="goToGarden">
+            <div class="d-flex justify-content-end" v-if="user.isAuthenticated">
+              <button type="button" class="btn btn-outline-secondary" @click="goToGarden">
                 My Garden
               </button>
             </div>
@@ -101,6 +103,7 @@ import { plantsService } from '../services/PlantsService'
 import Pop from '../utils/Notifier'
 import { AuthService } from '../services/AuthService'
 import { router } from '../router'
+import { gardensService } from '../services/GardensService'
 export default {
   name: 'Component',
   setup() {
@@ -143,6 +146,7 @@ export default {
 .view-scroll {
   max-height: 90vh;
   // max-width: 95vh;
+  // width: 90vw;
   overflow-y: auto;
   overflow-x: hidden !important;
 }

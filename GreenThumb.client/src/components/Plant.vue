@@ -10,19 +10,14 @@
         </div>
 
         <div class="d-flex justify-content-center p-1">
-          <div class="d-flex justify-content-end" v-if="user.isAuthenticated && garden[0]">
+          <div class="d-flex justify-content-end" v-if="user.isAuthenticated ">
             <div v-if="garden.length == 1">
               <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
                 add to my garden
               </button>
             </div>
-            <div v-else>
-              <button>
-                dropdown
-              </button>
-            </div>
           </div>
-          <div class="d-flex justify-content-start" v-else>
+          <div class="d-flex justify-content-start" v-if="user.isAuthenticated">
             <button type="button" class="btn btn-outline-secondary " @click.stop="login">
               Login to Start a Garden
             </button>
@@ -50,7 +45,7 @@ export default {
   },
   setup(props) {
     return {
-      user: computed(() => AppState.user),
+      user: computed(() => AppState.account),
       garden: computed(() => AppState.gardens),
       async setActivePlant() {
         AppState.activePlant = props.plant

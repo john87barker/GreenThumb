@@ -3,12 +3,12 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
   async getAllComments(query = {}) {
-    const comments = await dbContext.Comments.find(query).populate('creator', 'name picture')
+    const comments = await dbContext.Comments.find(query).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     return comments
   }
 
   async getCommentById(id) {
-    const comment = await dbContext.Comments.findById(id).populate('creator', 'name picture')
+    const comment = await dbContext.Comments.findById(id).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     if (!comment) {
       throw new BadRequest('Invalid Comment Id')
     }
@@ -48,7 +48,7 @@ class CommentsService {
     // if (!post) {
     //   throw new BadRequest('No Post Found!')
     // }
-    const comments = await dbContext.Comments.find(query).populate('creator', 'name picture')
+    const comments = await dbContext.Comments.find(query).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     return comments
     // return comments.filter(c => c.postId === id)
   }

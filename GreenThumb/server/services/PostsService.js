@@ -12,7 +12,6 @@ class PostsService {
 
   async getSearchedPosts(query = {}) {
     const posts = await dbContext.Posts.find({ body: { $regex: '.*' + query + '.*' } }).populate('creator', 'name picture')
-
     if (!posts) {
       throw new BadRequest('Posts not found')
     }
@@ -20,7 +19,7 @@ class PostsService {
   }
 
   async getPostById(id) {
-    const post = await dbContext.Posts.findById(id).populate('creator', 'name picture')
+    const post = await dbContext.Posts.findById(id).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     if (!post) {
       throw new BadRequest('Invalid Post Id')
     }
