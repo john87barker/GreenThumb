@@ -16,11 +16,6 @@
                 add to my garden
               </button>
             </div>
-            <div v-else>
-              <button>
-                dropdown
-              </button>
-            </div>
           </div>
           <div class="d-flex justify-content-start" v-else>
             <button type="button" class="btn btn-outline-secondary " @click.stop="login">
