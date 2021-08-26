@@ -2,7 +2,6 @@
   <div class="row justify-content-center mt-5">
     <div class="col-11 bg-info rounded shadow">
       <div class="row">
-
         <h1 class="col-7 text-right py-3">
           {{ garden.name }}
         </h1>
@@ -35,8 +34,6 @@
         <div class="col-md-9 d-flex ">
           <div class="row border border-dark ">
             <div class="col-md-3 px-2 " v-for="p in gardenPlants" :key="p.id">
-
-        
               <MyPlant :garden-plants="p" />
             </div>
           </div>
