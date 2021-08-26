@@ -80,7 +80,7 @@
                 Login to Start Your Garden
               </button>
             </div>
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end" v-if="user.garden">
               <button type="button" class="btn btn-primary" @click="goToGarden">
                 My Garden
               </button>

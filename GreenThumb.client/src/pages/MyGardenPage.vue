@@ -1,15 +1,20 @@
 <template>
   <div class="container-fluid MyGardenPage" v-if="account">
     <div class="row justify-content-center mt-5">
-      <div class="col-9 shadow rounded bg-info">
-        <div class="d-flex  justify-content-center p-1">
-          <img :src="user.picture" alt="account pic" class="rounded-circle pic">
+      <div class="col-9 shadow rounded bg-info d-flex">
+        <div v-if="!user.isAuthenticated" class=" col-md 3 d-flex justify-content-center mb-3">
+          <button type="button" class="btn btn-outline-primary mt-3" @click="login">
+            Login to Start Your Garden
+          </button>
+        </div>
+        <div class="d-flex  justify-content-center p-1" v-else>
+          <img :src="user.picture" alt="" class="rounded-circle pic">
         </div>
         <div class="d-flex justify-content-around p-1">
           <h5>{{ user.name }}</h5>
           <h5>{{ user.email }}</h5>
         </div>
-        <div class="col d-flex justify-content-center pb-2">
+        <div class="col d-flex justify-content-center pb-2" v-if="user.garden">
           <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
             Create New Garden
           </button>
@@ -28,6 +33,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { gardensService } from '../services/GardensService'
+import { AuthService } from '../services/AuthService'
 export default {
   name: 'MyGardenPage',
   setup() {
@@ -43,7 +49,10 @@ export default {
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      gardens: computed(() => AppState.gardens)
+      gardens: computed(() => AppState.gardens),
+      async login() {
+        AuthService.loginWithPopup()
+      }
     }
   },
   components: {}
