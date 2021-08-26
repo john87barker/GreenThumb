@@ -6,37 +6,35 @@
       </router-link>
     </h3>
     <div class="col-md-12 sidecard py-1 z mx-0">
-      <div class="navbar-text">
-        <button
-          class="btn btn-outline-primary text-uppercase"
-          @click="login"
-          v-if="!user.isAuthenticated"
-        >
-          Login
-        </button>
+      <button
+        class="btn btn-outline-primary text-uppercase"
+        @click="login"
+        v-if="!user.isAuthenticated"
+      >
+        Login
+      </button>
 
-        <div class="dropdown d-flex flex-column" v-else>
+      <div class="dropdown" v-else>
+        <div
+          class="dropdown-toggle"
+          @click="state.dropOpen = !state.dropOpen"
+        >
+          <span class="seeds">A</span>CCOUNT
+          <img
+            :src="user.picture"
+            alt="user photo"
+            width="35"
+            class="rounded"
+          />
+          <!-- <div class="mx-3">
+            {{ user.name }}
+          </div> -->
           <div
-            class="dropdown-toggle"
-            @click="state.dropOpen = !state.dropOpen"
-          >
-            <p>
-              <span class="seeds">A</span>CCOUNT
-              <img
-                :src="user.picture"
-                alt="user photo"
-                width="30"
-                class="rounded"
-              />
-              <!-- <span class="mx-3">{{ user.name }}</span> -->
-            </p>
-          </div>
-          <div
-            class="dropdown-menu p-0 list-group w-100 z"
+            class="dropdown-menu p-0 list-group w-100"
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
-            <router-link :to="{ name: 'Account' }">
+            <router-link :to="{ name: 'MyGarden' }">
               <div class="list-group-item list-group-item-action action">
                 Account
               </div>
