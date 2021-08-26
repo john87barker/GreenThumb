@@ -4,6 +4,7 @@
       <div class="col-md-3 text-center">
         <p><img :src="comment.creator.picture" class="rounded-circle" width="35"></p>
         <h6>{{ comment.creator.name }}</h6>
+        <p>Commented: {{ createdDate }}</p>
       </div>
       <div class="col-md-7">
         <!-- <h5>{{ comment.postId }}</h5>
@@ -82,10 +83,14 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      }
+      },
+
+      createdDate: computed(() => {
+        const d = new Date(props.comment.createdAt)
+        return new Intl.DateTimeFormat('en-US').format(d)
+      })
     }
-  },
-  components: {}
+  }
 }
 </script>
 
