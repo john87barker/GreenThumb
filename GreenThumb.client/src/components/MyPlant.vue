@@ -6,13 +6,21 @@
     <div class="d-flex justify-content-center pb-1">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
     </div>
-    <div class="">
-      <p class="text-center">
+    <div class="d-flex flex-column">
+      <span class="text-left m-0 py-0 text-center">
+        In Garden:
+      </span>
+      <span class="text-left m-0 py-0 text-center">
         {{ timeAgo }}
+      </span>
+    </div>
+    <div class="">
+      <p class="text-left pb-0 mb-0 pl-1  text-center">
+        {{ harvestIn }}
       </p>
     </div>
     <div class="col-12 text-center pb-1" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
-      <button class="btn btn-outline-danger py-0 px-1">
+      <button class="btn btn-outline-danger py-0 px-1 mt-1">
         Remove
       </button>
     </div>
@@ -26,7 +34,7 @@ import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
 import { gardensService } from '../services/GardensService'
 import Swal from 'sweetalert2'
-import { logger } from '../utils/Logger'
+
 export default {
   name: 'MyPlant',
   props: {
@@ -81,13 +89,33 @@ export default {
         const created = new Date(props.gardenPlants.createdAt)
         const rightNow = new Date(Date.now())
         const diff = rightNow - created
-        logger.log(diff)
-        if (diff < (30.4166667 * 7 * 86400000)) {
-          const result = Math.ceil(diff / 86400000)
-          return result + ' Day(s) in Garden'
-        } else if (diff >= 30.4166667 * 7 * 86400000) {
-          const result = Math.ceil(diff / (86400000 * 30.4166667))
-          return result + ' Month(s) in Garden'
+        // if (diff < (30.4166667 * 7 * 86400000)) {
+        const result = Math.round(diff / 86400000)
+        if (result === 0) {
+          return 'Just added!'
+        } else if (result === 1) {
+          return result + ' day'
+        } else {
+          return result + ' days'
+        }
+        // }
+        // NOTE this else-if will calculate months if we want
+        // else if (diff >= 30.4166667 * 7 * 86400000) {
+        //   const result = Math.round(diff / (86400000 * 30.4166667))
+        //   return result + ' Month(s) in Garden'
+        // }
+      }),
+
+      harvestIn: computed(() => {
+        const plantedAt = new Date(props.gardenPlants.createdAt)
+        const rightNow = new Date(Date.now())
+        const daysinGround = Math.floor((rightNow - plantedAt) / 86400000)
+        const daysToHarvest = (props.gardenPlants.plant.daysToMaturity)
+        const whenToHarvest = daysToHarvest - daysinGround
+        if (whenToHarvest > 1) {
+          return 'Harvest in ' + whenToHarvest + ' days!'
+        } else {
+          return 'Harvest in ' + whenToHarvest + ' day!'
         }
       })
     }

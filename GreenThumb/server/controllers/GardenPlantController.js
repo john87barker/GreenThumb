@@ -16,7 +16,6 @@ export class GardenPlantController extends BaseController {
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
       // TODO move this to the garden controller probably call to the same service that it is.
-      .delete('/garden/:id', this.deleteByGardenId)
   }
 
   async getAll(req, res, next) {
@@ -68,12 +67,12 @@ export class GardenPlantController extends BaseController {
     }
   }
 
-  async deleteByGardenId(req, res, next) {
-    try {
-      const delGarden = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
-      res.send(delGarden)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async deleteByGardenId(req, res, next) {
+  //   try {
+  //     const delGarden = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
+  //     res.send(delGarden)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }

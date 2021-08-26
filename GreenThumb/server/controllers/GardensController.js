@@ -15,6 +15,8 @@ export class GardensController extends BaseController {
       .post('', this.createGarden)
       .put('/:id', this.editGarden)
       .delete('/gardenId/:id', this.destroyByGardenId)
+    // NOTE from gardentplant controller
+      // .delete('/garden/:id', this.deleteByGardenId)
     //   .delete('/:id', this.destroyGarden)
 
   // post('api/garden/:is/posts')
@@ -101,4 +103,13 @@ export class GardensController extends BaseController {
       next(error)
     }
   }
+
+  // async deleteByGardenId(req, res, next) {
+  //   try {
+  //     const delGarden = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
+  //     res.send(delGarden)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }
