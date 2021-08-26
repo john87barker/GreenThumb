@@ -101,6 +101,7 @@ import { plantsService } from '../services/PlantsService'
 import Pop from '../utils/Notifier'
 import { AuthService } from '../services/AuthService'
 import { router } from '../router'
+import { gardensService } from '../services/GardensService'
 export default {
   name: 'Component',
   setup() {

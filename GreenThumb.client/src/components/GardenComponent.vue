@@ -2,23 +2,41 @@
   <div class="row justify-content-center mt-5">
     <div class="col-11 bg-info rounded shadow">
       <div class="row">
-        <h1 class="col-12 text-center py-3">
-          <em>
-            {{ garden.name }}
-          </em>
+
+        <h1 class="col-7 text-right py-3">
+          {{ garden.name }}
         </h1>
-        <div class="col-md-12 d-flex flex-row mb-2">
-          <div class="col-md-12 text-break d-flex justify-content-around">
-            <div>{{ garden.body }}</div>
-            <div>zip code: {{ garden.zipCode }}</div>
+        <div class="col-5 text-right mt-4 pb-1" title="Remove Plant" @click.stop="removeGarden(garden.name, garden.id)">
+          <button class="btn btn-outline-danger py-0 px-1" title="remove all plants">
+            Harvest Garden
+          </button>
+        </div>
+        <div class="col-md-12 d-flex justify-content-around mb-3">
+          <div>{{ garden.body }}</div>
+          <div>zip code: {{ garden.zipCode }}</div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
+      <div class="d-flex">
+        <div class="row d-flex justify-content-center flex-row mb-2">
+          <div class="col-md-10 border-top border-left border-primary">
+            <!-- TODO add question right here -->
+            Have a question? <br> Want to share a success story?
+            <br>
+            <span v-if="account.id">
+              <button type="button" class="btn btn-primary mt-2" data-target="#create-post-modal" data-toggle="modal">
+                + New Post
+              </button>
+            </span>
           </div>
         </div>
-        <div class="row">
-        </div>
-        <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
-        <div class="col-md-12 d-flex ">
-          <div class="row">
-            <div class="col-md-3 px-2" v-for="p in gardenPlants" :key="p.id">
+        <div class="col-md-9 d-flex ">
+          <div class="row border border-dark ">
+            <div class="col-md-3 px-2 " v-for="p in gardenPlants" :key="p.id">
+
+        
               <MyPlant :garden-plants="p" />
             </div>
           </div>
@@ -26,12 +44,16 @@
       </div>
     </div>
   </div>
+
   <CreateGardenModal />
+  <CreatePostModal />
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { gardensService } from '../services/GardensService'
+import Pop from '../utils/Notifier'
 export default {
   name: 'Component',
   props: {
@@ -42,7 +64,17 @@ export default {
   },
   setup() {
     return {
-      gardenPlants: computed(() => AppState.gardenPlants)
+      gardenPlants: computed(() => AppState.gardenPlants),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
+      async removeGarden(gName, gId) {
+        try {
+          await gardensService.removeGarden(gId)
+          Pop.toast(gName + 'your garden has been deleted', 'success')
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   },
   components: {}
