@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center mt-5">
-    <div class="col-11 bg-grey rounded">
+    <div class="col-11 bg-info rounded">
       <div class="row">
         <h1 class="col-12 text-center py-3">
           {{ garden.name }}

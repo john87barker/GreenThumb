@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid MyGardenPage" v-if="account">
     <div class="row justify-content-center mt-5">
-      <div class="col-9 shadow rounded bg-secondary">
+      <div class="col-9 shadow rounded bg-info">
         <div class="d-flex  justify-content-center p-1">
           <img :src="user.picture" alt="account pic" class="rounded-circle pic">
         </div>
