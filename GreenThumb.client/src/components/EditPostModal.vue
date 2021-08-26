@@ -17,7 +17,7 @@
                 class="form-control"
                 type="text"
                 v-model="state.rawPost.title"
-                id="edittitle"
+                :id="'edittitle-'+ post.title"
                 :placeholder="state.rawPost.title"
                 required
                 minlength="4"
@@ -26,7 +26,7 @@
               <br>
               <textarea
                 class="form-control"
-                id="editbody"
+                :id="'editbody-'+ post.body"
                 v-model="state.rawPost.body"
                 rows="5"
                 :placeholder="state.rawPost.body"
@@ -40,7 +40,7 @@
                 class="form-control"
                 type="text"
                 v-model="state.rawPost.media"
-                id="editmedia"
+                :id="'editmedia-'+ post.media"
                 :placeholder="state.rawPost.media"
                 minlength="4"
               >

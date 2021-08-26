@@ -15,22 +15,56 @@
         </span>
       </div>
     </div>
-    <div class="row m-0 p-3">
+    <div class="row m-0">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3 py-2 pl-5">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-warning">
+                <input type="radio" name="options" id="option1" @click="state.status='all'"> All
+              </label>
+              <label class="btn btn-danger">
+                <input type="radio" name="options" id="option2" @click="state.status='open'"> Open
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" @click="state.status='closed'"> Closed
+              </label>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <SearchBar />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row m-0 p-3" v-if="state.status==='all'">
       <Post v-for="p in posts" :key="p.id" :post="p" />
+    </div>
+    <div class="row m-0 p-3" v-else-if="state.status==='open'">
+      <Post v-for="p in state.openPosts" :key="p.id" :post="p" />
+    </div>
+    <div class="row m-0 p-3" v-else-if="state.status==='closed'">
+      <Post v-for="p in state.closedPosts" :key="p.id" :post="p" />
     </div>
   </div>
   <CreatePostModal />
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostsService'
-// import CreatePostModal from '../components/CreatePostModal'
+import SearchBar from '../components/SearchBar.vue'
+
 export default {
   name: 'PostsPage',
   setup() {
+    const state = reactive({
+      status: 'all',
+      closedPosts: computed(() => AppState.posts.filter(p => p.closed === true)),
+      openPosts: computed(() => AppState.posts.filter(p => p.closed === false))
+    })
     onMounted(async() => {
       try {
         await postsService.getAllPosts()
@@ -39,12 +73,14 @@ export default {
       }
     })
     return {
+      state,
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account)
+
     }
   },
   components: {
-    // CreatePostModal
+    SearchBar
   }
 }
 </script>

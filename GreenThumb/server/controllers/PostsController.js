@@ -8,6 +8,7 @@ export class PostsController extends BaseController {
     super('api/posts')
     this.router
       .get('', this.getAll)
+      .get('/search', this.getSearchedPosts)
       .get('/:id', this.getPostById)
       .get('/:id/comments', this.getCommentsByPostId)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
@@ -20,6 +21,16 @@ export class PostsController extends BaseController {
   async getAll(req, res, next) {
     try {
       const posts = await postsService.getAll(req.query)
+      res.send(posts)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getSearchedPosts(req, res, next) {
+    try {
+      const query = req.query.query
+      const posts = await postsService.getSearchedPosts(query)
       res.send(posts)
     } catch (error) {
       next(error)
