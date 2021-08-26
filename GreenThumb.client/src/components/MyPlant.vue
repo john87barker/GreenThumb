@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-center pb-1">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
     </div>
-    <div class="col-12 text-center pb-1" title="Remove Plant" @click="removePlant(gardenPlants.plant.name, gardenPlants.id)">
+    <div class="col-12 text-center pb-1" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
       <button class="btn btn-outline-danger py-0 px-1">
         Remove
       </button>
