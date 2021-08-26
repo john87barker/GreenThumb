@@ -29,7 +29,7 @@ export class PostsController extends BaseController {
 
   async getSearchedPosts(req, res, next) {
     try {
-      const query = { title: req.query.query }
+      const query = req.query.query
       const posts = await postsService.getSearchedPosts(query)
       res.send(posts)
     } catch (error) {
