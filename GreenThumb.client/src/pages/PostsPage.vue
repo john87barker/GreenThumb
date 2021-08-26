@@ -17,7 +17,24 @@
     </div>
     <div class="row m-0">
       <div class="col-md-12">
-        <SearchBar />
+        <div class="row">
+          <div class="col-md-3 py-2 pl-5">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-warning">
+                <input type="radio" name="options" id="option1" @click="state.status='all'"> All
+              </label>
+              <label class="btn btn-danger">
+                <input type="radio" name="options" id="option2" @click="state.status='open'"> Open
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" @click="state.status='closed'"> Closed
+              </label>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <SearchBar />
+          </div>
+        </div>
       </div>
     </div>
     <div class="row m-0 p-3" v-if="state.status==='all'">
@@ -44,6 +61,7 @@ export default {
   name: 'PostsPage',
   setup() {
     const state = reactive({
+      status: 'all',
       closedPosts: computed(() => AppState.posts.filter(p => p.closed === true)),
       openPosts: computed(() => AppState.posts.filter(p => p.closed === false))
     })
