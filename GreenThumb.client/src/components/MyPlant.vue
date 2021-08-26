@@ -83,10 +83,10 @@ export default {
         const diff = rightNow - created
         logger.log(diff)
         if (diff < (30.4166667 * 7 * 86400000)) {
-          const result = Math.round(diff / 86400000)
+          const result = Math.ceil(diff / 86400000)
           return result + ' Day(s) in Garden'
         } else if (diff >= 30.4166667 * 7 * 86400000) {
-          const result = Math.round(diff / (86400000 * 30.4166667))
+          const result = Math.ceil(diff / (86400000 * 30.4166667))
           return result + ' Month(s) in Garden'
         }
       })
