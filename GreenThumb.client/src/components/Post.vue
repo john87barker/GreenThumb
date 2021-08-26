@@ -1,11 +1,16 @@
 <template>
   <div class="col-md-12 text-light border-left border-top border-light p-3 mb-3 rounded shadow">
     <div class="row">
-      <div class="col-md-3 d-none-sm border-right">
+      <div class="col-md-3 d-none-sm border-right d-flex flex-column">
         <div class="text-center">
           <img :src="post.creator.picture" class="rounded-circle w-25">
         </div>
-        <h5>{{ post.creator.name }}</h5>
+        <h5 class="text-center mt-1">
+          {{ post.creator.name }}
+        </h5>
+        <div class="mt-auto">
+          Posted: {{ createdDate }}
+        </div>
         <div class="row p-1">
           <div class="col-6" v-if="post.closed === false" title="Create Comment">
             <CreateCommentModal :post="post" />
@@ -19,15 +24,17 @@
         </div>
       </div>
       <div class="col-md-7 d-flex flex-column px-2 p-1">
-        <h5>{{ post.title }}</h5>
+        <h3>{{ post.title }}</h3>
         <div v-if="post.closed">
           Post Status: <span class="text-danger">Closed</span>
         </div>
         <div v-if="!post.closed">
           Post Status: <span class="text-success">Open</span>
         </div>
-        <div> {{ post.body }} </div>
-        <div>{{ createdDate }}</div>
+        <h5 class="mt-1">
+          {{ post.body }}
+        </h5>
+
         <div class="ml-1 mt-auto d-flex">
           <button class="btn btn-warning" v-if="!post.closed" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
             <i class="mdi mdi-comment-multiple mdi-24px"></i>
