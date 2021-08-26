@@ -7,17 +7,19 @@
             Login to Start Your Garden
           </button>
         </div>
-        <div class="d-flex  justify-content-center p-1" v-else>
-          <img :src="user.picture" alt="" class="rounded-circle pic">
-        </div>
-        <div class="d-flex justify-content-around p-1">
-          <h5>{{ user.name }}</h5>
-          <h5>{{ user.email }}</h5>
-        </div>
-        <div class="col d-flex justify-content-center pb-2">
-          <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
-            Create New Garden
-          </button>
+        <div v-else>
+          <div class="d-flex  justify-content-center p-1">
+            <img :src="user.picture" alt="" class="rounded-circle pic">
+          </div>
+          <div class="d-flex justify-content-around p-1">
+            <h5>{{ user.name }}</h5>
+            <h5>{{ user.email }}</h5>
+          </div>
+          <div class="col d-flex justify-content-center pb-2">
+            <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
+              Create New Garden
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +35,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { gardensService } from '../services/GardensService'
+import { AuthService } from '../services/AuthService'
 export default {
   name: 'MyGardenPage',
   setup() {
@@ -48,7 +51,10 @@ export default {
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      gardens: computed(() => AppState.gardens)
+      gardens: computed(() => AppState.gardens),
+      async login() {
+        AuthService.loginWithPopup()
+      }
     }
   },
   components: {}
