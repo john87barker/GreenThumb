@@ -16,7 +16,7 @@
             <div><em> Name</em>: {{ user.name }}</div>
             <div><em> Email </em>: {{ user.email }}</div>
           </div>
-          <div class="col d-flex justify-content-center pb-2" v-if="user.garden">
+          <div class="col d-flex justify-content-center pb-2" v-if="!user.garden">
             <button type="button" class="btn btn-primary" data-target="#create-garden-modal" data-toggle="modal">
               Create New Garden
             </button>
