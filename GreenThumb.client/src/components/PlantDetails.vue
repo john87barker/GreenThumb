@@ -80,7 +80,7 @@
                 Login to Start Your Garden
               </button>
             </div>
-            <div class="d-flex justify-content-end" v-if="user.garden">
+            <div class="d-flex justify-content-end">
               <button type="button" class="btn btn-primary" @click="goToGarden">
                 My Garden
               </button>
@@ -101,6 +101,7 @@ import { plantsService } from '../services/PlantsService'
 import Pop from '../utils/Notifier'
 import { AuthService } from '../services/AuthService'
 import { router } from '../router'
+import { gardensService } from '../services/GardensService'
 export default {
   name: 'Component',
   setup() {
