@@ -1,6 +1,5 @@
 <template>
-  <!-- NOTE pl-5 brings it in view but squishes the button... -->
-  <div class="row  height mb-2 d-flex justify-content-end  " @click="setActivePlant">
+  <div class="row  height mb-2 d-flex justify-content-end  " @click.stop="setActivePlant">
     <div class="col-md-12 d-flex justify-content-center">
       <div class=" m-2 card  button-to-expand ">
         <h5 class="text-center text-capitalize">
@@ -24,8 +23,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-start" v-else>
-            <button type="button" class="btn btn-outline-secondary ">
-              start a garden
+            <button type="button" class="btn btn-outline-secondary " @click.stop="login">
+              Login to Start a Garden
             </button>
           </div>
         </div>
@@ -40,6 +39,7 @@ import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { plantsService } from '../services/PlantsService'
+import { AuthService } from '../services/AuthService'
 export default {
   name: 'Component',
   props: {
@@ -54,6 +54,9 @@ export default {
       garden: computed(() => AppState.gardens),
       async setActivePlant() {
         AppState.activePlant = props.plant
+      },
+      async login() {
+        AuthService.loginWithPopup()
       },
       async addPlantToGarden(pName, pId, gId) {
         try {
