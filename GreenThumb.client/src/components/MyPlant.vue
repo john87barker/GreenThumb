@@ -6,6 +6,11 @@
     <div class="d-flex justify-content-center pb-1">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
     </div>
+    <div class="">
+      <p class="text-center">
+        {{ timeAgo }}
+      </p>
+    </div>
     <div class="col-12 text-center pb-1" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
       <button class="btn btn-outline-danger py-0 px-1">
         Remove
@@ -21,6 +26,7 @@ import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
 import { gardensService } from '../services/GardensService'
 import Swal from 'sweetalert2'
+import { logger } from '../utils/Logger'
 export default {
   name: 'MyPlant',
   props: {
@@ -69,7 +75,21 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      }
+      },
+
+      timeAgo: computed(() => {
+        const created = new Date(props.gardenPlants.createdAt)
+        const rightNow = new Date(Date.now())
+        const diff = rightNow - created
+        logger.log(diff)
+        if (diff < (30.4166667 * 7 * 86400000)) {
+          const result = Math.round(diff / 86400000)
+          return result + ' Day(s) in Garden'
+        } else if (diff >= 30.4166667 * 7 * 86400000) {
+          const result = Math.round(diff / (86400000 * 30.4166667))
+          return result + ' Month(s) in Garden'
+        }
+      })
     }
   }
 
