@@ -11,7 +11,9 @@ class PostsService {
   }
 
   async getSearchedPosts(query = {}) {
-    const posts = await dbContext.Posts.find({ body: { $regex: '.*' + query + '.*' } }).populate('creator', 'name picture')
+    const posts = await dbContext.Posts.find({ body: { $regex: '"' + query + '"' } }).populate('creator', 'name picture')
+    // const posts = await dbContext.Posts.find({ body: { $regex: '.*' + query + '.*' } }).populate('creator', 'name picture')
+    // for reference
     if (!posts) {
       throw new BadRequest('Posts not found')
     }

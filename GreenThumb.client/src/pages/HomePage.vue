@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid pl-5">
-    <div class="row vh100">
-      <div class="col-md-6 d-flex flex-column">
+    <div class="row">
+      <div class="col-md-6 d-flex flex-column vh100">
         <h3 class="text-light mt-auto">
           <div v-if="!user.isAuthenticated">
             <i class="mdi mdi-account-question"></i><br> Sign up/login to manage your garden online!
@@ -11,9 +11,9 @@
             <br> {{}} gardens with {{}} Plants
           </div>
         </h3>
-        <img class="shadow border-top border-left rounded mt-auto mb-3" src="https://images.unsplash.com/photo-1581578017306-7334b15283df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Planting a garden" width="501" height="751">
+        <img class="shadow border-top border-left rounded mt-auto mb-3 auto1" src="https://images.unsplash.com/photo-1581578017306-7334b15283df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Planting a garden" width="501" height="751">
       </div>
-      <div class="col-md-6 d-flex flex-column">
+      <div class="col-md-6 d-flex flex-column vh100">
         <img class=" shadow border-top border-left rounded mb-auto mt-3" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Seedlings" width="501" height="334">
         <!-- <Article :-->
         <a class="awhite" :href="articles[random].url" target="_blank" v-if="articles[random]">
@@ -76,9 +76,16 @@ export default {
 img {
   max-width: 100%;
   height: auto;
+  object-fit: contain;
+}
+.auto1{
+  height: 85vh;
+  width: auto;
+  object-fit:contain
 }
 img .auto {
   width: auto;
+  height: auto;
 }
 .awhite {
    color: white !important;
