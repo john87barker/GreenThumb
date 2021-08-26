@@ -2,7 +2,7 @@
   <aside class="row side-gradient text-light pr-0">
     <h3 class="col-md-12 p-1  border-bottom sidecard">
       <router-link class="navbar-brand d-flex text-light" :to="{ name: 'Home' }">
-        <img src="../assets/img/GTLogo.png" alt="" class="w-50">
+        <img src="../assets/img/GTLogoVertical.png" alt="" class="w-75 p-1 py-3">
       </router-link>
     </h3>
     <div class="col-md-12 sidecard py-1 z mx-0">
