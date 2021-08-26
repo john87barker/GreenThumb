@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col-md-10 card d-flex view-scroll" v-else>
+    <div class="col-md-10 card d-flex view-scroll my-2" v-else>
       <div class="row">
         <h1 class="col-md-12 text-center text-capitalize pb-1">
           <em>
@@ -81,7 +81,7 @@
               </button>
             </div>
             <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-primary" @click="goToGarden">
+              <button type="button" class="btn btn-outline-primary" @click="goToGarden">
                 My Garden
               </button>
             </div>
@@ -144,6 +144,7 @@ export default {
 .view-scroll {
   max-height: 90vh;
   // max-width: 95vh;
+  // width: 90vw;
   overflow-y: auto;
   overflow-x: hidden !important;
 }

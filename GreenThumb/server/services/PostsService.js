@@ -3,12 +3,12 @@ import { BadRequest } from '../utils/Errors'
 
 class PostsService {
   async getAll(query = {}) {
-    const posts = await dbContext.Posts.find(query).populate('creator', 'name picture')
+    const posts = await dbContext.Posts.find(query).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     return posts
   }
 
   async getPostById(id) {
-    const post = await dbContext.Posts.findById(id).populate('creator', 'name picture')
+    const post = await dbContext.Posts.findById(id).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     if (!post) {
       throw new BadRequest('Invalid Post Id')
     }
