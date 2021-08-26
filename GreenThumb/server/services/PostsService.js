@@ -4,6 +4,17 @@ import { BadRequest } from '../utils/Errors'
 class PostsService {
   async getAll(query = {}) {
     const posts = await dbContext.Posts.find(query).populate('creator', 'name picture')
+    if (!posts) {
+      throw new BadRequest('Posts not found')
+    }
+    return posts
+  }
+
+  async getSearchedPosts(query = {}) {
+    const posts = await dbContext.Posts.find(query).populate('creator', 'name picture')
+    if (!posts) {
+      throw new BadRequest('Posts not found')
+    }
     return posts
   }
 
