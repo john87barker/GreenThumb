@@ -113,11 +113,11 @@ export default {
   setup() {
     const state = reactive({
       editedAccount: {
-        bio: '',
-        coverImg: '',
-        picture: '',
-        name: '',
-        email: ''
+      //   bio: '',
+      //   coverImg: '',
+      //   picture: '',
+      //   name: '',
+      //   email: ''
       }
     })
     return {
@@ -126,6 +126,7 @@ export default {
       async editAccount() {
         try {
           await accountService.editAccount(state.editedAccount)
+          state.editedAccount = {}
           $('#edit-account').modal('hide')
         } catch (error) {
           logger.log(error)
