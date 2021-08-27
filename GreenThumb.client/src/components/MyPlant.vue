@@ -1,9 +1,9 @@
 <template>
-  <div class=" my-1 mx-0 card pb-1 shadow" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
+  <div class=" my-1 mx-0 border-top border-left pb-1 shadow text-light " data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
-    <div class="d-flex justify-content-center pb-1">
+    <div class="d-flex justify-content-center pb-1 ">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
     </div>
     <div class="d-flex flex-column">
@@ -19,8 +19,8 @@
         {{ harvestIn }}
       </p>
     </div>
-    <div class="col-12 text-center pb-1" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
-      <button class="btn btn-outline-danger py-0 px-1 mt-1">
+    <div class="col-12 text-center pb-1 shadow" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
+      <button class="btn btn-outline-danger py-0 px-1 mt-2">
         Remove
       </button>
     </div>

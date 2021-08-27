@@ -1,27 +1,25 @@
 <template>
-  <div class="row  height mb-2 d-flex justify-content-end  " @click.stop="setActivePlant">
-    <div class="col-md-12 d-flex justify-content-center">
-      <div class=" m-2 card  button-to-expand ">
+  <div class="row  height mb-2 d-flex justify-content-end text-light " @click.stop="setActivePlant">
+    <div class="col-md-12 d-flex justify-content-center plant">
+      <div class=" m-2 border button-to-expand shadow ">
         <h5 class="text-center text-capitalize">
           {{ plant.name }}
         </h5>
-        <img :src="plant.picture" alt="" class="pic p-1 ">
-        <div>
+        <div class="text-center">
+          <img :src="plant.picture" alt="" class="pic p-1 shadow ">
         </div>
 
         <div class="d-flex justify-content-center p-1">
-          <div class="d-flex justify-content-end" v-if="user.isAuthenticated ">
-            <div v-if="garden.length == 1">
-              <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
-                add to my garden
-              </button>
-            </div>
-          </div>
-          <div class="d-flex justify-content-start" v-if="user.isAuthenticated">
-            <button type="button" class="btn btn-outline-secondary " @click.stop="login">
-              Login to Start a Garden
+          <div class="d-flex justify-content-end shadow" v-if="!user.isAuthenticated ">
+            <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
+              add to my garden
             </button>
           </div>
+        </div>
+        <div class="d-flex justify-content-start" v-if="user.isAuthenticated">
+          <button type="button" class="btn btn-outline-primary shadow " @click.stop="login">
+            Login to Start a Garden
+          </button>
         </div>
       </div>
     </div>
@@ -70,15 +68,14 @@ export default {
 
 <style lang="scss" scoped>
 .pic{
-  max-height: 10rem;
-  max-width: 10rem;
+  height: 10rem;
+  width: 10rem;
     object-fit: cover;
 }
 .height{
   width: 15vw;
-
 }
-// .button-to-expand{
-//   width: 100vw;
-// }
+.plant{
+  width: 8rem;
+}
 </style>

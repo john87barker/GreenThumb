@@ -1,7 +1,7 @@
 <template>
   <form class="search-bar d-flex align-self-center">
-    <input type="text" class="align-self-center form-control" id="search" v-model="state.title" placeholder="Search...">
-    <button @click="search" class="ml-3 btn btn-info border action">
+    <input type="text" class="align-self-center form-control shadow" id="search" v-model="state.title" placeholder="Search...">
+    <button @click="search" class="ml-3 btn btn-info border action shadow">
       <span class="feronia">Search</span>
     </button>
   </form>

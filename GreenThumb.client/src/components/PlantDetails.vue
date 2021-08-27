@@ -1,19 +1,19 @@
 <template>
-  <div class="row justify-content-center ">
+  <div class="row justify-content-center text-light w">
     <div class="col-md-12" v-if="!plant.name">
       <h1 class="col-md-12 text-center text-light">
         <span class="seeds">P</span>lant &nbsp;&nbsp;&nbsp; <span class="seeds">D</span>etails
       </h1>
       <hr class="border border-light" width="700">
       <h2 class="text-light text-center">
-        Click on a Plant for it's details
+        Click on a Plant for it's Details
       </h2>
       <div class="col-md-12 justify-content-center d-flex  mr-0">
         <img class=" shadow border-top border-left rounded" width="450" src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80">
       </div>
     </div>
 
-    <div class="col-md-10 card d-flex view-scroll my-2" v-else>
+    <div class="col-md-10 border-left border-top d-flex view-scroll my-2 shadow" v-else>
       <div class="row">
         <h1 class="col-md-12 text-center text-capitalize pb-1">
           <em>
@@ -68,22 +68,23 @@
           <!-- REVIEW check these buttons show when they are supposed to show -->
           <div class="d-flex justify-content-between pb-3">
             <div class="d-flex justify-content-end " v-if="user.isAuthenticated && !user.garden">
-              <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
+              <button type="button" class="btn btn-outline-secondary shadow" @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
                 add to my garden
               </button>
             </div>
+            <!-- TODO fix this...user.garden isn't real... -->
             <div v-if="user.garden && user.isAuthenticated">
-              <button type="button" class="btn btn-outline-secondary" data-target="#create-garden-modal" data-toggle="modal">
+              <button type="button" class="btn btn-outline-primary shadow" data-target="#create-garden-modal" data-toggle="modal">
                 Start A Garden
               </button>
             </div>
             <div class="d-flex justify-content-start" v-if="!user.isAuthenticated">
-              <button type="button" class="btn btn-outline-secondary" @click="login">
+              <button type="button" class="btn btn-outline-secondary shadow" @click="login">
                 Login to Start Your Garden
               </button>
             </div>
             <div class="d-flex justify-content-end" v-if="user.isAuthenticated">
-              <button type="button" class="btn btn-outline-secondary" @click="goToGarden">
+              <button type="button" class="btn btn-outline-secondary shadow" @click="goToGarden">
                 My Garden
               </button>
             </div>
@@ -152,5 +153,8 @@ export default {
 }
 .seeds {
   font-size: 120px;
+}
+.w{
+  width: 48rem;
 }
 </style>

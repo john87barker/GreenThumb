@@ -1,5 +1,5 @@
 <template>
-  <div class="my-plant-details-modal " v-if="plant.body">
+  <div class="my-plant-details-modal text-dark" v-if="plant.body">
     <div class="modal fade"
          id="my-plant-details-modal"
          tabindex="-1"
@@ -20,16 +20,16 @@
           <div class="modal-body row">
             <div class="col-md-12 card d-flex ">
               <div class="row">
-                <div class="d-flex justify-content-between pb-3">
+                <div class="d-flex justify-content-between py-3">
                   <div class="col-md-6 d-flex justify-content-center ">
                     <img :src="plant.picture" class="pic ">
                   </div>
-                  <div class="col-md-6 pr-5 d-flex justify-content-center text-justify ">
+                  <div class="col-md-6 pr-5 d-flex justify-content-center text-justify pt-5">
                     {{ plant.body }}
                   </div>
                 </div>
 
-                <div class="col-md-6 text-left pl-2">
+                <div class="col-md-6 text-left pl-5 ">
                   <p class="my-0 text-capitalize">
                     <em>
                       Family: </em>{{ plant.family }}
@@ -64,10 +64,12 @@
                 <br>
                 <div class="col-md-12  text-justify">
                   <br>
-                  <p class="mb-0">
+                  <p class="mb-0 px-5">
                     <em> Harvest info: </em>
                   </p>
-                  <p> {{ plant.harvest }}</p>
+                  <p class="px-5">
+                    {{ plant.harvest }}
+                  </p>
                 </div>
               </div>
             </div>

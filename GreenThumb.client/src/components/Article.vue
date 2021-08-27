@@ -4,11 +4,11 @@
       <div class="col-md-3 p-0">
         <img :src="article.urlToImage" class="w-100 h-100" alt="article picture">
       </div>
-
-      <div class="col-md-8 p-5">
-        <div class="border-bottom border-light">
+      <br>
+      <div class="col-md-9 p-5">
+        <h5 class="border-bottom border-light mb-2">
           {{ article.title }}
-        </div>
+        </h5>
         <div>
           {{ article.description }}
         </div>

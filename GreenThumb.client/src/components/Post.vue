@@ -62,7 +62,7 @@
         <div class="row w-100 d-flex align-content-right">
           <div class="col-md-12" v-if="post.media">
             <div>
-              <img :src="post.media" :alt="post.creator.name" class="img-fit">
+              <img :src="post.media" :alt="post.creator.name" class="img-fit ">
             </div>
           </div>
         </div>

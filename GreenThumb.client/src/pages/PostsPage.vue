@@ -9,7 +9,7 @@
       </div>
       <div class="col-2 py-3">
         <span v-if="account.id">
-          <button type="button" class="btn btn-primary" data-target="#create-post-modal" data-toggle="modal">
+          <button type="button" class="btn btn-secondary shadow" data-target="#create-post-modal" data-toggle="modal">
             + New Post
           </button>
         </span>
@@ -19,14 +19,14 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3 py-2 pl-5">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-warning">
+            <div class="btn-group btn-group-toggle shadow" data-toggle="buttons">
+              <label class="btn btn-outline-warning">
                 <input type="radio" name="options" id="option1" @click="state.status='all'"> All
               </label>
-              <label class="btn btn-danger">
+              <label class="btn btn-outline-danger">
                 <input type="radio" name="options" id="option2" @click="state.status='open'"> Open
               </label>
-              <label class="btn btn-secondary">
+              <label class="btn btn-outline-secondary">
                 <input type="radio" name="options" id="option3" @click="state.status='closed'"> Closed
               </label>
             </div>

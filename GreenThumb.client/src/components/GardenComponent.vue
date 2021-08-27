@@ -1,13 +1,13 @@
 <template>
-  <div class="row justify-content-center mt-5">
-    <div class="col-11 bg-info rounded shadow">
+  <div class="row justify-content-center mt-5 text-light ">
+    <div class="col-11 border-top border-left rounded shadow">
       <div class="row">
-        <h1 class="col-7 text-right py-3">
+        <h1 class="col-8 text-right py-3">
           {{ garden.name }}
         </h1>
-        <div class="col-5 text-right mt-4 pb-1" title="Remove Plant" @click.stop="removeGarden(garden.name, garden.id)">
-          <button class="btn btn-outline-danger py-0 px-1" title="remove all plants">
-            Harvest Garden
+        <div class="col-4 text-right mt-4 pb-1" title="Remove Plant" @click.stop="removeGarden(garden.name, garden.id)">
+          <button class="btn btn-outline-danger p-1 shadow" title="remove all plants">
+            <b> Harvest Garden</b>
           </button>
         </div>
         <div class="col-md-12 d-flex justify-content-around mb-3">
@@ -20,12 +20,12 @@
       <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
       <div class="d-flex">
         <div class="row d-flex justify-content-center flex-row mb-2">
-          <div class="col-md-10 border-top border-left border-primary">
+          <div class="col-md-10 border-top border-left border-primary pt-2 shadow">
             <!-- TODO add question right here -->
             Have a question? <br> Want to share a success story?
             <br>
             <span v-if="account.id">
-              <button type="button" class="btn btn-primary mt-2" data-target="#create-post-modal" data-toggle="modal">
+              <button type="button" class="btn btn-outline-secondary mt-2 my-3 shadow" data-target="#create-post-modal" data-toggle="modal">
                 + New Post
               </button>
             </span>
@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-9 d-flex ">
           <div class="row border border-dark ">
-            <div class="col-md-3 px-2 " v-for="p in gardenPlants" :key="p.id">
+            <div class="col-md-3 px-2 text-dark" v-for="p in gardenPlants" :key="p.id">
               <MyPlant :garden-plants="p" />
             </div>
           </div>
