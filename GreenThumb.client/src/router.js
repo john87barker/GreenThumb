@@ -29,6 +29,11 @@ const routes = [
     beforeEnter: authSettled
   },
   {
+    path: '/garden/:id',
+    name: 'Garden',
+    component: loadPage('GardenPage')
+  },
+  {
     path: '/about',
     name: 'About',
     component: loadPage('AboutPage')

@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class PostsService {
   async getAll(query = {}) {
-    const posts = await dbContext.Posts.find(query).populate('creator', 'name picture')
+    const posts = await dbContext.Posts.find(query).sort({ updatedAt: -1 }).populate('creator', 'name picture')
     if (!posts) {
       throw new BadRequest('Posts not found')
     }
@@ -11,9 +11,20 @@ class PostsService {
   }
 
   async getSearchedPosts(query = {}) {
-    const posts = await dbContext.Posts.find({ body: { $regex: '"' + query + '"' } }).populate('creator', 'name picture')
-    // const posts = await dbContext.Posts.find({ body: { $regex: '.*' + query + '.*' } }).populate('creator', 'name picture')
+    if (!query) {
+      return this.getAll()
+    }
+    // REVIEW below stmt is to create index
+    // await dbContext.Posts.createIndexes({ title: 'text', body: 'text' })
+    //  TODO Below is the working string
+    // const query1 = { title: { $regex: '.*' + query + '.*' }, body: { $regex: '.*' + query + '.*' } }
+
+    const query1 = { body: { $regex: '.*' + query + '.*', $options: 'si' } }
+    const posts = await dbContext.Posts.find(query1).sort({ updatedAt: -1 }).populate('creator', 'name picture')
+
     // for reference
+    // const posts = await dbContext.Posts.find({ body: { $regex: '.*' + query + '.*' } }).populate('creator', 'name picture')
+
     if (!posts) {
       throw new BadRequest('Posts not found')
     }

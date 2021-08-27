@@ -150,7 +150,7 @@
 </template>
 
 <script>
-import { computed, reactive } from '@vue/runtime-core'
+import { computed, reactive, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gardensService } from '../services/GardensService'
 import Pop from '../utils/Notifier'
@@ -167,6 +167,9 @@ export default {
     }
   },
   setup(props) {
+    onMounted(async() => {
+      await gardensService.getPlantsByGardenId(props.garden.id)
+    })
     const state = reactive({
       editedGarden: {
         id: props.garden.id

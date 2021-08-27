@@ -1,6 +1,6 @@
 <template>
   <form class="search-bar d-flex align-self-center">
-    <input type="text" class="align-self-center form-control shadow" id="search" v-model="state.title" placeholder="Search...">
+    <input type="text" class="align-self-center form-control shadow" id="search" v-model="state.title" placeholder="Single word search and it is applicable only on Post's body...">
     <button @click="search" class="ml-3 btn btn-info border action shadow">
       <span class="feronia">Search</span>
     </button>
@@ -24,6 +24,7 @@ export default {
       async search() {
         try {
           await searchesService.search(state.title)
+          state.title = ''
         } catch (e) {
           Pop.toast(e, 'error')
         }

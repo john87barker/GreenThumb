@@ -40,6 +40,10 @@ import { AuthService } from '../services/AuthService'
 export default {
   name: 'MyGardenPage',
   setup() {
+    onMounted(async() => {
+      await gardensService.getGardensByCreatorId()
+      await gardensService.getAllGardenPlantsByCreator()
+    })
     return {
 
       user: computed(() => AppState.user),
