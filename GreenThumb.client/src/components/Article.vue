@@ -1,5 +1,5 @@
 <template>
-  <a class="awhite" :href="article.url" target="_blank">
+  <a class="awhite cardd" :href="article.url" target="_blank">
     <div class="Article m-2 row border-top border-left rounded shadow border-light">
       <div class="col-md-3 p-0">
         <img :src="article.urlToImage" class="w-100 h-100" alt="article picture">
@@ -54,4 +54,9 @@ img {
 .awhite {
    color: white !important;
  }
+ .cardd:hover{
+
+  transform: scale(1.05);
+  cursor: pointer;
+  }
 </style>

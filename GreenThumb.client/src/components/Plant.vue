@@ -1,5 +1,5 @@
 <template>
-  <div class="row  height mb-2 d-flex justify-content-end text-light action" @click.stop="setActivePlant">
+  <div class="row  height mb-2 d-flex justify-content-end text-light action cardd" @click.stop="setActivePlant">
     <div class="col-md-12 d-flex justify-content-center plant">
       <div class=" m-2 border button-to-expand shadow ">
         <h5 class="text-center text-capitalize">
@@ -81,4 +81,9 @@ export default {
 .action {
   cursor: pointer;
 }
+.cardd:hover{
+
+  transform: scale(1.05);
+  cursor: pointer;
+  }
 </style>
