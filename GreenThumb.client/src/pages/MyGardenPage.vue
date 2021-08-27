@@ -36,6 +36,7 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { gardensService } from '../services/GardensService'
 
 export default {
   name: 'MyGardenPage',
