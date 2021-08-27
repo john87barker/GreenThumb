@@ -7,17 +7,18 @@
           Welcome {{ account.name }} !
           <!-- Welcome {{ account.name.split("@")[0] }} ! -->
         </h1>
-        <img class="rounded-circle shadow" :src="account.picture" alt="" />
+        <img class="rounded-circle shadow pimg" :src="account.picture" alt="" />
         <h6>{{ account.email }}</h6>
-        <img class="rounded coverImg shadow" :src="account.coverImg" alt="" />
+        <img class="rounded coverImg shadow pimg" :src="account.coverImg" alt="" />
         <h4>{{ account.bio }}</h4>
         <div class="ml-auto action" data-toggle="modal" data-target="#edit-account">
           <span>✏ Edit Account</span>
         </div>
       </div>
     </div>
+    <img class=" shadow border-top border-left rounded mb-3 bimg" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Seedlings" width="501" height="334">
+    <div class="col-md-1 d-none-sm"></div>
   </div>
-  <div class="col-md-1 d-none-sm"></div>
   <!-- Modal -->
   <div class="modal fade"
        id="edit-account"
@@ -43,7 +44,6 @@
               <textarea type="text"
                         id="bio"
                         class="form-control"
-                        required
                         placeholder="About myself..."
                         v-model="state.editedAccount.bio"
               ></textarea>
@@ -53,7 +53,6 @@
               <input type="text"
                      id="imgUrl"
                      class="form-control"
-                     required
                      placeholder="Image Url..."
                      v-model="state.editedAccount.coverImg"
               >
@@ -63,7 +62,6 @@
               <input type="text"
                      id="name"
                      class="form-control"
-                     required
                      placeholder="Name..."
                      v-model="state.editedAccount.name"
               >
@@ -73,7 +71,6 @@
               <input type="text"
                      id="picture"
                      class="form-control"
-                     required
                      placeholder="Your profile picture..."
                      v-model="state.editedAccount.picture"
               >
@@ -83,7 +80,6 @@
               <input type="text"
                      id="email"
                      class="form-control"
-                     required
                      placeholder="Your email address..."
                      v-model="state.editedAccount.email"
               >
@@ -141,8 +137,14 @@ export default {
 </script>
 
 <style scoped>
-img {
+.pimg {
   max-width: 100px;
+}
+@media (min-width: 601px) {
+ .bimg { max-width: 90vw; }
+}
+@media (max-width: 600px) {
+ .bimg { display: none; }
 }
 
 .coverImg {

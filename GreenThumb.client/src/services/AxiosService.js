@@ -6,7 +6,7 @@ export const api = Axios.create({
 })
 
 export const newsApi = Axios.create({
-  baseURL: 'https://newsapi.org/v2/everything?q=gardening&apiKey=7a9204818fa3450985cfd59c37e017e4',
+  baseURL: 'https://newsapi.org/v2/everything?qInTitle=gardening&excludeDomains=nytimes.com&apiKey=7a9204818fa3450985cfd59c37e017e4',
   timeout: 10000
 })
 
