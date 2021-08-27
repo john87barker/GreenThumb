@@ -10,13 +10,13 @@
         </div>
 
         <div class="d-flex justify-content-center p-1">
-          <div class="d-flex justify-content-end shadow" v-if="!user.isAuthenticated ">
+          <div class="d-flex justify-content-end shadow" v-if="user.isAuthenticated && garden.length > 0">
             <button type="button" class="btn btn-outline-secondary " @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
               add to my garden
             </button>
           </div>
         </div>
-        <div class="d-flex justify-content-start" v-if="user.isAuthenticated">
+        <div class="d-flex justify-content-start" v-if="!user.isAuthenticated">
           <button type="button" class="btn btn-outline-primary shadow " @click.stop="login">
             Login to Start a Garden
           </button>
@@ -43,8 +43,9 @@ export default {
   },
   setup(props) {
     return {
-      user: computed(() => AppState.account),
+      user: computed(() => AppState.user),
       garden: computed(() => AppState.gardens),
+      userGardens: computed(() => AppState.gardenPlants),
       async setActivePlant() {
         AppState.activePlant = props.plant
       },

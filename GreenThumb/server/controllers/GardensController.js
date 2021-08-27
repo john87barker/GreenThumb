@@ -11,6 +11,7 @@ export class GardensController extends BaseController {
       .get('/:id', this.getAllPlantsbyGardenId)
       .get('/:id/posts', this.getallPostsbyGardenId)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      // Harrison said to change this route - dont be mistaken
       .get('/creator/gardens/john', this.getGardensByCreatorId)
       .post('', this.createGarden)
       .put('/:id', this.editGarden)

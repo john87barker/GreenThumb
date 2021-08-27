@@ -65,15 +65,15 @@
         <div class="col-md-12 pl-5 text-justify pr-5">
           <p>  Harvest info: </p>
           <p> {{ plant.harvest }}</p>
-          <!-- REVIEW check these buttons show when they are supposed to show -->
+          <!-- NOTE buttons -->
           <div class="d-flex justify-content-between pb-3">
-            <div class="d-flex justify-content-end " v-if="user.isAuthenticated && !user.garden">
+            <div class="d-flex justify-content-end " v-if="user.isAuthenticated && garden.length > 0">
               <button type="button" class="btn btn-outline-secondary shadow" @click.stop="addPlantToGarden(plant.name, plant.id, garden[0].id)">
                 add to my garden
               </button>
             </div>
-            <!-- TODO fix this...user.garden isn't real... -->
-            <div v-if="user.garden && user.isAuthenticated">
+
+            <div v-if="garden.length < 1 && user.isAuthenticated">
               <button type="button" class="btn btn-outline-primary shadow" data-target="#create-garden-modal" data-toggle="modal">
                 Start A Garden
               </button>
@@ -113,7 +113,7 @@ export default {
       plant: computed(() => AppState.activePlant),
       user: computed(() => AppState.user),
       garden: computed(() => AppState.gardens),
-
+      userGardens: computed(() => AppState.gardenPlants),
       async login() {
         AuthService.loginWithPopup()
       },

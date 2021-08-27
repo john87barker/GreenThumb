@@ -21,6 +21,7 @@ class GardensService {
   async getAllGardenPlantsByCreator() {
     const res = await api.get('api/gardenplant/creator/plants')
     AppState.gardenPlants = res.data
+    // console.log(res.data)
   }
 
   async removePlant(id) {

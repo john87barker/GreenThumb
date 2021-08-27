@@ -14,10 +14,10 @@
           </div>
           <div class="col-md-12 d-flex justify-content-around p-1">
             <div><em> Name</em>: {{ account.name }}</div>
-            <div><em> Email </em>: {{ user.email }}</div>
+            <div><em> Email </em>: {{ account.email }}</div>
           </div>
           <!-- TODO this isn't right... user."something" needs to make it not show when they already have a garden... -->
-          <div class="col d-flex justify-content-center pb-2" v-if="user.isAuthenticated && gardens.id">
+          <div class="col d-flex justify-content-center pb-2" v-if="user.isAuthenticated">
             <button type="button" class="btn btn-outline-primary" data-target="#create-garden-modal" data-toggle="modal">
               Create New Garden
             </button>
@@ -42,6 +42,7 @@ export default {
   name: 'MyGardenPage',
   setup() {
     return {
+
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       gardens: computed(() => AppState.gardens),
