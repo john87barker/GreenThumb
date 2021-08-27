@@ -7,15 +7,19 @@
         </h1>
       </div>
       <div class="row">
-        <div class="col-md-6 mb-3 d-flex">
-          <img class="rounded coverImg shadow mx-auto" :src="garden.gardenPic" alt="" />
+        <div class="col-md-6 mb-3 d-flex" v-if="garden.gardenPic">
+          <img class="rounded coverImg shadow mx-auto" :src="garden.gardenPic" alt="Garden Picture" />
         </div>
-
+        <div class="col-md-6 mb-3 d-flex" v-else>
+          <img class="rounded coverImg shadow mx-auto" src="https://th.bing.com/th/id/OIP.DC4RDXsGdC5YUIpm_6QtzAHaFj?pid=ImgDet&rs=1" alt="Garden Placeholder plant" />
+        </div>
         <div class="col-md-6 d-flex flex-column">
           <h6>{{ garden.body }}</h6>
-          <h6>Zip Code: {{ garden.zipCode }}</h6>
+          <h6 class="mt-auto">
+            Zip Code: {{ garden.zipCode }}
+          </h6>
           <h6>Hardiness Zone: {{ garden.hZone }}</h6>
-          <h6>Number of Plants: </h6>
+          <h6>Number of Plants: {{ gardenPlants.length }}</h6>
         </div>
       </div>
       <div class="row">
@@ -166,12 +170,12 @@ export default {
   setup(props) {
     const state = reactive({
       editedGarden: {
-        id: props.garden.id,
-        name: '',
-        body: '',
-        gardenPic: '',
-        hZone: '',
-        zipCode: ''
+        id: props.garden.id
+        // name: props.garden.name,
+        // body: props.garden.body,
+        // gardenPic: props.garden.gardenPic,
+        // hZone: props.garden.hZone,
+        // zipCode: props.garden.zipCode
       }
     })
     return {
@@ -206,6 +210,7 @@ export default {
       async editGarden() {
         try {
           await gardensService.editGarden(state.editedGarden)
+          state.editedGarden = {}
           $('#edit-garden').modal('hide')
         } catch (error) {
           logger.log(error)
