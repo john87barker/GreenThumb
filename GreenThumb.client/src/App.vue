@@ -65,4 +65,27 @@ background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Fi
 .action {
   cursor: pointer;
 }
+::-webkit-scrollbar {
+  margin-right: 10px;
+    width: 15px;
+    height: 10px;
+}
+/* Track */
+// ::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     -webkit-border-radius: 6px;
+//     border-radius: 6px;
+// }
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background: #000000;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #0f9b0f;
+}
 </style>

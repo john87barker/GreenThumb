@@ -28,7 +28,6 @@ export default {
     // }
   },
   setup() {
-    const state = reactive()
     onMounted(async() => {
       try {
         await plantsService.getAllPlants()
@@ -37,7 +36,7 @@ export default {
       }
     })
     return {
-      state,
+
       plants: computed(() => AppState.plants),
       activePlant: computed(() => AppState.activePlant)
 
