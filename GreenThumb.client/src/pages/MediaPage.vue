@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/pLQuIuokP6Q"
                   title="YouTube video player"
@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/NrFlhSNdDDk"
                   title="YouTube video player"
@@ -36,7 +36,7 @@
       </div>
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/5gllwSGuri0"
                   title="YouTube video player"
@@ -49,7 +49,7 @@
       </div>
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/KHPwNbIywFg"
                   title="YouTube video player"
@@ -62,7 +62,7 @@
       </div>
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/swLkA1cHJ4Y"
                   title="YouTube video player"
@@ -75,7 +75,7 @@
       </div>
       <div class="col-md-4 py-3">
         <div class="container">
-          <iframe width="420"
+          <iframe width="300"
                   height="236"
                   src="https://www.youtube.com/embed/zc7qJE9Nzo8"
                   title="YouTube video player"
