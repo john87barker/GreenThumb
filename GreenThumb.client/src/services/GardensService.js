@@ -13,8 +13,13 @@ class GardensService {
     AppState.gardens = res.data
   }
 
-  async getGardensByCreatorId() {
+  async getGardensByCreatorId(id) {
     const res = await api.get('api/gardens/creator/gardens/john')
+    AppState.gardens = res.data
+  }
+
+  async getGardensByProfileId(id) {
+    const res = await api.get(`account/${id}/garden`)
     AppState.gardens = res.data
   }
 
@@ -22,6 +27,11 @@ class GardensService {
     const res = await api.get('api/gardenplant/creator/plants')
     AppState.gardenPlants = res.data
     // console.log(res.data)
+  }
+
+  async getPlantsByGardenId(id) {
+    const res = await api.get('api/gardens/' + id)
+    AppState.gardenPlants = res.data
   }
 
   async removePlant(id) {

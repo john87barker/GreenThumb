@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gardensService } from '../services/GardensService'
 import Pop from '../utils/Notifier'
@@ -65,7 +65,10 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    onMounted(async() => {
+      await gardensService.getPlantsByGardenId(props.garden.id)
+    })
     return {
       gardenPlants: computed(() => AppState.gardenPlants),
       user: computed(() => AppState.user),

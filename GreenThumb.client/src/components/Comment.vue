@@ -2,7 +2,7 @@
   <div class="col-md-12 text-light border-left border-top border-light p-3 mb-3 rounded shadow">
     <div class="row">
       <div class="col-md-3 text-center">
-        <router-link :to="{ name: 'MyGarden', params: {id: post.creatorId } }" @click.stop="">
+        <router-link :to="{ name: 'Garden', params: {id: post.creatorId } }" @click.stop="">
           <p><img :src="comment.creator.picture" class="rounded-circle" width="35"></p>
           <h6>{{ comment.creator.name }}</h6>
         </router-link>

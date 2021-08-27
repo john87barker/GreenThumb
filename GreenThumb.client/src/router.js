@@ -25,7 +25,13 @@ const routes = [
   {
     path: '/mygarden',
     name: 'MyGarden',
-    component: loadPage('MyGardenPage')
+    component: loadPage('MyGardenPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/garden/:id',
+    name: 'Garden',
+    component: loadPage('GardenPage')
   },
   {
     path: '/about',
