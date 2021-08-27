@@ -16,7 +16,7 @@
             <div><em> Name</em>: {{ account.name }}</div>
             <div><em> Email </em>: {{ account.email }}</div>
           </div>
-          <!-- TODO this isn't right... user."something" needs to make it not show when they already have a garden... -->
+
           <div class="col d-flex justify-content-center pb-2" v-if="user.isAuthenticated && gardens.length < 1">
             <button type="button" class="btn btn-outline-primary" data-target="#create-garden-modal" data-toggle="modal">
               Create New Garden
