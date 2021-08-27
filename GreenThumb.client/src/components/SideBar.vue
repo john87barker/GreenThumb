@@ -21,7 +21,7 @@
         >
           <span class="seeds">A</span>CCOUNT
           <img
-            :src="user.picture"
+            :src="account.picture"
             alt="user photo"
             width="35"
             class="rounded"
@@ -97,6 +97,7 @@ export default {
     return {
       state,
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },

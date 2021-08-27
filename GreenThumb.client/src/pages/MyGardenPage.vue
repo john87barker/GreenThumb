@@ -10,10 +10,10 @@
 
         <div v-else class="row">
           <div class="col-md-12 d-flex  justify-content-center p-1">
-            <img :src="user.picture" alt="" class="rounded-circle pic">
+            <img :src="account.picture" alt="" class="rounded-circle pic">
           </div>
           <div class="col-md-12 d-flex justify-content-around p-1">
-            <div><em> Name</em>: {{ user.name }}</div>
+            <div><em> Name</em>: {{ account.name }}</div>
             <div><em> Email </em>: {{ user.email }}</div>
           </div>
           <!-- TODO this isn't right... user."something" needs to make it not show when they already have a garden... -->
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .pic {
-  height: 5rem;
+  height: 7rem;
 }
 .action {
   cursor: pointer;
