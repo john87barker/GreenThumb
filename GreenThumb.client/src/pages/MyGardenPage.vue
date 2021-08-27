@@ -59,4 +59,7 @@ export default {
 .pic {
   height: 5rem;
 }
+.action {
+  cursor: pointer;
+}
 </style>

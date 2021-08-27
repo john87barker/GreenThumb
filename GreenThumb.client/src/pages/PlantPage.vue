@@ -53,4 +53,7 @@ export default {
   height: 100vh;
   width: 50vw;
 }
+.action {
+  cursor: pointer;
+}
 </style>

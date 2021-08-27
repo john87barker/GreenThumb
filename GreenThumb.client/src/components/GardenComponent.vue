@@ -7,7 +7,7 @@
         </h1>
         <div class="col-4 text-right mt-4 pb-1" title="Remove Plant" @click.stop="removeGarden(garden.name, garden.id)">
           <button class="btn btn-outline-danger p-1 shadow" title="remove all plants">
-            <b> Harvest Garden</b>
+            <h5> Harvest Garden</h5>
           </button>
         </div>
         <div class="col-md-12 d-flex justify-content-around mb-3">
@@ -20,12 +20,12 @@
       <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
       <div class="d-flex">
         <div class="row d-flex justify-content-center flex-row mb-2">
-          <div class="col-md-10 border-top border-left border-primary pt-2 shadow">
+          <div class="col-md-10 border-top border-left  pt-2 shadow">
             <!-- TODO add question right here -->
             Have a question? <br> Want to share a success story?
             <br>
             <span v-if="account.id">
-              <button type="button" class="btn btn-outline-secondary mt-2 my-3 shadow" data-target="#create-post-modal" data-toggle="modal">
+              <button type="button" class="btn btn-outline-secondary mt-2 my-3 shadow" data-target="#create-post-modal" data-toggle="modal" title="create post">
                 + New Post
               </button>
             </span>

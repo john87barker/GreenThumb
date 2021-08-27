@@ -16,7 +16,7 @@
             <CreateCommentModal :post="post" />
           </div>
           <div class="col-6" v-if="post.closed === false && user.id === post.creatorId" title="Edit Post">
-            <button class="btn btn-warning" :data-target="'#edit-post-modal-'+post.id" data-toggle="modal">
+            <button class="btn btn-outline-warning" :data-target="'#edit-post-modal-'+post.id" data-toggle="modal">
               <i class="mdi mdi-pencil mdi-24px"></i>
             </button>
             <EditPostModal :post="post" />
@@ -36,15 +36,15 @@
         </h5>
 
         <div class="ml-1 mt-auto d-flex">
-          <button class="btn btn-warning" v-if="!post.closed" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
+          <button class="btn btn-outline-warning" v-if="!post.closed" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
             <i class="mdi mdi-comment-multiple mdi-24px"></i>
           </button>
-          <button class="ml-auto btn btn-warning" v-if="!state.showComments && comments.length !== 0" @click="state.showComments=true">
+          <button class="ml-auto btn btn-outline-warning" v-if="!state.showComments && comments.length !== 0" @click="state.showComments=true">
             <i class="mdi mdi-arrow-down-thick mdi-24px"></i>
             <b> Show Comments </b>
             <i class="mdi mdi-arrow-down-thick mdi-24px"></i>
           </button>
-          <button class="ml-auto btn btn-warning" v-if="state.showComments && comments.length !== 0" @click="state.showComments=false">
+          <button class="ml-auto btn btn-outline-warning" v-if="state.showComments && comments.length !== 0" @click="state.showComments=false">
             <i class="mdi mdi-arrow-up-thick mdi-24px"></i>
             <b> Hide Comments </b>
             <i class="mdi mdi-arrow-up-thick mdi-24px"></i>
@@ -54,7 +54,7 @@
       <div class="col-md-2">
         <div class="row">
           <div class="col-12 text-right pr-5 pb-1" v-if="post.closed === false && user.id === post.creatorId" title="Close Post" @click="closePost(post)">
-            <button class="btn btn-danger">
+            <button class="btn btn-outline-danger">
               <i class="mdi mdi-close mdi-24px"></i>
             </button>
           </div>

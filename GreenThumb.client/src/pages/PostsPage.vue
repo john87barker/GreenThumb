@@ -89,4 +89,5 @@ export default {
 .seeds{
   font-size: 140px;
 }
+
 </style>
