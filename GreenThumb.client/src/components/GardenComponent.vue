@@ -170,6 +170,7 @@ export default {
   setup(props) {
     onMounted(async() => {
       await gardensService.getPlantsByGardenId(props.garden.id)
+    })
     const state = reactive({
       editedGarden: {
         id: props.garden.id
