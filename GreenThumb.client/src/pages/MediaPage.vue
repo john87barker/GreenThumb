@@ -100,7 +100,7 @@
         <br>
         Try again later
       </h2>
-      <div class="col-12 my-2" v-for="a in articles" :key="a.title">
+      <div class="col-12 my-2 cardd" v-for="a in articles" :key="a.title">
         <Article :article="a" />
       </div>
     </div>
@@ -134,4 +134,9 @@ export default {
 .seeds{
   font-size: 140px;
 }
+.cardd:hover{
+
+  transform: scale(1.05);
+  cursor: pointer;
+  }
 </style>

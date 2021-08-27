@@ -1,5 +1,5 @@
 <template>
-  <div class=" my-1 mx-0 border-top border-left pb-1 shadow text-light action" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
+  <div class=" my-1 mx-0 border-top border-left pb-1 shadow text-light action cardd" data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
@@ -133,4 +133,9 @@ export default {
 .action {
   cursor: pointer;
 }
+.cardd:hover{
+
+  transform: scale(1.05);
+  cursor: pointer;
+  }
 </style>
