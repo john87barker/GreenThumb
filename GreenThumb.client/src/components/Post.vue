@@ -2,12 +2,14 @@
   <div class="col-md-12 text-light border-left border-top border-light p-3 mb-3 rounded shadow">
     <div class="row">
       <div class="col-md-3 d-none-sm border-right d-flex flex-column">
-        <div class="text-center">
-          <img :src="post.creator.picture" class="rounded-circle w-25">
-        </div>
-        <h5 class="text-center mt-1">
-          {{ post.creator.name }}
-        </h5>
+        <router-link :to="{ name: 'MyGarden', params: {id: post.creatorId } }" @click.stop="">
+          <div class="text-center">
+            <img :src="post.creator.picture" class="rounded-circle w-25">
+          </div>
+          <h5 class="text-center mt-1">
+            {{ post.creator.name }}
+          </h5>
+        </router-link>
         <div class="mt-auto">
           Posted: {{ createdDate }}
         </div>
