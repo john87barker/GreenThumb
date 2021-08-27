@@ -24,7 +24,7 @@
           <img class=" shadow mx-auto border-top border-left rounded mb-3" src="..\assets\img\Home2.jpg" alt="Seedlings" width="550" height="334">
         </div>
         <!-- <Article :-->
-        <a class="awhite" :href="articles[random].url" target="_blank" v-if="articles[random]">
+        <a class="awhite mb-auto" :href="articles[random].url" target="_blank" v-if="articles[random]">
           <div class="Article my-2 row border-top border-left rounded shadow border-light">
             <div class="col-md-3 d-flex px-0 align-items-center bg-dark">
               <img :src="articles[random].urlToImage" class="auto" alt="article picture">
