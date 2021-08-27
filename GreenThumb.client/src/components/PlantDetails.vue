@@ -9,7 +9,7 @@
         Click on a Plant for it's Details
       </h2>
       <div class="col-md-12 justify-content-center d-flex  mr-0">
-        <img class=" shadow border-top border-left rounded" width="450" src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80">
+        <img class=" shadow border-top border-left rounded" width="350" src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80">
       </div>
     </div>
 
