@@ -17,8 +17,8 @@
               <i class="mdi mdi-account-question"></i><br> Sign up/login to manage your garden online!
             </div>
             <div v-if="user.isAuthenticated">
-              Welcome, {{ user.email.split("@")[0] }} you have:
-              <br> <span class="text-warning">{{ gardens.length }}</span> gardens with <span class="text-info">{{ gardenPlants.length }}</span> Plants
+              Welcome, {{ user.email.split("@")[0] }} <span v-if="gardenPlants.length !== 0"> you have:
+                <br><span class="text-info">{{ gardenPlants.length }}</span> Plants in your garden!</span>
             </div>
           </h3>
           <img class=" shadow mx-auto border-top border-left rounded mb-3" src="..\assets\img\Home2.jpg" alt="Seedlings" width="550" height="334">

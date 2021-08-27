@@ -1,5 +1,6 @@
 
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class GardensService {
@@ -32,6 +33,13 @@ class GardensService {
   async getPlantsByGardenId(id) {
     const res = await api.get('api/gardens/' + id)
     AppState.gardenPlants = res.data
+  }
+
+  async editGarden(garden) {
+    const res = await api.put('api/gardens/' + garden.id, garden)
+    AppState.garden = res.data
+    logger.log(res.data)
+    this.getGardensByCreatorId()
   }
 
   async removePlant(id) {

@@ -1,5 +1,5 @@
 import { dbContext } from '../db/DbContext'
-import { BadRequest, Forbidden } from '../utils/Errors'
+import { BadRequest } from '../utils/Errors'
 
 class GardenService {
   async getAll(query = {}) {
@@ -30,7 +30,7 @@ class GardenService {
     if (body.creatorId.toString() !== body.creatorId) {
       throw new BadRequest('Invalid request')
     }
-    const updategarden = await dbContext.Gardens.findById(body.id, body, { new: true }).populate('creator', 'name picture')
+    const updategarden = await dbContext.Gardens.findByIdAndUpdate(body.id, body, { new: true }).populate('creator', 'name picture')
     return updategarden
   }
 }

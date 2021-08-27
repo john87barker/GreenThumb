@@ -35,9 +35,8 @@
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import Pop from '../utils/Notifier'
-import { gardensService } from '../services/GardensService'
 import { AuthService } from '../services/AuthService'
+
 export default {
   name: 'MyGardenPage',
   setup() {
