@@ -69,7 +69,6 @@ export default {
       gardenPlants: computed(() => AppState.gardenPlants),
       user: computed(() => AppState.user),
       random: Math.floor(20 * Math.random()),
-      gardens: computed(() => AppState.gardens),
       articles: computed(() => AppState.articles),
       formatDate(date) {
         // publishedAt: "2021-08-08T15:00:00Z"
