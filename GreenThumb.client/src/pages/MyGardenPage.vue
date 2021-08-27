@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12 " v-for="garden in gardens" :key="garden.id">
+    <div class="col-md-12 px-0" v-for="garden in gardens" :key="garden.id">
       <GardenComponent :garden="garden" />
     </div>
   </div>

@@ -38,7 +38,7 @@
       </div>
 
       <!-- //NOTE v-if this so that the following shows if they already have a garden... -->
-      <div class="d-flex">
+      <div class="col-12 d-flex mx-auto">
         <div class="row d-flex justify-content-center flex-row mb-2">
           <div class="col-md-10 border-top border-left  pt-2 shadow">
             <div class="my-2">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="col-md-9 d-flex ">
-          <div class="row border border-light ">
+          <div class="row border border-light mx-auto">
             <div class="col-md-3 px-2 text-dark" v-for="p in gardenPlants" :key="p.id">
               <MyPlant :garden-plants="p" />
             </div>

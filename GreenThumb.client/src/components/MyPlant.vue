@@ -4,7 +4,7 @@
       {{ gardenPlants.plant.name }}
     </h5>
     <div class="d-flex justify-content-center pb-1 ">
-      <img :src="gardenPlants.plant.picture" alt="" class="pic p-1  rounded ">
+      <img :src="gardenPlants.plant.picture" alt="" class="pic p-1 rounded">
     </div>
     <div class="d-flex flex-column">
       <span class="text-left m-0 py-0 text-center">
@@ -126,8 +126,8 @@ export default {
 
 <style lang="scss" scoped>
 .pic{
-  height: 7rem;
-  width: 7rem;
+  height: 10vh;
+  width: 8vw;
   object-fit: cover;
 }
 .action {
