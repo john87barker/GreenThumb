@@ -74,8 +74,8 @@ export class GardensController extends BaseController {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
-      const editgarden = await gardenService.edit(req.body)
-      res.send(editgarden)
+      const editedgarden = await gardenService.edit(req.body)
+      res.send(editedgarden)
     } catch (error) {
       next(error)
     }
@@ -103,13 +103,4 @@ export class GardensController extends BaseController {
       next(error)
     }
   }
-
-  // async deleteByGardenId(req, res, next) {
-  //   try {
-  //     const delGarden = await gardenPlantService.deleteByGardenId(req.params.id, req.userInfo.id)
-  //     res.send(delGarden)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
 }

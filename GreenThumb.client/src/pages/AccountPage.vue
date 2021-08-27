@@ -43,7 +43,6 @@
               <textarea type="text"
                         id="bio"
                         class="form-control"
-                        required
                         placeholder="About myself..."
                         v-model="state.editedAccount.bio"
               ></textarea>
@@ -53,7 +52,6 @@
               <input type="text"
                      id="imgUrl"
                      class="form-control"
-                     required
                      placeholder="Image Url..."
                      v-model="state.editedAccount.coverImg"
               >
@@ -63,7 +61,6 @@
               <input type="text"
                      id="name"
                      class="form-control"
-                     required
                      placeholder="Name..."
                      v-model="state.editedAccount.name"
               >
@@ -73,7 +70,6 @@
               <input type="text"
                      id="picture"
                      class="form-control"
-                     required
                      placeholder="Your profile picture..."
                      v-model="state.editedAccount.picture"
               >
@@ -83,7 +79,6 @@
               <input type="text"
                      id="email"
                      class="form-control"
-                     required
                      placeholder="Your email address..."
                      v-model="state.editedAccount.email"
               >
