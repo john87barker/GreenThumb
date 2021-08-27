@@ -34,7 +34,7 @@
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
-            <router-link :to="{ name: 'MyGarden' }">
+            <router-link :to="{ name: 'Account' }">
               <div class="list-group-item list-group-item-action action">
                 Account
               </div>

@@ -11,6 +11,17 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  async editAccount(newAccount) {
+    try {
+      const res = await api.put('/account', newAccount)
+      AppState.account = res.data
+      // eslint-disable-next-line no-self-assign
+      logger.log(res.data)
+    } catch (error) {
+      logger.error('Not editing the account')
+    }
+  }
 }
 
 export const accountService = new AccountService()
