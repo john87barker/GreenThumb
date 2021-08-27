@@ -2,22 +2,30 @@
   <div class="home container-fluid pl-5">
     <div class="row">
       <div class="col-md-6 d-flex flex-column vh100">
-        <h3 class="text-light mt-auto">
-          <div v-if="!user.isAuthenticated">
-            <i class="mdi mdi-account-question"></i><br> Sign up/login to manage your garden online!
-          </div>
-          <div v-if="user.isAuthenticated">
-            Welcome, {{ user.email.split("@")[0] }} you have:
-            <br> {{}} gardens with {{}} Plants
-          </div>
-        </h3>
-        <img class="shadow border-top border-left rounded mt-auto mb-3 auto1" src="https://images.unsplash.com/photo-1581578017306-7334b15283df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Planting a garden" width="501" height="751">
+        <h1 class="text-light text-center mt-3 border-bottom">
+          Welcome to <span class="text-success">Green</span>Thumb
+        </h1>
+        <h4 class="text-light text-center">
+          Your single destination for garden mastery!
+        </h4>
+        <img class="shadow border-top border-left rounded mx-auto my-auto mb-3" src="..\assets\img\Home1.jpg" alt="Planting a garden" width="501" height="751">
       </div>
       <div class="col-md-6 d-flex flex-column vh100">
-        <img class=" shadow border-top border-left rounded mb-auto mt-3" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Seedlings" width="501" height="334">
+        <div class="m-auto">
+          <h3 class="text-light text-center">
+            <div v-if="!user.isAuthenticated">
+              <i class="mdi mdi-account-question"></i><br> Sign up/login to manage your garden online!
+            </div>
+            <div v-if="user.isAuthenticated">
+              Welcome, {{ user.email.split("@")[0] }} you have:
+              <br> <span class="text-warning">{{ gardens.length }}</span> gardens with <span class="text-info">{{ gardenPlants.length }}</span> Plants
+            </div>
+          </h3>
+          <img class=" shadow mx-auto border-top border-left rounded mb-3" src="..\assets\img\Home2.jpg" alt="Seedlings" width="550" height="334">
+        </div>
         <!-- <Article :-->
         <a class="awhite" :href="articles[random].url" target="_blank" v-if="articles[random]">
-          <div class="Article m-2 row border-top border-left rounded shadow border-light">
+          <div class="Article my-2 row border-top border-left rounded shadow border-light">
             <div class="col-md-3 d-flex px-0 align-items-center bg-dark">
               <img :src="articles[random].urlToImage" class="auto" alt="article picture">
             </div>
@@ -57,6 +65,8 @@ export default {
       }
     })
     return {
+      gardens: computed(() => AppState.gardens),
+      gardenPlants: computed(() => AppState.gardenPlants),
       user: computed(() => AppState.user),
       random: Math.floor(20 * Math.random()),
       gardens: computed(() => AppState.gardens),
@@ -77,11 +87,6 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
-}
-.auto1{
-  height: 85vh;
-  width: auto;
-  object-fit:contain
 }
 img .auto {
   width: auto;
