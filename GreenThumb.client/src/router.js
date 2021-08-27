@@ -26,7 +26,7 @@ const routes = [
     path: '/mygarden',
     name: 'MyGarden',
     component: loadPage('MyGardenPage'),
-    beforeEnter: authGuard
+    beforeEnter: authSettled
   },
   {
     path: '/garden/:id',

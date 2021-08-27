@@ -146,7 +146,6 @@
     </div>
   </div>
   <!-- End edit garden modal -->
-  <CreateGardenModal />
   <CreatePostModal />
 </template>
 

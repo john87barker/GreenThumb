@@ -103,7 +103,7 @@ export default {
           await gardensService.createGarden(state.rawGarden)
           state.rawGarden = {}
           Pop.toast('Garden Created', 'success')
-          $('#create-garden-modal').modal('toggle')
+          $('#create-garden-modal').modal('hide')
         } catch (error) {
           Pop.toast(error, 'error')
         }
