@@ -89,6 +89,11 @@ class AccountService {
     return account
   }
 
+  async editAccount(user, body) {
+    const editedAccount = await dbContext.Account.findByIdAndUpdate(user.id, body, { new: true, runValidators: true })
+    return editedAccount
+  }
+
   /**
    * Updates account with the request body, will only allow changes to editable fields
    *  @param {any} user Auth0 user object
