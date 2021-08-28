@@ -38,7 +38,7 @@
         </h5>
 
         <div class="ml-1 mt-auto d-flex">
-          <button class="btn btn-outline-warning" v-if="!post.closed" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
+          <button class="btn btn-outline-warning" v-if="!post.closed || user.isAuthenticated" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
             <i class="mdi mdi-comment-multiple mdi-24px"></i>
           </button>
           <button class="ml-auto btn btn-outline-warning" v-if="!state.showComments && comments.length !== 0" @click="state.showComments=true">
