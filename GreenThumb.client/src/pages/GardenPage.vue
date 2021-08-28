@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid GardenPage">
-    <div class="row justify-content-center mt-5" v-if="gardens[0].creator">
+    <div class="row justify-content-center mt-5" v-if="gardens[0] && gardens[0].creator ">
       <div class="col-9 shadow rounded border-top border-left text-light d-flex justify-content-center py-3">
         <div class="row">
           <div class="col-md-12 d-flex  justify-content-center p-1">
