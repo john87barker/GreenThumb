@@ -24,8 +24,8 @@
         Remove
       </button>
     </div>
-    <MyPlantDetailsModal />
   </div>
+  <MyPlantDetailsModal />
 </template>
 
 <script>
@@ -138,4 +138,7 @@ export default {
   transform: scale(1.05);
   cursor: pointer;
   }
+  .z{
+  z-index: 1;
+}
 </style>
