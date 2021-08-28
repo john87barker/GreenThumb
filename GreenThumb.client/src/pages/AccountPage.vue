@@ -3,10 +3,10 @@
     <div class="row m-0">
       <div class="col-md-1 d-none-sm"></div>
       <div class="col-md-10 my-5 rounded border shadow d-flex flex-column align-items-center">
-        <h1 class="text-capitalize">
+        <h5 class="text-capitalize">
           Welcome {{ account.name }} !
           <!-- Welcome {{ account.name.split("@")[0] }} ! -->
-        </h1>
+        </h5>
         <img class="rounded-circle shadow pimg" :src="account.picture" alt="" />
         <h6>{{ account.email }}</h6>
         <img class="rounded coverImg shadow pimg" :src="account.coverImg" alt="" />

@@ -13,8 +13,14 @@
             <img :src="account.picture" alt="" class="rounded-circle pic">
           </div>
           <div class="col-md-12 d-flex justify-content-around p-1">
-            <div><em> Name</em>: {{ account.name }}</div>
-            <div><em> Email </em>: {{ account.email }}</div>
+            <div class="row ">
+              <div class="col-md-12 d-flex  justify-content-center p-1">
+                <em> Name</em>: {{ account.name }}
+              </div>
+              <div class="col-md-12 d-flex  justify-content-center p-1">
+                <em> Email </em>: {{ account.email }}
+              </div>
+            </div>
           </div>
 
           <div class="col d-flex justify-content-center pb-2" v-if="user.isAuthenticated && gardens.length < 1">
