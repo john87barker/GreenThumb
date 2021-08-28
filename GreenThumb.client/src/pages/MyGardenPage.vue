@@ -9,16 +9,16 @@
         </div>
 
         <div v-else class="row">
-          <div class="col-md-12 d-flex  justify-content-center p-1">
-            <img :src="account.picture" alt="" class="rounded-circle pic">
+          <div class="col-md-12 d-flex p-1">
+            <img :src="account.picture" alt="" class="rounded-circle mx-auto pic">
           </div>
-          <div class="col-md-12 d-flex justify-content-around p-1">
-            <div class="row ">
-              <div class="col-md-12 d-flex  justify-content-center p-1">
-                <em> Name</em>: {{ account.name }}
+          <div class="col-md-12 p-1">
+            <div class="row">
+              <div class="col-md-6 text-center p-1">
+                <b> Name</b>: {{ account.name }}
               </div>
-              <div class="col-md-12 d-flex  justify-content-center p-1">
-                <em> Email </em>: {{ account.email }}
+              <div class="col-md-6 text-center p-1">
+                <b> Email </b>: {{ account.email }}
               </div>
             </div>
           </div>

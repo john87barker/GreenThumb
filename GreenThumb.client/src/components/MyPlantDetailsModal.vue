@@ -1,19 +1,19 @@
 <template>
-  <div class="my-plant-details-modal text-dark" v-if="plant.body">
-    <div class="modal fade"
+  <div class="my-plant-details-modal text-dark " v-if="plant.body">
+    <div class="modal fade "
          id="my-plant-details-modal"
          tabindex="-1"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true"
     >
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog modal-xl z">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class=" text-center text-capitalize pb-1">
               <em>
                 {{ plant.name }}</em>
             </h1>
-            <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close" title="close">
+            <button type="button" class="btn-close btn btn-outline-danger " data-dismiss="modal" aria-label="Close" title="close">
               <i class="mdi mdi-close"></i>
             </button>
           </div>
@@ -78,6 +78,44 @@
       </div>
     </div>
   </div>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+    Launch
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade"
+       id="modelId"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="modelTitleId"
+       aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Modal title
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Body
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -102,6 +140,9 @@ export default {
   border: 5px groove grey;
   object-fit: cover;
 
+}
+.z{
+  z-index: 1;
 }
 
 </style>
