@@ -17,7 +17,6 @@ export const gridData = ref({
 
 export function registerGridElem(elem) {
   gridElem.value = elem.value
-  // gridElem.value.addEventListener('mousemove', moveBrush)
   gridElem.value.addEventListener('mousedown', draw)
   gridElem.value.addEventListener('mouseup', removeDraw)
 }
@@ -43,12 +42,6 @@ export function removeDraw() {
   gridElem.value?.removeEventListener('mousemove', draw)
 }
 
-// TODO create the brush
-export function moveBrush(e, brushElem) {
-  brushElem.style.left = (e.clientX - (gridData.value.settings.tileResolution.x / 2)) + 'px'
-  brushElem.style.top = (e.clientY - (gridData.value.settings.tileResolution.y / 2)) + 'px'
-}
-
 export function drawGrid() {
   gridElem.value.style.width = gridData.value.settings.width * gridData.value.settings.tileResolution.x + 'px'
   gridElem.value.style.height = gridData.value.settings.height * gridData.value.settings.tileResolution.y + 'px'
@@ -61,15 +54,12 @@ export function buildGridTemplate() {
   const settings = gridData.value?.settings
   if (!settings) { return }
   let template = ''
+  gridData.value.map.length = settings.height
   for (let row = 0; row < settings.height; row++) {
+    const r = gridData.value.map[row] = gridData.value.map[row] || []
+    r.length = settings.width
     for (let col = 0; col < settings.width; col++) {
-      let tileId = 0
-      if (gridData.value.map.length !== settings.height) {
-        gridData.value.map[row] = []
-        gridData.value.map[row][col] = 0
-      } else {
-        tileId = gridData.value?.map[row][col]
-      }
+      const tileId = gridData.value.map[row][col] || 0
       const tile = gridTiles.value[tileId]
       tile
         ? template += `

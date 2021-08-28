@@ -37,6 +37,10 @@
     <button @click="saveGarden">
       save garden
     </button>
+    <div>
+      <input type="number" v-model="gridData.settings.height" @change="adjustGrid">
+      <input type="number" v-model="gridData.settings.width" @change="adjustGrid">
+    </div>
     <GridTiles />
     <Grid />
   </div>
@@ -48,7 +52,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { gardensService } from '../services/GardensService'
-import { gridData } from '../utils/GridHelpers'
+import { drawGrid, gridData } from '../utils/GridHelpers'
 
 export default {
   name: 'MyGardenPage',
@@ -58,10 +62,13 @@ export default {
       await gardensService.getAllGardenPlantsByCreator()
     })
     return {
-
+      gridData,
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       gardens: computed(() => AppState.gardens),
+      adjustGrid() {
+        drawGrid()
+      },
       async saveGarden() {
         console.log('send me to the server', gridData.value)
       },
