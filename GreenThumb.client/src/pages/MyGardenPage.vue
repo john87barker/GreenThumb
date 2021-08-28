@@ -34,29 +34,57 @@
     <div class="col-md-12 px-0" v-for="garden in gardens" :key="garden.id">
       <GardenComponent :garden="garden" />
     </div>
+    <button @click="saveGarden">
+      save garden
+    </button>
+    <div>
+      <input type="number" v-model="gridData.settings.height" @change="adjustGrid">
+      <input type="number" v-model="gridData.settings.width" @change="adjustGrid">
+    </div>
+    <GridTiles />
+    <Grid />
   </div>
   <CreateGardenModal />
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { gardensService } from '../services/GardensService'
+import { drawGrid, gridData, setGridData } from '../utils/GridHelpers'
 
 export default {
   name: 'MyGardenPage',
   setup() {
+    const primaryGarden = ref({})
     onMounted(async() => {
       await gardensService.getGardensByCreatorId()
       await gardensService.getAllGardenPlantsByCreator()
     })
-    return {
 
+    watchEffect(() => {
+      if (AppState.gardens.length) {
+        primaryGarden.value = AppState.gardens[0]
+        setGridData({
+          settings: primaryGarden.value.settings,
+          map: primaryGarden.value.gardenPlots
+        })
+        drawGrid()
+      }
+    })
+
+    return {
+      gridData,
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       gardens: computed(() => AppState.gardens),
-
+      adjustGrid() {
+        drawGrid()
+      },
+      async saveGarden() {
+        await gardensService.editGarden(primaryGarden.value)
+      },
       async login() {
         AuthService.loginWithPopup()
       }
