@@ -8,7 +8,12 @@ export const gridTiles = ref({
   },
   2: {
     id: 2,
-    name: 'BellPepper',
+    name: 'Bell Pepper',
     url: 'assets/img/BellPepper.png'
+  },
+  3: {
+    id: 3,
+    name: 'Blueberry',
+    url: 'assets/img/BlueBerry.png'
   }
 })
