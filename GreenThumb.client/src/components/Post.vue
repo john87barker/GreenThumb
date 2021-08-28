@@ -37,8 +37,8 @@
           {{ post.body }}
         </h5>
 
-        <div class="ml-1 mt-auto d-flex">
-          <button class="btn btn-outline-warning" v-if="!post.closed || user.isAuthenticated" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
+        <div class="ml-1 mt-auto d-flex" v-if="post.closed === false && account.id">
+          <button class="btn btn-outline-warning" :data-target="'#create-comment-modal-'+ post.id" data-toggle="modal">
             <i class="mdi mdi-comment-multiple mdi-24px"></i>
           </button>
           <button class="ml-auto btn btn-outline-warning" v-if="!state.showComments && comments.length !== 0" @click="state.showComments=true">
@@ -108,7 +108,8 @@ export default {
     watchEffect(() => props.post)
     return {
       comments: computed(() => AppState.comments[props.post.id] || []),
-      user: computed(() => AppState.account),
+      account: computed(() => AppState.account),
+      user: computed(() => AppState.user),
       posts: computed(() => AppState.posts),
       state,
 
