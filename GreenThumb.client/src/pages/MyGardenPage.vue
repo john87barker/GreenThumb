@@ -48,19 +48,32 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { gardensService } from '../services/GardensService'
-import { drawGrid, gridData } from '../utils/GridHelpers'
+import { drawGrid, gridData, setGridData } from '../utils/GridHelpers'
 
 export default {
   name: 'MyGardenPage',
   setup() {
+    const primaryGarden = ref({})
     onMounted(async() => {
       await gardensService.getGardensByCreatorId()
       await gardensService.getAllGardenPlantsByCreator()
     })
+
+    watchEffect(() => {
+      if (AppState.gardens.length) {
+        primaryGarden.value = AppState.gardens[0]
+        setGridData({
+          settings: primaryGarden.value.settings,
+          map: primaryGarden.value.gardenPlots
+        })
+        drawGrid()
+      }
+    })
+
     return {
       gridData,
       user: computed(() => AppState.user),
@@ -70,7 +83,7 @@ export default {
         drawGrid()
       },
       async saveGarden() {
-        console.log('send me to the server', gridData.value)
+        await gardensService.editGarden(primaryGarden.value)
       },
       async login() {
         AuthService.loginWithPopup()
