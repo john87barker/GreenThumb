@@ -1,28 +1,30 @@
 <template>
-  <div class="row my-1 mx-0 border-top border-left pb-1 shadow text-light action cardd " data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
+  <div class="row my-2 mx-0 border-top border-left pb-1 shadow text-light action cardd " data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
     <h5 class="text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
-    <div class="d-flex justify-content-center pb-1 ">
+    <div class="col-md-12 d-flex justify-content-center pb-1 ">
       <img :src="gardenPlants.plant.picture" alt="" class="pic p-1 rounded">
     </div>
-    <div class="d-flex flex-column">
-      <span class="text-left m-0 py-0 text-center">
-        In Garden:
-      </span>
-      <span class="text-left m-0 py-0 text-center">
-        {{ timeAgo }}
-      </span>
-    </div>
-    <div class="">
-      <p class="text-left pb-0 mb-0 pl-1  text-center">
-        {{ harvestIn }}
-      </p>
-    </div>
-    <div class="col-12 text-center pb-1 shadow" title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
-      <button class="btn btn-outline-danger py-0 px-1 mt-2">
-        Remove
-      </button>
+    <div class="row justify-content-center">
+      <div class="col-md-12 d-flex flex-column">
+        <span class=" m-0 py-0 text-center">
+          In Garden:
+        </span>
+        <span class="col-md-12  m-0 pb-1 text-center">
+          {{ timeAgo }}
+        </span>
+      </div>
+      <div class="">
+        <p class="col-md-12   pb-0 mb-0 pl-1  text-center">
+          {{ harvestIn }}
+        </p>
+      </div>
+      <div class="col-md-12 text-center pb-1 " title="Remove Plant" @click.stop="removePlant(gardenPlants.plant.name, gardenPlants.id)">
+        <button class="btn btn-outline-danger py-0 px-1 mt-2">
+          Remove
+        </button>
+      </div>
     </div>
   </div>
   <MyPlantDetailsModal />
