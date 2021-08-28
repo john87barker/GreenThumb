@@ -34,6 +34,11 @@
     <div class="col-md-12 px-0" v-for="garden in gardens" :key="garden.id">
       <GardenComponent :garden="garden" />
     </div>
+    <button @click="saveGarden">
+      save garden
+    </button>
+    <GridTiles />
+    <Grid />
   </div>
   <CreateGardenModal />
 </template>
@@ -43,6 +48,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { gardensService } from '../services/GardensService'
+import { gridData } from '../utils/GridHelpers'
 
 export default {
   name: 'MyGardenPage',
@@ -56,7 +62,9 @@ export default {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       gardens: computed(() => AppState.gardens),
-
+      async saveGarden() {
+        console.log('send me to the server', gridData.value)
+      },
       async login() {
         AuthService.loginWithPopup()
       }
