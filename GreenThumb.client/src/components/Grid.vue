@@ -36,6 +36,9 @@ export default {
   background: url(https://www.getpaint.net/doc/latest/images/layerswindow/checkerboard.png);
   min-height: 200px;
   min-width: 200px;
+  max-width: 100%;
+  max-height: 80vh;
+  overflow: auto;
 }
 .grid {
   outline: 1px solid black;
