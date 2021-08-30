@@ -1,11 +1,11 @@
 <template>
-  <div class="grid-tiles">
-    <ul class="d-flex">
+  <div class="grid-tiles ">
+    <ul class="d-flex ">
       <!-- {{ gridTiles }} -->
       <li
         v-for="tile in gridTiles"
         :key="tile.id"
-        class="tile-option"
+        class="tile-option ml-3"
         :class="{active: activeTile.id === tile.id}"
         @click="setActiveTile(tile)"
       >
