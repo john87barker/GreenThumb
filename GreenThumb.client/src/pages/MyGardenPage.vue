@@ -34,25 +34,27 @@
     <div class="col-md-12 px-0" v-for="garden in gardens" :key="garden.id">
       <GardenComponent :garden="garden" />
     </div>
-    <div class="text-light text-center mt-3 ">
-      <h3 class="pb-2">
-        Plan your garden here!
-      </h3>
-      Width: <input type="number" v-model="gridData.settings.height" @change="adjustGrid">
-      Length: <input type="number" v-model="gridData.settings.width" @change="adjustGrid">
-      <div class="p-3">
-        Press shift and click to remove item from garden.
+    <div v-if="user.isAuthenticated">
+      <div class="text-light text-center mt-3 " v-if="account">
+        <h3 class="pb-2">
+          Plan your garden here!
+        </h3>
+        Width: <input type="number" v-model="gridData.settings.height" @change="adjustGrid">
+        Length: <input type="number" v-model="gridData.settings.width" @change="adjustGrid">
+        <div class="p-3">
+          Press shift and click to remove item from garden.
+        </div>
+        <button @click="saveGarden" class="m-2 ml-5 ">
+          save garden
+        </button>
       </div>
-      <button @click="saveGarden" class="m-2 ml-5 ">
-        save garden
-      </button>
-    </div>
-    <div class="p-3 text-light">
-      <div class="p-3">
-        Plants to choose from:
+      <div class="p-3 text-light">
+        <div class="p-3">
+          Plants to choose from:
+        </div>
+        <GridTiles />
+        <Grid />
       </div>
-      <GridTiles />
-      <Grid />
     </div>
   </div>
   <CreateGardenModal />
