@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-center mt-5 text-light pb-3">
+  <div class="row justify-content-center mt-5 text-light pb-5">
     <div class="col-11 border-top border-left rounded shadow">
       <div class="row">
         <h1 class="col-md-12 text-center py-3 mb-0">
@@ -55,7 +55,7 @@
             </span>
           </div>
         </div>
-        <div class="col-md-9 d-flex ">
+        <div class="col-md-9 d-flex ml-4">
           <div class="row border-top border-left border-light ">
             <div class="col-md-3  text-dark" v-for="p in gardenPlants" :key="p.id">
               <MyPlant :garden-plants="p" />
