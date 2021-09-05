@@ -1,6 +1,6 @@
 <template>
   <div class="row my-2 mx-0 border-top border-left pb-1 shadow text-light action cardd " data-target="#my-plant-details-modal" data-toggle="modal" @click="setActivePlant">
-    <h5 class="text-center text-capitalize pt-1">
+    <h5 class="col-md-12 text-center text-capitalize pt-1">
       {{ gardenPlants.plant.name }}
     </h5>
     <div class="col-md-12 d-flex justify-content-center pb-1 ">

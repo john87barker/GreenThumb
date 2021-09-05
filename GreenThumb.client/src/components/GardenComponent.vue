@@ -56,8 +56,8 @@
           </div>
         </div>
         <div class="col-md-9 d-flex ">
-          <div class="row border border-light mx-auto">
-            <div class="col-md-3 mx-2 text-dark" v-for="p in gardenPlants" :key="p.id">
+          <div class="row border-top border-left border-light ">
+            <div class="col-md-3  text-dark" v-for="p in gardenPlants" :key="p.id">
               <MyPlant :garden-plants="p" />
             </div>
           </div>

@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss">
 .grid-container{
-  background: url(https://www.getpaint.net/doc/latest/images/layerswindow/checkerboard.png);
+  background: url(assets/img/dirt.png);
   min-height: 200px;
   min-width: 200px;
   max-width: 100%;
@@ -41,7 +41,7 @@ export default {
   overflow: auto;
 }
 .grid {
-  outline: 1px solid black;
+  outline: 1px solid white;
   display: flex;
   flex-wrap: wrap;
   user-select: none;
@@ -54,11 +54,11 @@ export default {
   height: 64px;
   width: 64px;
   background-size: cover;
-  outline: 1px solid black;
+  outline: 1px solid white;
 }
 
 .cell.empty {
-  outline: 1px solid black;
+  outline: 1px solid white;
   background: rgba(25, 25, 25, 0.3);
 }
 </style>

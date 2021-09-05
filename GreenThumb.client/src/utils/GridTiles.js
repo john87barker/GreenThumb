@@ -1,6 +1,11 @@
 import { ref } from 'vue'
 
 export const gridTiles = ref({
+  // 0: {
+  //   id: 0,
+  //   name: 'Dirt',
+  //   url: 'assets/img/dirt.png'
+  // },
   1: {
     id: 1,
     name: 'Basil',

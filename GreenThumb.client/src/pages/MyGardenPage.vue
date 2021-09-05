@@ -66,6 +66,7 @@ import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { gardensService } from '../services/GardensService'
 import { drawGrid, gridData, setGridData } from '../utils/GridHelpers'
+import Pop from '../utils/Notifier'
 
 export default {
   name: 'MyGardenPage',
@@ -97,6 +98,7 @@ export default {
       },
       async saveGarden() {
         await gardensService.editGarden(primaryGarden.value)
+        Pop.toast('Garden layout has been saved!', 'success')
       },
       async login() {
         AuthService.loginWithPopup()

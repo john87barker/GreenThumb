@@ -68,7 +68,7 @@ background: linear-gradient(to left, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Fi
 ::-webkit-scrollbar {
   margin-right: 10px;
     width: 15px;
-    height: 10px;
+    height: 2px;
 }
 /* Track */
 // ::-webkit-scrollbar-track {
