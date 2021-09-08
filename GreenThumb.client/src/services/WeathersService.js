@@ -5,7 +5,6 @@ import { AppState } from '../AppState.js'
 class WeathersService {
   // eslint-disable-next-line no-useless-constructor
   constructor(data) {
-    // console.log("Msg at Weather constructor")
   }
 
   async getWeather() {

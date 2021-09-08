@@ -6,7 +6,6 @@ class ArticlesService {
   async getAll() {
     try {
       const res = await newsApi.get('')
-      // console.log(res.data)
       AppState.articles = res.data.articles
     } catch (error) {
       Pop.toast(error, 'error')
