@@ -16,7 +16,7 @@ export const newsApi = Axios.create({
 // })
 
 export const weatherapi = Axios.create({
-  baseURL: 'http://api.weatherapi.com/v1/forecast.json?key=d23232cbf44a436181a183838212308&q=83704&days=3',
+  baseURL: 'https://api.weatherapi.com/v1/forecast.json?key=d23232cbf44a436181a183838212308&q=83704&days=3',
   timeout: 10000
 })
 // REVIEW Weather API key has been created using shankerkarra@gmail.com account and it does need ZIPcode
