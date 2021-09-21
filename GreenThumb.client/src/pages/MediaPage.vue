@@ -95,7 +95,7 @@
       </div>
     </div>
     <div class="row">
-      <h2 v-if="articles.length == 0">
+      <h2 class="text-white" v-if="articles.length == 0">
         No articles to display <i class="mdi mdi-shovel"></i>
         <br>
         Try again later
