@@ -51,6 +51,10 @@ export default {
 img {
   height: 6vh;
 }
+a {
+  text-decoration: none;
+  color: inherit
+}
 .awhite {
    color: white !important;
  }
