@@ -87,6 +87,10 @@ img {
   height: auto;
   object-fit: contain;
 }
+a {
+  text-decoration: none;
+  color: inherit
+}
 img .auto {
   width: auto;
   height: auto;
