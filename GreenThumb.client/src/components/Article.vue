@@ -50,6 +50,11 @@ export default {
 <style lang="scss" scoped>
 img {
   height: 6vh;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+  color: inherit
 }
 .awhite {
    color: white !important;
