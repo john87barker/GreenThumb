@@ -95,12 +95,7 @@
       </div>
     </div>
     <div class="row">
-      <h2 class="text-white" v-if="articles.length == 0">
-        No articles to display <i class="mdi mdi-shovel"></i>
-        <br>
-        Try again later
-      </h2>
-      <div class="col-12 my-2 cardd" v-for="a in articles" :key="a.title">
+      <div class="col-12 my-2 cardd" v-for="a in articles" :key="a.name">
         <Article :article="a" />
       </div>
     </div>

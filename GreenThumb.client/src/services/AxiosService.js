@@ -5,11 +5,18 @@ export const api = Axios.create({
   timeout: 8000
 })
 
+// NOTE bing api
 export const newsApi = Axios.create({
-  baseURL: 'https://newsapi.org/v2/everything?qInTitle=gardening&excludeDomains=nytimes.com&apiKey=7a9204818fa3450985cfd59c37e017e4',
+  baseURL: 'https://bing-news-search1.p.rapidapi.com/news/search?q=intitle%3Agarden&safeSearch=Off&textFormat=Raw&freshness=Day&rapidapi-key=c72bb6b8admshb8a6921c220778fp13b05cjsn639b75aef3c3',
   timeout: 10000
 })
 
+// NOTE NewsApi
+// export const newsApi = Axios.create({
+//   baseURL: 'https://newsapi.org/v2/everything?qInTitle=gardening&excludeDomains=nytimes.com&apiKey=7a9204818fa3450985cfd59c37e017e4',
+//   timeout: 10000
+// })
+// NOTE this api will no longer be used in production because it is $449 a month after production...
 // export const singleNewsApi = Axios.create({
 //   baseURL: 'https://newsapi.org/v2/everything?q=gardening&apiKey=7a9204818fa3450985cfd59c37e017e4&pageSize=1',
 //   timeout: 10000

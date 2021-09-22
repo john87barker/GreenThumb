@@ -1,12 +1,14 @@
 import { newsApi } from './AxiosService.js'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState.js'
+import { logger } from '../utils/Logger.js'
 
 class ArticlesService {
   async getAll() {
     try {
       const res = await newsApi.get('')
-      AppState.articles = res.data.articles
+      logger.log(res.data)
+      AppState.articles = res.data.value
     } catch (error) {
       Pop.toast(error, 'error')
     }
