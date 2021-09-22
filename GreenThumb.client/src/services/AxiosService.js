@@ -7,7 +7,7 @@ export const api = Axios.create({
 
 // NOTE bing api
 export const newsApi = Axios.create({
-  baseURL: 'https://bing-news-search1.p.rapidapi.com/news/search?q=intitle%3Agarden&safeSearch=Off&textFormat=Raw&freshness=Day&rapidapi-key=c72bb6b8admshb8a6921c220778fp13b05cjsn639b75aef3c3',
+  baseURL: 'https://bing-news-search1.p.rapidapi.com/news/search?q=intitle%3Agarden&safeSearch=Off&textFormat=Raw&freshness=Day&rapidapi-key=',
   timeout: 10000
 })
 
